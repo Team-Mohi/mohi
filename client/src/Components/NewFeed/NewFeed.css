@@ -1,0 +1,25 @@
+.ant-card-head-title{
+    white-space: normal !important;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.ant-card-head{
+    border-bottom: none !important;
+    padding: 0 10px !important;
+}
+.content-post{
+    padding: 0 10px 10px 10px;
+}
+.ant-card-cover{
+    max-height: 750px;
+    overflow: hidden;
+}
+.ant-card-body{
+    padding: 10px !important;
+    display: flex;
+    align-items: center;
+}
+.ant-comment-inner{
+    padding: 5px 10px 10px 10px;
+}

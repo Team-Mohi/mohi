@@ -1,0 +1,16 @@
+.ant-layout-header{
+    background: rgba(0, 128, 128, 1) !important;
+}
+.logo img{
+    border-radius: 3px;
+}
+.button-login{
+    background-color:  rgba(0, 128, 128, 1) !important;
+    color: white !important;
+    font-weight: 700 !important;
+    box-shadow: 0 0 0.3px 0.3px white !important;
+    border: 0 !important;
+}
+.layout-login{
+    background: linear-gradient(white, rgba(0,128,128)) !important;
+}
