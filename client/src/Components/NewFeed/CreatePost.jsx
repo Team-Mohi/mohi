@@ -89,7 +89,7 @@ function CreatePost() {
             <div
                 className="create-post p-3 mb-2"
                 style={zIndexModal}
-                onClick={() => showModalCreatePost()}//sao lại onclick ở đây nhỉ @@ giống fb
+                onClick={() => showModalCreatePost()}
             >
                 <Comment
                     avatar={

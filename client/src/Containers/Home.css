@@ -1,3 +1,6 @@
+img{
+  width: 100%;
+}
 .ant-layout-sider{
     background: none !important;
 }
@@ -18,7 +21,7 @@
 }
 .search-all{
     display: flex !important;
-    align-items: center!important; 
+    align-items: center!important;
     width: 30%!important;
     margin-left: 10px!important;
 }
@@ -73,7 +76,7 @@
     border-radius: 50%;
     height: 30px;
     margin-right: 5px;
-    
+
 }
 .after-li::after{
 content: '|';
@@ -109,7 +112,7 @@ color: black !important;
     border-top: 0.5px solid rgba(128,128,128,0.1);
     border-left: 0.5px solid rgba(128,128,128,0.1);
     border-right: 0.5px solid rgba(128,128,128,0.1);
-    border-bottom: 0.5px solid rgba(128,128,128,0.1) !important;  
+    border-bottom: 0.5px solid rgba(128,128,128,0.1) !important;
 }
 .box-option-sider-left li.active{
     font-weight: 600;

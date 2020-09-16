@@ -1,22 +1,13 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
-import { useHistory } from "react-router-dom";
+import HeaderProfile from './HeaderProfile.jsx';
+import './ProFile.css';
 
-function MyProfile() {
-  const history = useHistory();
-
-  function nav1() {
-    history.push("/nav1")
-  }
-
+function MyProfile(){
   return (
     <>
-      <Button onClick={nav1} >Test</Button>
-      <Button onClick={nav1} >Test</Button>
-      <Button onClick={nav1} >Test</Button>
-      <Button onClick={nav1} >Test</Button>
-      <Button onClick={nav1} >Test</Button>
-      <Button onClick={nav1} >Test</Button>
+      <div className="container">
+        <HeaderProfile />
+      </div>
     </>
   )
 }

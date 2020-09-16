@@ -1,0 +1,26 @@
+.profile-header-cover{
+  width: 100%;
+  position: relative;
+  margin-top: 64px;
+}
+.profile-header-cover-container{
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile-header-cover-img{
+  width: 100%;
+}
+.profile-header-cover-top-left{
+  position: absolute;
+  top:20px;
+  left: 10px;
+}
+.profile-header-cover-bottom-right{
+  position: absolute;
+  bottom:20px;
+  right: 10px;
+}
