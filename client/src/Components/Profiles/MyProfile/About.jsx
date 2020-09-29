@@ -1,8 +1,6 @@
-import React from 'react';
-import SiderProfile from './SiderProfile.jsx';
-import {Row} from 'antd';
+import React, {useEffect, useState} from 'react';
 import { FaUserAlt } from "react-icons/fa";
-import { AiOutlinePlus, AiFillEdit } from "react-icons/ai";
+import { AiOutlinePlusCircle, AiFillEdit } from "react-icons/ai";
 import {Link, Route, Switch, useLocation} from 'react-router-dom';
 
 const OverView = () => {
@@ -12,7 +10,7 @@ const OverView = () => {
         <div className="about-content-right-first-place-work">
           <div className="add-something">
             <div className="icon-add">
-            <AiOutlinePlus/>
+            <AiOutlinePlusCircle/>
             </div>
             <div className="title-add">
               <span>Thêm một nơi làm việc</span>
@@ -57,7 +55,7 @@ const Education = () => {
           <h6>Công việc</h6>
           <div className="add-something">
             <div className="icon-add">
-            <AiOutlinePlus/>
+            <AiOutlinePlusCircle/>
             </div>
             <div className="title-add">
               <span>Thêm một nơi làm việc</span>
@@ -74,7 +72,7 @@ const Education = () => {
           <h6>Cao đẳng/đại học</h6>
           <div className="add-something">
             <div className="icon-add">
-            <AiOutlinePlus/>
+            <AiOutlinePlusCircle/>
             </div>
             <div className="title-add">
               <span>Thêm một trường cao đẳng/đại học</span>
@@ -88,7 +86,7 @@ const Education = () => {
           <h6>Trung học</h6>
           <div className="add-something">
             <div className="icon-add">
-            <AiOutlinePlus/>
+            <AiOutlinePlusCircle/>
             </div>
             <div className="title-add">
               <span>Thêm một trường trung học</span>
@@ -112,7 +110,7 @@ const  ContactInfo= () => {
           <h6>Email</h6>
           <div className="add-something">
             <div className="icon-add">
-            <AiOutlinePlus/>
+            <AiOutlinePlusCircle/>
             </div>
             <div className="title-add">
               <span>Thêm một email</span>
@@ -129,7 +127,7 @@ const  ContactInfo= () => {
           <h6>Số điện thoại</h6>
           <div className="add-something">
             <div className="icon-add">
-            <AiOutlinePlus/>
+            <AiOutlinePlusCircle/>
             </div>
             <div className="title-add">
               <span>Thêm một số điện thoại</span>
@@ -143,7 +141,7 @@ const  ContactInfo= () => {
           <h6>Website</h6>
           <div className="add-something">
             <div className="icon-add">
-            <AiOutlinePlus/>
+            <AiOutlinePlusCircle/>
             </div>
             <div className="title-add">
               <span>Thêm một link website</span>
@@ -166,7 +164,7 @@ const Bio = () => {
         <h6>Giới thiệu về bản thân</h6>
         <div className="add-something">
           <div className="icon-add">
-          <AiOutlinePlus/>
+          <AiOutlinePlusCircle/>
           </div>
           <div className="title-add">
             <span>Viết vài điều về bản thân bạn</span>
@@ -180,7 +178,7 @@ const Bio = () => {
         <h6>Các tên khác</h6>
         <div className="add-something">
           <div className="icon-add">
-          <AiOutlinePlus/>
+          <AiOutlinePlusCircle/>
           </div>
           <div className="title-add">
             <span>Thêm một biệt danh hoặc tên khai sinh của bạn</span>
@@ -196,7 +194,7 @@ const Bio = () => {
 }
 
 function About(){
-  
+
   const path = useLocation().pathname.split('/');
   const isActive = path[3];
 
@@ -210,22 +208,22 @@ function About(){
           <div className="about-content-left">
             <ul>
               <Link to="/profile/about/overview">
-                <li className={isActive == 'overview' || !isActive ? 'active' : ''}>
+                <li className={isActive === 'overview' || !isActive ? 'active' : ''}>
                   <span>Tổng quan</span>
                 </li>
               </Link>
               <Link to="/profile/about/education">
-                <li className={isActive == 'education' ? 'active' : ''}>
+                <li className={isActive === 'education' ? 'active' : ''}>
                   <span>Công việc và học vấn</span>
                 </li>
               </Link>
               <Link to="/profile/about/contact-info">
-                <li className={isActive == 'contact-info'  ? 'active' : ''}>
+                <li className={isActive === 'contact-info'  ? 'active' : ''}>
                   <span>Thông tin liên hệ và cơ bản</span>
                 </li>
               </Link>
               <Link to="/profile/about/bio">
-                <li className={isActive == 'bio'  ? 'active' : ''}>
+                <li className={isActive === 'bio'  ? 'active' : ''}>
                   <span>Chi tiết về bạn</span>
                 </li>
               </Link>

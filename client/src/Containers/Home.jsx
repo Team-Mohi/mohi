@@ -1,9 +1,11 @@
-import React, { Suspense, lazy, useState } from 'react';
+import React, { Suspense, lazy, useEffect, useState } from 'react';
 import './Home.css';
-import { Link, Route, Switch, useHistory} from 'react-router-dom';
+import { Link, Route, Switch, useHistory, useLocation} from 'react-router-dom';
 import { Layout, Menu, Input, Dropdown } from 'antd';
 import { FaUserFriends, FaFacebookMessenger, FaBell } from 'react-icons/fa';
 import { AiFillCaretDown } from "react-icons/ai";
+import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 const Main = lazy(() => import('./../Components/NewFeed/Index.jsx'));
 const MyProfile = lazy(() => import('./../Components/Profiles/MyProfile/Index.jsx'));
 const Messenger = lazy(() => import('./../Components/Messenger/index.jsx'));
@@ -33,12 +35,26 @@ function Home() {
     const { Header } = Layout;
     const { Search } = Input;
     const history = useHistory();
-    const [searchValue, setSearchValue] = useState();
+    const path = useLocation().pathname.split('/');
+    const key = useHistory().location.key;
+    const isActive = path[1];
+    const [loadingContent, setLoadingContent] = useState(true);
+    const antIcon = <LoadingOutlined style={{ fontSize: 50, color: 'rgba(0,128,128)' }} spin />;
+
+    useEffect(() => {
+
+      window.scrollTo(0, 0)
+      setLoadingContent(true)
+
+      setTimeout(() => {
+        setLoadingContent(false)
+      }, 200);
+
+    },[key]);
+
     function onSearch(value){
-      setSearchValue(value)
       history.push('/search/' + value)
     }
-
     return (
         <>
             <Layout className="layout " >
@@ -55,13 +71,13 @@ function Home() {
                         />
                         <Menu className="menu-home" mode="horizontal" >
                             <Menu.Item className="after-li">
-                                <Link className="avatar-home" to="/profile">
+                                <Link className="avatar-home" to="/profile" >
                                     <img src="images/gaixinh.jpg" alt="" />
                                     <span>Phước</span>
                                 </Link>
                             </Menu.Item>
                             <Menu.Item className="after-li">
-                                <Link className="home" to="/" > Trang chủ</Link>
+                                <Link className="home" to="/"  > Trang chủ</Link>
                             </Menu.Item>
                             <Menu.Item >
                                 <Dropdown className="dropdown-setting" trigger={['click']} overlay={menu} placement="bottomCenter" arrow>
@@ -88,10 +104,14 @@ function Home() {
                 </Header>
                 <Suspense fallback={(<div></div>)}>
                     <Switch>
+                      {loadingContent ? <div className="spin"> <Spin indicator={antIcon} /></div> :
+                        <>
                         <Route exact path="/" component={Main} />
                         <Route path="/profile" component={MyProfile} />
                         <Route path="/messenger" component={Messenger} />
                         <Route path={`/search/:value`} component={SearchNavigation} />
+                        </>
+                      }
                     </Switch>
                 </Suspense>
             </Layout>

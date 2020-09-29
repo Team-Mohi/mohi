@@ -1,5 +1,5 @@
 import React,{useState} from  'react';
-import {Link, Route, Switch} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import { AiFillCamera } from "react-icons/ai";
 import { BsThreeDots, BsPencil } from "react-icons/bs";
 

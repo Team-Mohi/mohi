@@ -1,13 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
-import { BsThreeDots } from "react-icons/bs";
 import { FaUserPlus, FaPlus } from "react-icons/fa";
 import { AiOutlineLike } from "react-icons/ai";
 import { GoTriangleRight } from "react-icons/go";
 import { GiEarthAmerica } from "react-icons/gi";
 
 function FilterAll(){
-  const [style, setStyle] = useState();
 
   return(
     <>
@@ -15,12 +13,12 @@ function FilterAll(){
         <div className="filter-list-user">
           <h6>Mọi người</h6>
           <div className="filter-list-user-item-container">
-            <div className="filter-list-user-item" style={style}>
+            <div className="filter-list-user-item" >
               <div className="filter-list-user-item-avatar">
                 <img src={`https://i.pinimg.com/originals/4c/20/8a/4c208adc5befb204a74947c5b2ca8937.jpg`} alt="" />
               </div>
               <div className="filter-list-user-item-info">
-                <p className="filter-list-user-item-name"><Link>Nguyễn Văn Phước (Dịch Vụ Facebook)</Link></p>
+                <p className="filter-list-user-item-name"><Link to="">Nguyễn Văn Phước (Dịch Vụ Facebook)</Link></p>
                 <small>Bạn bè</small>
                 <p>SINH VIÊN tại Thợ hồ Và Công nhân Xây dựngSINH VIÊN tại Thợ hồ Và Công nhân Xây dựngSINH VIÊN tại Thợ hồ Và Công nhân Xây dựngSINH VIÊN tại Thợ hồ Và Công nhân Xây dựng</p>
                 <p>22 bạn chung</p>
@@ -35,12 +33,12 @@ function FilterAll(){
         <div className="filter-list-page">
           <h6>Trang</h6>
           <div className="filter-list-user-item-container">
-            <div className="filter-list-user-item" style={style}>
+            <div className="filter-list-user-item" >
               <div className="filter-list-user-item-avatar">
                 <img src={`https://i.pinimg.com/originals/4c/20/8a/4c208adc5befb204a74947c5b2ca8937.jpg`} alt="" />
               </div>
               <div className="filter-list-user-item-info">
-                <p className="filter-list-user-item-name"><Link>Nguyễn Văn Phước (Dịch Vụ Facebook)</Link></p>
+                <p className="filter-list-user-item-name"><Link to="">Nguyễn Văn Phước (Dịch Vụ Facebook)</Link></p>
                 <small>331k người thích trang này</small>
                 <p>Hỗ trợ bán hàng</p>
                 <p>Web: something</p>
@@ -54,12 +52,12 @@ function FilterAll(){
         <div className="filter-list-group">
           <h6>Nhóm</h6>
           <div className="filter-list-user-item-container">
-            <div className="filter-list-user-item" style={style}>
+            <div className="filter-list-user-item" >
               <div className="filter-list-user-item-avatar">
                 <img src={`https://i.pinimg.com/originals/4c/20/8a/4c208adc5befb204a74947c5b2ca8937.jpg`} alt="" />
               </div>
               <div className="filter-list-user-item-info">
-                <p className="filter-list-user-item-name"><Link>Nguyễn Văn Phước (Dịch Vụ Facebook)</Link></p>
+                <p className="filter-list-user-item-name"><Link to="">Nguyễn Văn Phước (Dịch Vụ Facebook)</Link></p>
                 <small>331k thành viên</small>
                 <p>nhóm some thing</p>
               </div>

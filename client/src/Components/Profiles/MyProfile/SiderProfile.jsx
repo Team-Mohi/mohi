@@ -50,7 +50,7 @@ function SiderProfile(){
           </div>
           <div className="profile-attention">
             <div className="profile-attention-img">
-              <img src={`https://tse4.mm.bing.net/th?id=OIP.6-3hu-lZYuboDHFWhpuE7AHaLH&pid=Api&P=0&w=300&h=300`} atl=""/>
+              <img src={`https://tse4.mm.bing.net/th?id=OIP.6-3hu-lZYuboDHFWhpuE7AHaLH&pid=Api&P=0&w=300&h=300`} alt=""/>
             </div>
             <button>Chỉnh sửa ảnh đáng chú ý</button>
           </div>
@@ -59,37 +59,37 @@ function SiderProfile(){
               <Row>
                 <Col span={8}>
                   <div className="profile-galerry-img">
-                    <img src={`https://tse4.mm.bing.net/th?id=OIP.6-3hu-lZYuboDHFWhpuE7AHaLH&pid=Api&P=0&w=300&h=300`} atl=""/>
+                    <img src={`https://tse4.mm.bing.net/th?id=OIP.6-3hu-lZYuboDHFWhpuE7AHaLH&pid=Api&P=0&w=300&h=300`} alt=""/>
                   </div>
                 </Col>
                 <Col span={8}>
                   <div className="profile-galerry-img">
-                    <img src={`https://tse4.mm.bing.net/th?id=OIP.6-3hu-lZYuboDHFWhpuE7AHaLH&pid=Api&P=0&w=300&h=300`} atl=""/>
+                    <img src={`https://tse4.mm.bing.net/th?id=OIP.6-3hu-lZYuboDHFWhpuE7AHaLH&pid=Api&P=0&w=300&h=300`} alt=""/>
                   </div>
                 </Col>
                 <Col span={8}>
                   <div className="profile-galerry-img">
-                    <img src={`https://tse4.mm.bing.net/th?id=OIP.6-3hu-lZYuboDHFWhpuE7AHaLH&pid=Api&P=0&w=300&h=300`} atl=""/>
+                    <img src={`https://tse4.mm.bing.net/th?id=OIP.6-3hu-lZYuboDHFWhpuE7AHaLH&pid=Api&P=0&w=300&h=300`} alt=""/>
                   </div>
                 </Col>
                 <Col span={8}>
                   <div className="profile-galerry-img">
-                    <img src={`https://tse4.mm.bing.net/th?id=OIP.6-3hu-lZYuboDHFWhpuE7AHaLH&pid=Api&P=0&w=300&h=300`} atl=""/>
+                    <img src={`https://tse4.mm.bing.net/th?id=OIP.6-3hu-lZYuboDHFWhpuE7AHaLH&pid=Api&P=0&w=300&h=300`} alt=""/>
                   </div>
                 </Col>
                 <Col span={8}>
                   <div className="profile-galerry-img">
-                    <img src={`https://tse4.mm.bing.net/th?id=OIP.6-3hu-lZYuboDHFWhpuE7AHaLH&pid=Api&P=0&w=300&h=300`} atl=""/>
+                    <img src={`https://tse4.mm.bing.net/th?id=OIP.6-3hu-lZYuboDHFWhpuE7AHaLH&pid=Api&P=0&w=300&h=300`} alt=""/>
                   </div>
                 </Col>
                 <Col span={8}>
                   <div className="profile-galerry-img">
-                    <img src={`https://tse4.mm.bing.net/th?id=OIP.6-3hu-lZYuboDHFWhpuE7AHaLH&pid=Api&P=0&w=300&h=300`} atl=""/>
+                    <img src={`https://tse4.mm.bing.net/th?id=OIP.6-3hu-lZYuboDHFWhpuE7AHaLH&pid=Api&P=0&w=300&h=300`} alt=""/>
                   </div>
                 </Col>
                 <Col span={8}>
                   <div className="profile-galerry-img">
-                    <img src={`https://tse4.mm.bing.net/th?id=OIP.6-3hu-lZYuboDHFWhpuE7AHaLH&pid=Api&P=0&w=300&h=300`} atl=""/>
+                    <img src={`https://tse4.mm.bing.net/th?id=OIP.6-3hu-lZYuboDHFWhpuE7AHaLH&pid=Api&P=0&w=300&h=300`} alt=""/>
                   </div>
                 </Col>
               </Row>
@@ -99,7 +99,7 @@ function SiderProfile(){
             <Row>
               <Col span={8}>
                 <div className="profile-galerry-img">
-                  <img src={`https://tse4.mm.bing.net/th?id=OIP.6-3hu-lZYuboDHFWhpuE7AHaLH&pid=Api&P=0&w=300&h=300`} atl=""/>
+                  <img src={`https://tse4.mm.bing.net/th?id=OIP.6-3hu-lZYuboDHFWhpuE7AHaLH&pid=Api&P=0&w=300&h=300`} alt=""/>
                 </div>
                 <div className="profile-friends-name">
                   <Link to="">Bảo Ngọc</Link>
@@ -107,7 +107,7 @@ function SiderProfile(){
               </Col>
               <Col span={8}>
                 <div className="profile-galerry-img">
-                  <img src={`https://tse4.mm.bing.net/th?id=OIP.6-3hu-lZYuboDHFWhpuE7AHaLH&pid=Api&P=0&w=300&h=300`} atl=""/>
+                  <img src={`https://tse4.mm.bing.net/th?id=OIP.6-3hu-lZYuboDHFWhpuE7AHaLH&pid=Api&P=0&w=300&h=300`} alt=""/>
                 </div>
                 <div className="profile-friends-name">
                   <Link to="">Bảo Ngọc</Link>
@@ -115,7 +115,7 @@ function SiderProfile(){
               </Col>
               <Col span={8}>
                 <div className="profile-galerry-img">
-                  <img src={`https://i.ytimg.com/vi/p8PSwjK7R-Y/hqdefault.jpg`} atl=""/>
+                  <img src={`https://i.ytimg.com/vi/p8PSwjK7R-Y/hqdefault.jpg`} alt=""/>
                 </div>
                 <div className="profile-friends-name">
                   <Link to="">Bảo Ngọc</Link>
@@ -123,7 +123,7 @@ function SiderProfile(){
               </Col>
               <Col span={8}>
                 <div className="profile-galerry-img">
-                  <img src={`https://2.bp.blogspot.com/-AX9DuH5Sjos/UeAs8QFXCGI/AAAAAAAAE5o/LbVCOeVHBv8/s1600/hinh-anh-gai-xinh-hd-taihinhnendep.com-4.jpg`} atl=""/>
+                  <img src={`https://2.bp.blogspot.com/-AX9DuH5Sjos/UeAs8QFXCGI/AAAAAAAAE5o/LbVCOeVHBv8/s1600/hinh-anh-gai-xinh-hd-taihinhnendep.com-4.jpg`} alt=""/>
                 </div>
                 <div className="profile-friends-name">
                   <Link to="">Bảo Ngọc</Link>
@@ -131,7 +131,7 @@ function SiderProfile(){
               </Col>
               <Col span={8}>
                 <div className="profile-galerry-img">
-                  <img src={`https://tse1.mm.bing.net/th?id=OIP.LBCnQ49IjAqFFQ3zQimkSgHaJQ&pid=Api&P=0&w=300&h=300`} atl=""/>
+                  <img src={`https://tse1.mm.bing.net/th?id=OIP.LBCnQ49IjAqFFQ3zQimkSgHaJQ&pid=Api&P=0&w=300&h=300`} alt=""/>
                 </div>
                 <div className="profile-friends-name">
                   <Link to="">Bảo Ngọc</Link>
@@ -139,7 +139,7 @@ function SiderProfile(){
               </Col>
               <Col span={8}>
                 <div className="profile-galerry-img">
-                  <img src={`https://tse4.mm.bing.net/th?id=OIP.pjXYe6_ccZrOYuDbS6AChQHaKm&pid=Api&P=0&w=300&h=300`} atl=""/>
+                  <img src={`https://tse4.mm.bing.net/th?id=OIP.pjXYe6_ccZrOYuDbS6AChQHaKm&pid=Api&P=0&w=300&h=300`} alt=""/>
                 </div>
                 <div className="profile-friends-name">
                   <Link to="">Bảo Ngọc</Link>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link, Route, Switch, useParams, useLocation} from 'react-router-dom';
 import './search.css';
 import FilterPost from './Filter/filter_post.jsx';
@@ -17,25 +17,26 @@ function SearchNavigation(){
   const location = useLocation().pathname.split('/');
   const isActive = location[3];
   const yearNow = new Date().getFullYear();
+
   return(
     <>
       <div className="container" style={{marginTop:'64px'}}>
         <div style={{position:'relative'}}>
           <ul className="search-filter-top" style={{position:'fixed', width: '1140px'}}>
             <li>
-              <Link to={`/search/${value}/all`} className={isActive=='all' || !isActive ? `search-filter-top-active` : ''}>Tất cả</Link>
+              <Link to={`/search/${value}/all`} className={isActive === 'all' || !isActive ? `search-filter-top-active` : ''}>Tất cả</Link>
             </li>
             <li>
-              <Link to={`/search/${value}/post`} className={isActive=='post' ? `search-filter-top-active` : ''}>Bài viết</Link>
+              <Link to={`/search/${value}/post`} className={isActive === 'post' ? `search-filter-top-active` : ''}>Bài viết</Link>
             </li>
             <li>
-              <Link to={`/search/${value}/people`} className={isActive=='people' ? `search-filter-top-active` : ''}>Mọi người</Link>
+              <Link to={`/search/${value}/people`} className={isActive === 'people' ? `search-filter-top-active` : ''}>Mọi người</Link>
             </li>
             <li>
-              <Link to={`/search/${value}/image`} className={isActive=='image' ? `search-filter-top-active` : ''}>Ảnh</Link>
+              <Link to={`/search/${value}/image`} className={isActive === 'image' ? `search-filter-top-active` : ''}>Ảnh</Link>
             </li>
             <li>
-              <Link to={`/search/${value}/video`} className={isActive=='video' ? `search-filter-top-active` : ''}>Video</Link>
+              <Link to={`/search/${value}/video`} className={isActive === 'video' ? `search-filter-top-active` : ''}>Video</Link>
             </li>
           </ul>
         </div>
