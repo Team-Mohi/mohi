@@ -22,7 +22,7 @@ function Main() {
                             <div style={{ position: "fixed" }}>
                                 <List>
                                     <List.Item className="box-info-sider-left">
-                                        <img src="images/gaixinh.jpg" alt="" width={30} height={30} />
+                                        <img src="images/gaixinh.jpg" alt="" style={{width: '30px', height: '30px'}} />
                                         <span>Nguyễn Văn Phước</span>
                                     </List.Item>
                                     <List className="box-option-sider-left" >

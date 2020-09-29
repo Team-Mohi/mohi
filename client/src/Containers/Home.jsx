@@ -1,11 +1,13 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useState } from 'react';
 import './Home.css';
-import { Link, Route, Switch } from 'react-router-dom';
+import { Link, Route, Switch, useHistory} from 'react-router-dom';
 import { Layout, Menu, Input, Dropdown } from 'antd';
 import { FaUserFriends, FaFacebookMessenger, FaBell } from 'react-icons/fa';
 import { AiFillCaretDown } from "react-icons/ai";
 const Main = lazy(() => import('./../Components/NewFeed/Index.jsx'));
 const MyProfile = lazy(() => import('./../Components/Profiles/MyProfile/Index.jsx'));
+const Messenger = lazy(() => import('./../Components/Messenger/index.jsx'));
+const SearchNavigation = lazy(() => import('./../Components/Search/index.jsx'));
 
 const menu = (
     <Menu>
@@ -30,6 +32,13 @@ const menu = (
 function Home() {
     const { Header } = Layout;
     const { Search } = Input;
+    const history = useHistory();
+    const [searchValue, setSearchValue] = useState();
+    function onSearch(value){
+      setSearchValue(value)
+      history.push('/search/' + value)
+    }
+
     return (
         <>
             <Layout className="layout " >
@@ -41,7 +50,7 @@ function Home() {
                         <Search
                             className="search-all"
                             placeholder="Tìm kiếm"
-                            onSearch={value => console.log(value)}
+                            onSearch={(value) => onSearch(value)}
                             enterButton
                         />
                         <Menu className="menu-home" mode="horizontal" >
@@ -81,6 +90,8 @@ function Home() {
                     <Switch>
                         <Route exact path="/" component={Main} />
                         <Route path="/profile" component={MyProfile} />
+                        <Route path="/messenger" component={Messenger} />
+                        <Route path={`/search/:value`} component={SearchNavigation} />
                     </Switch>
                 </Suspense>
             </Layout>
