@@ -1,0 +1,2 @@
+(this.webpackJsonpclient=this.webpackJsonpclient||[]).push([[10],{352:function(e,n,t){"use strict";t.r(n);var a=t(1),s=t.n(a);n.default=function(){return s.a.createElement(s.a.Fragment,null,"hello i am messenger")}}}]);
+//# sourceMappingURL=10.ef06897b.chunk.js.map

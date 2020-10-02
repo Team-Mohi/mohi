@@ -576,3 +576,88 @@ button:focus {
   text-align: center;
   padding: 10px;
 }
+
+.friends-all {
+  padding: 10px;
+  width: 100%;
+}
+
+.profile-firends-container {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+}
+
+.friend-item-container {
+  justify-content: space-between;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 5px;
+}
+
+.friend-item-container, .friend-item-left, .friend-item-right {
+  display: flex;
+  align-items: center;
+}
+
+.friend-item-right {
+  margin-right: 10px;
+}
+
+.friend-item-right button {
+  padding: 2px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 2px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #4b4f56;
+  background: #f5f6f7;
+}
+
+.friend-item-avatar {
+  width: 120px;
+  height: 120px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.friend-item-name a {
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(0, 128, 128);
+}
+
+.friend-item-info {
+  margin-left: 10px;
+}
+
+.friend-item-desc {
+  color: #90949c;
+  font-size: 14px;
+}
+
+.search-friend {
+  float: right;
+  position: relative;
+}
+
+.search-friend input {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0 5px;
+  width: 200px;
+  height: 30px;
+  font-size: 12px;
+}
+
+.search-friend button {
+  position: absolute;
+  right: 0;
+  border: 0;
+  height: 100%;
+  padding: 0 5px;
+}
+
+.clear {
+  clear: both;
+}

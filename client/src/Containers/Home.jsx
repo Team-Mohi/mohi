@@ -36,13 +36,13 @@ function Home() {
     const { Search } = Input;
     const history = useHistory();
     const path = useLocation().pathname.split('/');
-    const key = useHistory().location.key;
+    const key = history.location.key;
     const isActive = path[1];
     const [loadingContent, setLoadingContent] = useState(true);
     const antIcon = <LoadingOutlined style={{ fontSize: 50, color: 'rgba(0,128,128)' }} spin />;
 
-    useEffect(() => {
 
+    useEffect(() => {
       window.scrollTo(0, 0)
       setLoadingContent(true)
 
