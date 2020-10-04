@@ -2,6 +2,7 @@ import React,{useState} from  'react';
 import {Link} from 'react-router-dom';
 import { AiFillCamera } from "react-icons/ai";
 import { BsThreeDots, BsPencil } from "react-icons/bs";
+import {PUBLIC_URL } from "./../../../Constant/public.jsx";
 
 function HeaderProfile(){
   const [toggleSpan, setToggleSpan] = useState();
@@ -64,7 +65,7 @@ function HeaderProfile(){
                 <div className="profile-header-avatar-container">
                   <div className="profile-header-avatar-img">
                     <Link to="/profile">
-                      <img src={`images/gaixinh.jpg`} alt="" />
+                      <img src={PUBLIC_URL+`/images/gaixinh.jpg`} alt="" />
                     </Link>
                   </div>
                 </div>
