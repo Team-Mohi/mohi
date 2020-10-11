@@ -6,6 +6,10 @@ import { FaUserFriends, FaFacebookMessenger, FaBell } from 'react-icons/fa';
 import { AiFillCaretDown } from "react-icons/ai";
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
+import ChatSider from './../Components/ChatSider/ChatSider.jsx';
+import ChatMini from './../Components/ChatMini/ChatMini.jsx';
+import Watch from './../Components/Watch/Watch.jsx';
+import {PUBLIC_URL} from './../Constant/public.jsx';
 const Main = lazy(() => import('./../Components/NewFeed/Index.jsx'));
 const MyProfile = lazy(() => import('./../Components/Profiles/MyProfile/Index.jsx'));
 const Messenger = lazy(() => import('./../Components/Messenger/index.jsx'));
@@ -40,28 +44,61 @@ function Home() {
     const isActive = path[1];
     const [loadingContent, setLoadingContent] = useState(true);
     const antIcon = <LoadingOutlined style={{ fontSize: 50, color: 'rgba(0,128,128)' }} spin />;
-
+    const [listChatMini, setListChatMini] = useState([]);
 
     useEffect(() => {
-      window.scrollTo(0, 0)
-      setLoadingContent(true)
+      if(listChatMini.length === 0){
+        if(localStorage.getItem('listChatMini')){
+          setListChatMini(localStorage.getItem('listChatMini').split(','))
+        }
+      }
 
-      setTimeout(() => {
-        setLoadingContent(false)
-      }, 200);
+    },[]);
 
+    useEffect(() => {
+      if(!path[2]){
+        window.scrollTo(0, 0)
+        setLoadingContent(true)
+
+        setTimeout(() => {
+          setLoadingContent(false)
+        }, 200);
+      }
     },[key]);
 
     function onSearch(value){
       history.push('/search/' + value)
     }
+
+    const increaseChatMini = (iduser) =>{
+      if(!listChatMini.includes(iduser)){
+        if(listChatMini.length > 2){
+          listChatMini.splice(0,1)
+          setListChatMini([...listChatMini, iduser])
+          localStorage.setItem('listChatMini', [...listChatMini, iduser,])
+        }else {
+          setListChatMini([...listChatMini, iduser])
+          localStorage.setItem('listChatMini', [...listChatMini, iduser,])
+        }
+      }
+    }
+
+    const closeChatMini = (iduser) => {
+      if(listChatMini.includes(iduser)){
+        let newListChatMini = listChatMini.filter(chatmini => chatmini !== iduser)
+        setListChatMini(newListChatMini)
+        localStorage.setItem('listChatMini', newListChatMini)
+      }
+    }
+
     return (
         <>
             <Layout className="layout " >
+
                 <Header className="nav-home">
                     <div className="container d-flex header-home " >
                         <div className="logo " >
-                            <img src={"logo.png"} alt="Mohi.vn" title="Mohi.vn" />
+                            <img src={PUBLIC_URL + "/logo.png"} alt="Mohi.vn" title="Mohi.vn" />
                         </div>
                         <Search
                             className="search-all"
@@ -80,28 +117,29 @@ function Home() {
                                 <Link className="home" to="/"  > Trang chủ</Link>
                             </Menu.Item>
                             <Menu.Item >
-                                <Dropdown className="dropdown-setting" trigger={['click']} overlay={menu} placement="bottomCenter" arrow>
+                                <Dropdown className="dropdown-setting" trigger={['click']} overlay={menu} placement="bottomCenter" >
                                     <FaUserFriends title="Bạn bè" />
                                 </Dropdown>
                             </Menu.Item>
                             <Menu.Item >
-                                <Dropdown className="dropdown-setting" trigger={['click']} overlay={menu} placement="bottomCenter" arrow>
+                                <Dropdown className="dropdown-setting" trigger={['click']} overlay={menu} placement="bottomCenter" >
                                     <FaFacebookMessenger title="Tin nhắn" />
                                 </Dropdown>
                             </Menu.Item>
                             <Menu.Item >
-                                <Dropdown className="dropdown-setting" trigger={['click']} overlay={menu} placement="bottomCenter" arrow>
+                                <Dropdown className="dropdown-setting" trigger={['click']} overlay={menu} placement="bottomCenter" >
                                     <FaBell title="Thông báo" />
                                 </Dropdown>
                             </Menu.Item>
                             <Menu.Item >
-                                <Dropdown className="dropdown-setting" trigger={['click']} overlay={menu} placement="bottomCenter" arrow>
+                                <Dropdown className="dropdown-setting" trigger={['click']} overlay={menu} placement="bottomCenter" >
                                     <AiFillCaretDown title="Cài đặt" />
                                 </Dropdown>
                             </Menu.Item>
                         </Menu>
                     </div>
                 </Header>
+
                 <Suspense fallback={(<div></div>)}>
                     <Switch>
                       {loadingContent ? <div className="spin"> <Spin indicator={antIcon} /></div> :
@@ -109,11 +147,26 @@ function Home() {
                         <Route exact path="/" component={Main} />
                         <Route path="/profile" component={MyProfile} />
                         <Route path="/messenger" component={Messenger} />
+                        <Route path="/watch" component={Watch} />
                         <Route path={`/search/:value`} component={SearchNavigation} />
                         </>
                       }
                     </Switch>
                 </Suspense>
+                {history.location.pathname !== '/messenger' ? <>
+                {listChatMini.length === 0 ? null :
+                  <div className="list-chatmini-container">
+                  {listChatMini.map((chatmini, index) => {
+                    return(
+                      <ChatMini key={index} iduser={chatmini} closeChatMini={closeChatMini}/>
+                    )
+                  })
+                  }
+                  </div>
+                }
+                <ChatSider increaseChatMini={increaseChatMini} />
+                </>
+                : null}
             </Layout>
         </>
     )

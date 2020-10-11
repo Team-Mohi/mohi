@@ -350,9 +350,7 @@ button:focus {
 }
 
 .icon-add {
-  padding: 5px 10px;
-  border: 3px dotted rgba(0, 128, 128);
-  margin-right: 15px;
+  padding: 5px;
 }
 
 .icon-add svg {
