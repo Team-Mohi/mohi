@@ -3,7 +3,7 @@ import React from 'react';
 function Messenger(){
   return(
     <>
-    hello i am messenger
+    <h1>Hello i'm Messenger</h1>
     </>
   )
 }
