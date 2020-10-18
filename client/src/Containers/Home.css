@@ -2,6 +2,10 @@ body {
   overflow-y: scroll;
 }
 
+.layout {
+  min-height: 100vh !important;
+}
+
 img {
   width: 100%;
 }

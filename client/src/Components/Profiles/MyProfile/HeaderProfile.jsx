@@ -68,6 +68,7 @@ function HeaderProfile(){
                   <div className="profile-header-avatar-img">
                     <Link to="/profile">
                       <img src={PUBLIC_URL + `images/gaixinh.jpg`} alt="" />
+
                     </Link>
                   </div>
                 </div>

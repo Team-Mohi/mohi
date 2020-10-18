@@ -8,14 +8,18 @@ import { AiFillFlag } from "react-icons/ai";
 import { FaUserFriends, FaFacebookMessenger } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import NewFeed from './Newfeed.jsx';
+import useSound from 'use-sound';
+import {PUBLIC_URL} from './../../Constant/public.jsx';
 
 function Main() {
     const { Content, Sider } = Layout;
+    const [play1] = useSound(PUBLIC_URL + '/sounds/2.mp3');
+    const [play2] = useSound(PUBLIC_URL + '/sounds/1.flac');
+    const [play3] = useSound(PUBLIC_URL + '/sounds/3.wav');
     const yearNow = new Date().getFullYear();
-
     return (
         <>
-            <Content style={{ padding: '0 50px', marginTop: '65px' }}>
+            <Content style={{ marginTop: '65px' }}>
                 <div className="container mt-2 mb-2">
                     <Layout >
                         <Sider width="200" >
@@ -26,6 +30,11 @@ function Main() {
                                         <span>Nguyễn Văn Phước</span>
                                     </List.Item>
                                     <List className="box-option-sider-left" >
+                                      <List.Item className="active">
+                                      <div onClick={() => play1()}>sound1</div>
+                                      <div onClick={() => play2()}>sound2</div>
+                                      <div onClick={() => play3()}>sound3</div>
+                                      </List.Item>
                                         <Link to="/">
                                             <List.Item className="active">
                                                 <GrArticle /> Trang chủ
