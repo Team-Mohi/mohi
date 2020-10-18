@@ -189,3 +189,125 @@ img {
   align-items: center;
   background: rgba(255, 257, 257);
 }
+
+/* dropdown menu friendfrequests css */
+
+.friendrequests-menu-container{
+  width: 350px;
+  margin: 50px;
+  padding: 50px;
+}
+
+.friendrequests-menu-title h5{
+    float: left;
+    text-decoration: none;
+    color: rgba(0,128,128);
+    font-size: 16px;
+    font-weight: 700;
+}
+.friendrequests-menu-title a{
+  float: right;
+  padding-right: 10px;
+  text-decoration: none;
+  color: rgba(0,128,128);
+}
+.footer-dropdown-menu{
+  text-align: center;
+  margin: 10px 5px 0 0 ;
+}
+.footer-dropdown-menu a{
+  text-decoration: none;
+  color: rgba(0,128,128);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px;
+}
+.footer-dropdown-menu a:hover{
+  color: rgba(0,128,128);
+  font-size: 14px;
+  font-weight: 700;
+}
+.ant-dropdown{
+  position: fixed !important;
+  text-align: center;
+}
+
+.ant-dropdown-menu {
+  margin: 10px !important;
+  padding: 10px !important;
+  text-align: center;
+}
+
+.friend-requests-menu-avatar img{
+  float: left;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.friend-requests-menu-name a{
+  font-weight: 700;
+  color: rgba(0,128,128);
+  margin-left: 10px;
+}
+.friend-requests-menu-mutual-friends a{
+  color: rgba(0, 0, 0, 0.7);
+  margin-left: 5px;
+}
+.friend-requests-menu-info{
+  float: left;
+}
+.friend-requests-menu-button{
+  float: right;
+  padding: 10px;
+}
+.friend-requests-menu-button button{
+  margin-right: 3px;
+}
+.friend-requests-accept-btn{
+  background-color: rgba(0,128,128);
+  color: white;
+  border-radius: 5px;
+border:0;
+padding:5px;
+}
+.friend-requests-refuse-btn{
+  background-color: rgba(0,0,0,0.1);
+  color: rgba(0,0,0,0.7);
+  border-radius: 5px;
+  border:0;
+  padding:5px;
+}
+
+/* dropdown messenger menu css */
+.messenger-menu-container{
+  width: 400px;
+  padding: 50px;
+}
+.messenger-menu-title h5{
+  float: left;
+  text-decoration: none;
+  color: rgba(0,128,128);
+  font-size: 16px;
+  font-weight: 700;
+  padding: 5px;
+}
+.messenger-menu-title a{
+float: right;
+padding-right: 10px;
+text-decoration: none;
+color: rgba(0,128,128);
+}
+.messenger-menu-right{
+  float: right;
+  margin: 0;
+  text-align: center;
+}
+.messenger-menu-right p{
+  margin: 0;
+  text-align: center;
+}
+.menu-items{
+  height: 50px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 1px 0 0 ;
+  padding: 2px;
+} 
