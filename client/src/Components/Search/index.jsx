@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Link, Route, Switch, useParams, useLocation} from 'react-router-dom';
 import './search.css';
 import FilterPost from './Filter/filter_post.jsx';

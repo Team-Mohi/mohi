@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, forwardRef, useImperativeHandle} from 'react';
 import './ChatMini.css';
 import {Link} from 'react-router-dom';
 import {BsThreeDotsVertical, BsFillCameraVideoFill, BsImage} from 'react-icons/bs';
@@ -6,23 +6,31 @@ import {GiPhone} from 'react-icons/gi';
 import {FaSmile} from 'react-icons/fa';
 import {AiOutlineClose, AiTwotoneLike, AiFillFile, AiFillCamera} from 'react-icons/ai';
 
-function ChatMini(props){
+const ChatMini = forwardRef((props, ref) => {
+
   const [triggerChatMini, setTriggerChatMini] = useState(false)
 
-  function triggerChatMiniFunc(){
-    if(triggerChatMini){
-      setTriggerChatMini(false)
-    }else {
+  useImperativeHandle(ref, () => ({
+    showChatMiniFunc(){
       setTriggerChatMini(true)
     }
+  }));
+
+  function triggerChatMiniFunc(){
+    if(triggerChatMini) {
+      setTriggerChatMini(false)
+      return
+    }
+    setTriggerChatMini(true)
   }
 
   function closeChatMiniFunc(iduser){
     props.closeChatMini(iduser)
   }
+
   return(
     <div className="chatmini-container">
-      <div className="chatmini-title"   onClick={() => triggerChatMiniFunc()}>
+      <div className="chatmini-title" onClick={() => triggerChatMiniFunc()}>
         <div className="chatmini-title-avatar">
           <img src={`https://3.bp.blogspot.com/-Y7IfT_OllGQ/W4_NSyUHNAI/AAAAAAAAxQQ/odew4t8fIWYBcTvWhxgDuKYNVL8YowaMACLcBGAs/s1600/anh-girl-xinh-fa-2.jpg`} alt=""/>
         </div>
@@ -34,9 +42,7 @@ function ChatMini(props){
           <AiOutlineClose onClick={() => closeChatMiniFunc(props.iduser)}/>
         </div>
       </div>
-      {!triggerChatMini ? null
-         :
-        <div className="chatmini-body">
+        <div className={"chatmini-body user-" + props.iduser}  style={{display: triggerChatMini ? 'block' : 'none'}}>
           <div className="body-mess">
             <div className="chatmini-messenger-my-chat">
               <div className="chatmini-messenger-my-chat-content">
@@ -69,9 +75,8 @@ function ChatMini(props){
             </div>
           </div>
         </div>
-      }
     </div>
   )
-}
+})
 
 export default ChatMini;

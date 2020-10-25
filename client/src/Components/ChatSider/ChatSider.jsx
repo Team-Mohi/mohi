@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import './ChatSider.css';
 import {AiTwotoneSetting} from 'react-icons/ai';
-import {Link} from 'react-router-dom';
 import { useCookies } from "react-cookie";
 
 function ChatSider(props){
@@ -21,6 +20,7 @@ function ChatSider(props){
   function showChatMini(iduser){
     props.increaseChatMini(iduser)
   }
+
   return(
     <div>
       <div className="chat-sider-container">

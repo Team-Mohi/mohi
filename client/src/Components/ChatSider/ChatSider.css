@@ -1,6 +1,6 @@
 .chat-sider-container {
   border: 1px solid rgba(0, 0, 0, 0.1);
-  width: 15%;
+  width: 20%;
   position: fixed;
   bottom: 0;
   right: 0;
@@ -62,6 +62,8 @@
 .chat-sider-avatar {
   width: 35px;
   height: 35px;
+  min-width: 35px;
+  min-height: 35px;
   overflow: hidden;
   border-radius: 50%;
   display: flex;

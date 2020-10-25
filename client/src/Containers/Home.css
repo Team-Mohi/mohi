@@ -1,7 +1,10 @@
 body {
   overflow-y: scroll;
+  font-size: 14px;
 }
-
+button:focus{
+  outline: none !important;
+}
 .layout {
   min-height: 100vh !important;
 }
@@ -310,4 +313,4 @@ color: rgba(0,128,128);
   height: 50px;
   box-shadow: rgba(0, 0, 0, 0.1) 0 1px 0 0 ;
   padding: 2px;
-} 
+}

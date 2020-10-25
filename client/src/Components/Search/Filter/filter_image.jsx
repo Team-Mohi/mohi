@@ -1,7 +1,7 @@
 import React from 'react';
 import {Row, Col} from 'antd';
 import { Link} from 'react-router-dom';
-import {AiFillPicture, AiOutlineLike} from 'react-icons/ai';
+import {AiOutlineLike} from 'react-icons/ai';
 import {FaCommentDots} from 'react-icons/fa';
 
 function FilterImage(){

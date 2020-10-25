@@ -13,13 +13,10 @@ function Watch(){
   const isActive = path[2];
   const windowSize = useWindowSize();
   const offsetTopHistoryRef = useRef();
-  const [offsetTopHistory, setOffsetTopHistory] = useState();
   const [styleHeightHistory, setStyleHeightHistory] = useState();
 
   useEffect(() => {
-    setOffsetTopHistory(offsetTopHistoryRef.current.offsetTop)
     setStyleHeightHistory(window.innerHeight - offsetTopHistoryRef.current.offsetTop - 100)
-    console.log(offsetTopHistoryRef)
   },[windowSize]);
 
   const WatchSider = () =>{
@@ -260,12 +257,12 @@ function Watch(){
           </div>
           <div className="watch-video-item-body">
             <div className="watch-video-item-body-content">
-            REVIEW PHIM HAY: NGƯỜI ĐÀN ÔNG CUỐI CÙNG TRÊN TRÁI ĐẤT 🤪🤪🤪
-            REVIEW PHIM HAY: NGƯỜI ĐÀN ÔNG CUỐI CÙNG TRÊN TRÁI ĐẤT 🤪🤪🤪
+            REVIEW PHIM HAY: NGƯỜI ĐÀN ÔNG CUỐI CÙNG TRÊN TRÁI ĐẤT
+            REVIEW PHIM HAY: NGƯỜI ĐÀN ÔNG CUỐI CÙNG TRÊN TRÁI ĐẤT
             Khi người đàn ông cuối cùng trên trái đất gặp người phụ nữ cuối cùng trên trái đất, bạn nghĩ họ sẽ làm gì ?
             </div>
             <div className="watch-video-item-body-video">
-              <iframe width="100%" height="400" src="https://www.youtube.com/embed/GdUUCutdIEc" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+              <iframe width="100%" title="b" height="400" src="https://www.youtube.com/embed/GdUUCutdIEc" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
             </div>
           </div>
           <div className="watch-video-item-footer">
@@ -299,12 +296,12 @@ function Watch(){
           </div>
           <div className="watch-video-item-body">
             <div className="watch-video-item-body-content">
-            REVIEW PHIM HAY: NGƯỜI ĐÀN ÔNG CUỐI CÙNG TRÊN TRÁI ĐẤT 🤪🤪🤪
-            REVIEW PHIM HAY: NGƯỜI ĐÀN ÔNG CUỐI CÙNG TRÊN TRÁI ĐẤT 🤪🤪🤪
+            REVIEW PHIM HAY: NGƯỜI ĐÀN ÔNG CUỐI CÙNG TRÊN TRÁI ĐẤT
+            REVIEW PHIM HAY: NGƯỜI ĐÀN ÔNG CUỐI CÙNG TRÊN TRÁI ĐẤT
             Khi người đàn ông cuối cùng trên trái đất gặp người phụ nữ cuối cùng trên trái đất, bạn nghĩ họ sẽ làm gì ?
             </div>
             <div className="watch-video-item-body-video">
-              <iframe width="100%" height="400" src="https://www.youtube.com/embed/GdUUCutdIEc" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+              <iframe width="100%" title="a" height="400" src="https://www.youtube.com/embed/GdUUCutdIEc" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
             </div>
           </div>
           <div className="watch-video-item-footer">

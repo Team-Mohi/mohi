@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import { FaUserAlt } from "react-icons/fa";
 import { AiOutlinePlusCircle, AiFillEdit } from "react-icons/ai";
 import {Link, Route, Switch, useLocation} from 'react-router-dom';

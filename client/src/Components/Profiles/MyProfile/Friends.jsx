@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {AiFillPicture, AiOutlineLike} from 'react-icons/ai';
+import React from 'react';
+import {AiFillPicture} from 'react-icons/ai';
 import {FaCheck} from 'react-icons/fa';
 import {BsSearch} from 'react-icons/bs';
 import { Link, Route, Switch, useLocation } from 'react-router-dom';
@@ -8,15 +8,6 @@ import {Row, Col} from 'antd';
 function Friends(){
   const path = useLocation().pathname.split('/');
   const isActive = path[3];
-  const [isChangeAlbum, setIsChangeAlbum] = useState(true);
-
-  useEffect(() =>{
-    setIsChangeAlbum(true)
-  },[isActive])
-
-  function changeContentAlbum(){
-      setIsChangeAlbum(false)
-  }
 
   const FriendsAll = () => {
     return(

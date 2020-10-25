@@ -1,12 +1,12 @@
 import React, {useEffect, useState, useRef} from 'react';
 import './messenger.css';
-import {BsSearch, BsThreeDots, BsFillCameraVideoFill, BsThreeDotsVertical, BsImage, BsPencilSquare} from 'react-icons/bs';
+import {BsSearch, BsFillCameraVideoFill, BsThreeDotsVertical, BsImage, BsPencilSquare} from 'react-icons/bs';
 import {AiTwotoneSetting, AiTwotoneLike, AiFillFile, AiFillCamera, AiFillCloseCircle} from 'react-icons/ai';
 import {FaSmile} from 'react-icons/fa';
 import {GiPhone} from 'react-icons/gi';
 import {Link} from 'react-router-dom';
 import useWindowSize from "./useWindowSize.jsx";
-import {Row, Col} from 'antd';
+import {Row} from 'antd';
 
 function Messenger(){
   const heightScrollSider = window.innerHeight - 190;
@@ -29,7 +29,7 @@ function Messenger(){
   function handleSiderScroll(){
     const {scrollTop} = sider.current;
     if(scrollTop > 0 && !scrollSider) setScrollSider({boxShadow: '-4px 0.1px 3px rgba(0,0,0,0.2)'})
-    if(scrollTop == 0) setScrollSider()
+    if(scrollTop === 0) setScrollSider()
   }
 
   function showSearchRoomChatFunc(){

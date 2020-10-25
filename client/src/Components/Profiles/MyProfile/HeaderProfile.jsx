@@ -1,4 +1,4 @@
-import React,{useState} from  'react';
+import React, {useState} from  'react';
 import {Link} from 'react-router-dom';
 import { AiFillCamera } from "react-icons/ai";
 import { BsThreeDots, BsPencil } from "react-icons/bs";
@@ -44,7 +44,7 @@ function HeaderProfile(){
                 <img src={`https://4.bp.blogspot.com/-N3pimB9qxIg/VwUe_7Sqh3I/AAAAAAAATRA/9rM2kCEng54F1Crj5kf1N6-tutzshx4Qg/s1600/Girl-xinh-ohaylam.com-%25284%2529.jpg`} alt="" />
               </div>
             </div>
-            <div className="profile-header-cover-top-left" >
+            <div className="profile-header-cover-top-left">
               <label htmlFor="update-cover" style={toggleTopLeft}>
               <AiFillCamera
               />

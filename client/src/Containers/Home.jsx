@@ -1,15 +1,14 @@
-import React, { Suspense, lazy, useEffect, useState } from 'react';
+import React, { Suspense, lazy, useEffect, useState, useRef } from 'react';
 import './Home.css';
 import { Link, Route, Switch, useHistory, useLocation } from 'react-router-dom';
-import { Layout, Menu, Input, Dropdown, Button } from 'antd';
+import { Layout, Menu, Input, Dropdown } from 'antd';
 import { FaUserFriends, FaFacebookMessenger, FaBell,FaDotCircle,FaShare } from 'react-icons/fa';
 import { AiFillCaretDown } from "react-icons/ai";
-import { Spin } from 'antd';
-import { LoadingOutlined } from '@ant-design/icons';
 import MenuItem from 'antd/lib/menu/MenuItem';
 import ChatSider from './../Components/ChatSider/ChatSider.jsx';
 import ChatMini from './../Components/ChatMini/ChatMini.jsx';
 import Watch from './../Components/Watch/Watch.jsx';
+import Page from './../Components/Page/Page.jsx';
 import {PUBLIC_URL} from './../Constant/public.jsx';
 const Main = lazy(() => import('./../Components/NewFeed/Index.jsx'));
 const MyProfile = lazy(() => import('./../Components/Profiles/MyProfile/Index.jsx'));
@@ -23,17 +22,17 @@ const menu = (
         <Menu.Item className="menu-items">
             <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
                 1st menu item
-        </a>
+            </a>
         </Menu.Item>
         <Menu.Item className="menu-items">
             <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">
                 2nd menu item
-        </a>
+            </a>
         </Menu.Item>
         <Menu.Item className="menu-items">
             <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">
                 3rd menu item
-        </a>
+            </a>
         </Menu.Item>
         <MenuItem className="menu-items">
             <Link to="/friendrequests"> abc</Link>
@@ -46,7 +45,7 @@ const menumessenger = (
             <h5>Gần đây</h5>
             <h5>Tin nhắn chờ</h5>
             <Link to="/friendrequests">Tin nhắn mới</Link>
-            <Link >Nhóm mới</Link>
+            <Link to="">Nhóm mới</Link>
         </div>
         <Menu.Item className="menu-items">
             <div className="friend-requests-menu">
@@ -63,7 +62,7 @@ const menumessenger = (
                     </div>
                     <div className="friend-requests-menu-mutual-friends">
                         <Link to="">
-                            <a><FaShare/> anh đang làm gì thế</a>
+                            <span><FaShare/> anh đang làm gì thế</span>
                         </Link>
                     </div>
                 </div>
@@ -88,7 +87,7 @@ const menumessenger = (
                     </div>
                     <div className="friend-requests-menu-mutual-friends">
                         <Link to="">
-                            <a><FaShare/> anh đang làm gì thế</a>
+                            <span><FaShare/> anh đang làm gì thế</span>
                         </Link>
                     </div>
                 </div>
@@ -113,7 +112,7 @@ const menumessenger = (
                     </div>
                     <div className="friend-requests-menu-mutual-friends">
                         <Link to="">
-                            <a><FaShare/> anh đang làm gì thế</a>
+                            <span><FaShare/> anh đang làm gì thế</span>
                         </Link>
                     </div>
                 </div>
@@ -138,7 +137,7 @@ const menumessenger = (
                     </div>
                     <div className="friend-requests-menu-mutual-friends">
                         <Link to="">
-                            <a><FaShare/> anh đang làm gì thế</a>
+                            <span><FaShare/> anh đang làm gì thế</span>
                         </Link>
                     </div>
                 </div>
@@ -163,7 +162,7 @@ const menumessenger = (
                     </div>
                     <div className="friend-requests-menu-mutual-friends">
                         <Link to="">
-                            <a><FaShare/> anh đang làm gì thế</a>
+                            <span><FaShare/> anh đang làm gì thế</span>
                         </Link>
                     </div>
                 </div>
@@ -188,7 +187,7 @@ const menumessenger = (
                     </div>
                     <div className="friend-requests-menu-mutual-friends">
                         <Link to="">
-                            <a><FaShare/> anh đang làm gì thế</a>
+                            <span><FaShare/> anh đang làm gì thế</span>
                         </Link>
                     </div>
                 </div>
@@ -213,7 +212,7 @@ const menumessenger = (
                     </div>
                     <div className="friend-requests-menu-mutual-friends">
                         <Link to="">
-                            <a><FaShare/> anh đang làm gì thế</a>
+                            <span><FaShare/> anh đang làm gì thế</span>
                         </Link>
                     </div>
                 </div>
@@ -238,7 +237,7 @@ const menumessenger = (
                     </div>
                     <div className="friend-requests-menu-mutual-friends">
                         <Link to="">
-                            <a><FaShare/> anh đang làm gì thế</a>
+                            <span><FaShare/> anh đang làm gì thế</span>
                         </Link>
                     </div>
                 </div>
@@ -248,7 +247,7 @@ const menumessenger = (
                 </div>
             </div>
         </Menu.Item>
-        
+
         <div className="footer-dropdown-menu" >
             <Link to="/messenger">Xem tất cả các tin nhắn</Link>
             <Link to="">Đánh dấu tất cả là đã đọc</Link>
@@ -260,7 +259,7 @@ const menufriendrequests = (
         <div className="friendrequests-menu-title">
             <h5 aria-disabled>Lời mời kết bạn</h5>
             <Link to="/friendrequests">Tìm thêm bạn bè</Link>
-            <Link >Cài đặt</Link>
+            <Link to="">Cài đặt</Link>
         </div>
         <Menu.Item className="menu-items">
             <div className="friend-requests-menu">
@@ -277,7 +276,7 @@ const menufriendrequests = (
                     </div>
                     <div className="friend-requests-menu-mutual-friends">
                         <Link to="">
-                            <a>3 bạn chung</a>
+                            <span>3 bạn chung</span>
                         </Link>
                     </div>
                 </div>
@@ -302,7 +301,7 @@ const menufriendrequests = (
                     </div>
                     <div className="friend-requests-menu-mutual-friends">
                         <Link to="">
-                            <a>3 bạn chung</a>
+                            <span>3 bạn chung</span>
                         </Link>
                     </div>
                 </div>
@@ -327,7 +326,7 @@ const menufriendrequests = (
                     </div>
                     <div className="friend-requests-menu-mutual-friends">
                         <Link to="">
-                            <a>3 bạn chung</a>
+                            <span>3 bạn chung</span>
                         </Link>
                     </div>
                 </div>
@@ -352,7 +351,7 @@ const menufriendrequests = (
                     </div>
                     <div className="friend-requests-menu-mutual-friends">
                         <Link to="">
-                            <a>3 bạn chung</a>
+                            <span>3 bạn chung</span>
                         </Link>
                     </div>
                 </div>
@@ -374,12 +373,10 @@ function Home() {
     const history = useHistory();
     const path = useLocation().pathname.split('/');
     const key = history.location.key;
-    const isActive = path[1];
-    const [loadingContent, setLoadingContent] = useState(true);
-    const antIcon = <LoadingOutlined style={{ fontSize: 50, color: 'rgba(0,128,128)' }} spin />;
     const [listChatMini, setListChatMini] = useState([]);
+    const parentChatRef = useRef();
 
-
+    useEffect(() => {
       if(listChatMini.length === 0){
         if(localStorage.getItem('listChatMini')){
           setListChatMini(localStorage.getItem('listChatMini').split(','))
@@ -391,11 +388,6 @@ function Home() {
     useEffect(() => {
       if(!path[2]){
         window.scrollTo(0, 0)
-        setLoadingContent(true)
-
-        setTimeout(() => {
-          setLoadingContent(false)
-        }, 200);
       }
     },[key]);
 
@@ -407,13 +399,11 @@ function Home() {
       if(!listChatMini.includes(iduser)){
         if(listChatMini.length > 2){
           listChatMini.splice(0,1)
-          setListChatMini([...listChatMini, iduser])
-          localStorage.setItem('listChatMini', [...listChatMini, iduser,])
-        }else {
-          setListChatMini([...listChatMini, iduser])
-          localStorage.setItem('listChatMini', [...listChatMini, iduser,])
         }
+        setListChatMini([...listChatMini, iduser])
+        localStorage.setItem('listChatMini', [...listChatMini, iduser,])
       }
+      parentChatRef.current.showChatMiniFunc()
     }
 
     const closeChatMini = (iduser) => {
@@ -476,33 +466,30 @@ function Home() {
 
                 <Suspense fallback={(<div></div>)}>
                     <Switch>
-                        {loadingContent ? <div className="spin"> <Spin indicator={antIcon} /></div> :
-                            <>
-                                <Route exact path="/" component={Main} />
-                                <Route path="/profile" component={MyProfile} />
-                                <Route path="/messenger" component={Messenger} />
-                                <Route path="/friendrequests" component={FriendRequests} />
-                                <Route path={`/search/:value`} component={SearchNavigation} />
-                                <Route path="/friend-sent" component={FriendSent} />
-
-                            </>
-                        }
-
+                      <Route exact path="/" component={Main} />
+                      <Route path="/profile" component={MyProfile} />
+                      <Route path="/messenger" component={Messenger} />
+                      <Route path="/friendrequests" component={FriendRequests} />
+                      <Route path={`/search/:value`} component={SearchNavigation} />
+                      <Route path="/friend-sent" component={FriendSent} />
+                      <Route path="/watch" component={Watch} />
+                      <Route path="/page" component={Page} />
                     </Switch>
                 </Suspense>
-                {history.location.pathname !== '/messenger' ? <>
-                {listChatMini.length === 0 ? null :
-                  <div className="list-chatmini-container">
-                  {listChatMini.map((chatmini, index) => {
-                    return(
-                      <ChatMini key={index} iduser={chatmini} closeChatMini={closeChatMini}/>
-                    )
-                  })
-                  }
-                  </div>
-                }
-                <ChatSider increaseChatMini={increaseChatMini} />
-                </>
+                {history.location.pathname !== '/messenger' ?
+                  <>
+                    {listChatMini.length === 0 ? null :
+                      <div className="list-chatmini-container">
+                      {listChatMini.map((chatmini, index) => {
+                        return(
+                          <ChatMini key={index} iduser={chatmini} closeChatMini={closeChatMini} ref={parentChatRef}/>
+                        )
+                      })
+                      }
+                      </div>
+                    }
+                    <ChatSider increaseChatMini={increaseChatMini}/>
+                  </>
                 : null}
             </Layout>
         </>

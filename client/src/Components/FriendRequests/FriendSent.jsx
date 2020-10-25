@@ -1,23 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { AiFillPicture, AiOutlineLike } from 'react-icons/ai';
+import React from 'react';
+import { AiFillPicture } from 'react-icons/ai';
 import { FaUserFriends,FaUserClock } from 'react-icons/fa';
-import { BsSearch } from 'react-icons/bs';
-import { Link, Route, Switch, useLocation } from 'react-router-dom';
-import { Row, Col, Layout } from 'antd';
+import { Link, Route, Switch } from 'react-router-dom';
 import './FriendRequests.css';
 
 function FriendSent() {
-  const path = useLocation().pathname.split('/');
-  const isActive = path[3];
-  const [isChangeAlbum, setIsChangeAlbum] = useState(true);
-
-  useEffect(() => {
-    setIsChangeAlbum(true)
-  }, [isActive])
-
-  function changeContentAlbum() {
-    setIsChangeAlbum(false)
-  }
 
   const FriendSent = () => {
     return (
@@ -27,8 +14,8 @@ function FriendSent() {
             <div className="friend-requests-title">
               <h4>Đã gửi lời mời kết bạn</h4>
               <Link to="/friendrequests">
-                <a> Xem yêu cầu đã nhận được</a>
-            </Link>
+                <span> Xem yêu cầu đã nhận được</span>
+              </Link>
             </div>
             <div className="friend-requests-item-container">
               <div className="friend-requests-item-left">
@@ -45,7 +32,7 @@ function FriendSent() {
                   </div>
                   <div className="friend-requests-mutual-friends">
                     <Link to="">
-                      <FaUserFriends/> <a>3 người bạn chung</a>
+                      <FaUserFriends/> <span>3 người bạn chung</span>
                     </Link>
                   </div>
                 </div>
@@ -69,7 +56,7 @@ function FriendSent() {
                   </div>
                   <div className="friend-requests-mutual-friends">
                     <Link to="">
-                      <FaUserFriends/> <a>3 người bạn chung</a>
+                      <FaUserFriends/> <span>3 người bạn chung</span>
                     </Link>
                   </div>
                 </div>
@@ -93,7 +80,7 @@ function FriendSent() {
                   </div>
                   <div className="friend-requests-mutual-friends">
                     <Link to="">
-                      <FaUserFriends/> <a>3 người bạn chung</a>
+                      <FaUserFriends/> <span>3 người bạn chung</span>
                     </Link>
                   </div>
                 </div>
@@ -117,7 +104,7 @@ function FriendSent() {
                   </div>
                   <div className="friend-requests-mutual-friends">
                     <Link to="">
-                      <FaUserFriends/> <a>3 người bạn chung</a>
+                      <FaUserFriends/> <span>3 người bạn chung</span>
                     </Link>
                   </div>
                 </div>
@@ -141,7 +128,7 @@ function FriendSent() {
                   </div>
                   <div className="friend-requests-mutual-friends">
                     <Link to="">
-                      <FaUserFriends/> <a>3 người bạn chung</a>
+                      <FaUserFriends/> <span>3 người bạn chung</span>
                     </Link>
                   </div>
                 </div>
@@ -165,7 +152,7 @@ function FriendSent() {
                   </div>
                   <div className="friend-requests-mutual-friends">
                     <Link to="">
-                      <FaUserFriends/> <a>3 người bạn chung</a>
+                      <FaUserFriends/> <span>3 người bạn chung</span>
                     </Link>
                   </div>
                 </div>
@@ -189,7 +176,7 @@ function FriendSent() {
                   </div>
                   <div className="friend-requests-mutual-friends">
                     <Link to="">
-                      <FaUserFriends/> <a>3 người bạn chung</a>
+                      <FaUserFriends/> <span>3 người bạn chung</span>
                     </Link>
                   </div>
                 </div>
@@ -198,9 +185,9 @@ function FriendSent() {
                 <button className="friend-requests-refuse-btn"><FaUserClock/> Đã gửi lời mời kết bạn</button>
               </div>
             </div>
-            
-            
-            
+
+
+
           </div>
 
         </div>
@@ -224,7 +211,7 @@ function FriendSent() {
       <div className="galerry-content">
         <Switch>
           <Route path="/friendsent" component={FriendSent} />
-          <Route  component={FriendSent} />
+          <Route component={FriendSent} />
         </Switch>
       </div>
     </div>
