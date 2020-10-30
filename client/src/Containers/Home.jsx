@@ -9,7 +9,8 @@ import ChatSider from './../Components/ChatSider/ChatSider.jsx';
 import ChatMini from './../Components/ChatMini/ChatMini.jsx';
 import Watch from './../Components/Watch/Watch.jsx';
 import Page from './../Components/Page/Page.jsx';
-import {PUBLIC_URL} from './../Constant/public.jsx';
+import ModalPost from './../Components/ModalPost/index.jsx';
+import {PUBLIC_URL} from './../Constants/public.jsx';
 const Main = lazy(() => import('./../Components/NewFeed/Index.jsx'));
 const MyProfile = lazy(() => import('./../Components/Profiles/MyProfile/Index.jsx'));
 const Messenger = lazy(() => import('./../Components/Messenger/index.jsx'));
@@ -394,7 +395,6 @@ function Home() {
     function onSearch(value) {
         history.push('/search/' + value)
     }
-
     const increaseChatMini = (iduser) =>{
       if(!listChatMini.includes(iduser)){
         if(listChatMini.length > 2){
@@ -419,7 +419,7 @@ function Home() {
             <Layout className="layout " >
 
                 <Header className="nav-home">
-                    <div className="container d-flex header-home " >
+                    <div className="wrapper d-flex header-home " >
                         <div className="logo " >
                             <img src={PUBLIC_URL + "/logo.png"} alt="Mohi.vn" title="Mohi.vn" />
                         </div>
@@ -455,7 +455,7 @@ function Home() {
                                     <FaBell title="Thông báo" />
                                 </Dropdown>
                             </Menu.Item>
-                            <Menu.Item >
+                            <Menu.Item className="menu-item-last-child">
                                 <Dropdown className="dropdown-setting" trigger={['click']} overlay={menu} placement="bottomCenter" >
                                     <AiFillCaretDown title="Cài đặt" />
                                 </Dropdown>
@@ -474,6 +474,7 @@ function Home() {
                       <Route path="/friend-sent" component={FriendSent} />
                       <Route path="/watch" component={Watch} />
                       <Route path="/page" component={Page} />
+                      <Route path="/photo/:index" component={ModalPost} />
                     </Switch>
                 </Suspense>
                 {history.location.pathname !== '/messenger' ?

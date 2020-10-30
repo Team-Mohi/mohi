@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useMemo} from 'react';
 import './HomePage.css';
 import EditorEmoji from './EditorEmoji.jsx';
 import EditorMention from './EditorMention.jsx';
@@ -7,13 +7,16 @@ import {Select, Switch, Button, Tooltip, Row, Col} from 'antd';
 import {Link} from 'react-router-dom';
 import { FaUserTag, FaImage, FaUserFriends, FaLock, FaMapMarkerAlt, FaListAlt} from "react-icons/fa";
 import {MdPublic} from "react-icons/md";
-import {AiFillInfoCircle, AiFillLike, AiFillFlag} from "react-icons/ai";
+import {AiFillInfoCircle, AiOutlinePlus, AiFillLike, AiFillFlag} from "react-icons/ai";
 import { FiBarChart } from "react-icons/fi";
 import { GiPhone } from "react-icons/gi";
 import { MdEmail } from "react-icons/md";
+import {  useSelector, useDispatch } from 'react-redux';
+import { fetchPosts } from './../../Actions/index.jsx';
 
-function HomePage(props){
-
+function HomePage(props, { posts }){
+  const dispatch = useDispatch();
+  const listPosts = useSelector(state => state.posts);
   const {Option} = Select;
   const [isLoadingSubmit, setIsLoadingSubmit] = useState(false);
   const [valueEditor, setValueEditor] = useState();
@@ -27,7 +30,6 @@ function HomePage(props){
     'https://keomoi.com/wp-content/uploads/2019/05/gai-xinh-mac-bikini-do-hinh-4.jpg',
     'https://tse1.mm.bing.net/th?id=OIP.s-aYa7PN_gfZu2WKbBQ_JwHaNK&pid=Api&P=0&w=300&h=300'
   ]
-
 // func show modal create post
   function showModalCreatePostFunc(){
     props.showModalCreatePostFunc()
@@ -63,6 +65,9 @@ function HomePage(props){
     )
   }
 
+  const postComponent = useMemo(() =>
+          listPosts.map((post, index) => <Post key={index} post={post} showModalCreatePostFunc={showModalCreatePostFunc}/>), [listPosts]
+        )
   return(
     <div>
     <div className="page-home-container">
@@ -165,7 +170,16 @@ function HomePage(props){
             </div>
           : null}
         </div>
-        <Post showModalCreatePostFunc={showModalCreatePostFunc}/>
+        {listPosts.length > 0 ?
+          postComponent
+        :
+        <div className="no-post">
+          <div className="arrow-no-post" onClick={props.showModalCreatePostFunc}>
+            <AiOutlinePlus />
+          </div>
+          <p>Tạo bài viết mới</p>
+        </div>
+        }
         <div className="page-create-at page-create-at-time-line">
           <p>Trang được tạo vào</p>
           <p>Ngày tháng năm</p>

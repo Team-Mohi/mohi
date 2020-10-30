@@ -20,7 +20,7 @@ function SearchNavigation(){
 
   return(
     <>
-      <div className="container" style={{marginTop:'64px'}}>
+      <div className="wrapper" style={{marginTop:'64px'}}>
         <div style={{position:'relative'}}>
           <ul className="search-filter-top" style={{position:'fixed', width: '1140px'}}>
             <li>

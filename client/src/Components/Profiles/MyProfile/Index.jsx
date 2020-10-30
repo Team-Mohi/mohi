@@ -10,7 +10,7 @@ import Friends from './Friends.jsx';
 function MyProfile(){
   return (
     <>
-      <div className="container" >
+      <div className="wrapper" >
         <HeaderProfile />
         <div className="profile-content" style={{margin: '20px 0'}}>
           <Route exact path="/profile" component={TimeLine}/>

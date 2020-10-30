@@ -9,7 +9,7 @@ import { FaUserFriends, FaFacebookMessenger } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import NewFeed from './Newfeed.jsx';
 import useSound from 'use-sound';
-import {PUBLIC_URL} from './../../Constant/public.jsx';
+import {PUBLIC_URL} from './../../Constants/public.jsx';
 
 function Main() {
     const { Content, Sider } = Layout;
@@ -20,7 +20,7 @@ function Main() {
     return (
         <>
             <Content style={{ marginTop: '65px' }}>
-                <div className="container mt-2 mb-2">
+                <div className="wrapper mt-2 mb-2">
                     <Layout >
                         <Sider width="200" >
                             <div style={{ position: "fixed" }}>

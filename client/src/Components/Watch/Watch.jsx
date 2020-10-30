@@ -329,7 +329,7 @@ function Watch(){
   }
 
   return(
-    <div className="container">
+    <div className="wrapper">
       <div className="watch-container">
         <WatchSider />
         <Switch>

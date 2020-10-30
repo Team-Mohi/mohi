@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useState, useRef, useEffect, useMemo} from 'react';
 import './Page.css';
 import {Link, Route, Switch, useLocation} from 'react-router-dom';
 import HomePage from './HomePage.jsx';
@@ -15,7 +15,6 @@ import { FiBarChart } from "react-icons/fi";
 import {Dropdown} from 'antd';
 
 function Page(){
-
   const location = useLocation().pathname.split('/');
   const path = location[2];
   const isActive = location[2];
@@ -30,18 +29,26 @@ function Page(){
   const [optionFixed, setOptionFixed] = useState(false);
 
   useEffect(() => {
-    if(path === 'page'){
-      window.addEventListener('scroll', () => {
-        if(window.scrollY - optionFixedRef.current.offsetTop > -64){
-          setOptionFixed(true)
-        }else {
-          setOptionFixed(false)
-        }
-      });
-    }
+    document.addEventListener('scroll', fixedOptionHead, false);
 
-    return () => {window.removeEventListener('scroll', () => setOptionFixed(false))}
-  }, [])
+    return () => document.removeEventListener('scroll', removeFixedOptionHead, false)
+  })
+
+  const fixedOptionHead = () => {
+    let curentRef = optionFixedRef.current
+    if(curentRef){
+      if(window.scrollY - curentRef.offsetTop > -64){
+        setOptionFixed(true)
+      }else {
+        setOptionFixed(false)
+      }
+    }
+  }
+
+  const removeFixedOptionHead = () => {
+     setOptionFixed(false)
+  }
+
   function showModalCreatePostFunc(){
     setShowModalCreatePost(true)
   }
@@ -118,10 +125,10 @@ function Page(){
       </div>
     )
   }
-
+  const IndexPage = useMemo(() => <HomePage  showModalCreatePost={showModalCreatePost} showModalCreatePostFunc={showModalCreatePostFunc}/>, [showModalCreatePost])
   return(
     <div>
-    <div className="container">
+    <div className="wrapper">
       <div className="page-container" style={{marginTop: '75px'}}>
         <div className="page-sider">
           <div className="page-sider-fixed">
@@ -204,8 +211,8 @@ function Page(){
                   </div>
                 </div>
                 <div>
-                <div ref={optionFixedRef} >
-                  <div className="page-header-option page-header-option-container" style={optionFixed ? {position: 'fixed', zIndex: '999999', width: '60%', top: '64px'} : null}>
+                <div ref={optionFixedRef} style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
+                  <div className="page-header-option page-header-option-container" style={optionFixed ? {position: 'fixed', zIndex: '999999', width: '45%', top: '64px'} : null}>
                     <ul className="page-header-navigation">
                       <li>
                         {isLiked ?
@@ -246,11 +253,13 @@ function Page(){
               </div>
             </div>
             <Switch>
+              <Route exact path="/page">
+                {IndexPage}
+              </Route>
               <Route path="/page/videos" component={VideosPage} />
               <Route path="/page/images" component={ImagesPage} />
               <Route path="/page/posts" component={PostsPage} />
               <Route path="/page/settings" component={SettingsPage} />
-              <Route component={() => <HomePage showModalCreatePost={showModalCreatePost} showModalCreatePostFunc={showModalCreatePostFunc}/>} />
             </Switch>
           </div>
       </div>

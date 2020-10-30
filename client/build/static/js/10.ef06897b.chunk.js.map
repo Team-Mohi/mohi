@@ -1,1 +1,0 @@
-{"version":3,"sources":["Components/Messenger/index.jsx"],"names":["Messenger"],"mappings":"mGAAA,2BAUeA,UARf,WACE,OACE","file":"static/js/10.ef06897b.chunk.js","sourcesContent":["import React from 'react';\r\n\r\nfunction Messenger(){\r\n  return(\r\n    <>\r\n    hello i am messenger\r\n    </>\r\n  )\r\n}\r\n\r\nexport default Messenger;\r\n"],"sourceRoot":""}
