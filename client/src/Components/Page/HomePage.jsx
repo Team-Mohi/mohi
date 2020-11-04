@@ -1,6 +1,7 @@
 import React, {useState, useMemo} from 'react';
 import './HomePage.css';
 import EditorEmoji from './EditorEmoji.jsx';
+import PopupEditPage from './PopupEditPage.jsx';
 import EditorMention from './EditorMention.jsx';
 import Post from './../Post/Post.jsx';
 import {Select, Switch, Button, Tooltip, Row, Col} from 'antd';
@@ -23,6 +24,7 @@ function HomePage(props, { posts }){
   const [isShowInputTag, setIsShowInputTag] = useState(false);
   const [listMention, setListMention] = useState([]);
   const [firstMention, setFirstMention] = useState();
+  const [closeEditLocationPage, setCloseEditLocationPage] = useState(true);
   const listGalleryDemo = [
     'https://1.bp.blogspot.com/-HfDzvytpbDI/U0z-eqAMV8I/AAAAAAAABtI/YBOXzwY4d6I/s1600/anh-girl-xinh__Hinhnendl.com+(4).jpg',
     'https://2.bp.blogspot.com/-AX9DuH5Sjos/UeAs8QFXCGI/AAAAAAAAE5o/LbVCOeVHBv8/s1600/hinh-anh-gai-xinh-hd-taihinhnendep.com-4.jpg',
@@ -51,6 +53,14 @@ function HomePage(props, { posts }){
   function showMentionList(mention){
     if(!firstMention) setFirstMention(mention)
     if(firstMention) setListMention([...listMention, mention])
+  }
+
+  const closeEditLocationPageFunc = () => {
+    setCloseEditLocationPage(true)
+  }
+
+  const showEditLocationPage = () => {
+    setCloseEditLocationPage(false)
   }
 
   const moreMention = () => {
@@ -186,10 +196,11 @@ function HomePage(props, { posts }){
         </div>
       </div>
       <div className="page-right">
+      <div className={props.sidebarFixed ? "page-right-fixed" : null}>
         <div className="page-introduce">
           <h5>Giới thiệu</h5>
           <ul>
-            <li>
+            <li onClick={showEditLocationPage}>
               <span className="page-introduce-icon">
                 <FaMapMarkerAlt />
               </span>
@@ -279,8 +290,10 @@ function HomePage(props, { posts }){
             <span>Trang được tạo vào....</span>
           </div>
         </div>
+        </div>
       </div>
     </div>
+    {!closeEditLocationPage && <PopupEditPage closeEditLocationPageFunc={closeEditLocationPageFunc}/>}
     </div>
   )
 }

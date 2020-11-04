@@ -7,8 +7,8 @@ function CommentParent(props) {
 
   const inputCommentChildReplyRef = useRef();
 
-  const appendInputChildReply = () => {
-    props.appendInputParentReply()
+  const appendInputChildReply = (commentUserId, commentUser) => {
+    props.appendInputParentReply(commentUserId, commentUser)
   }
 
   return (<div className="post-comment-item-child" ref={inputCommentChildReplyRef}>
@@ -26,7 +26,7 @@ function CommentParent(props) {
         <span><BsThreeDots/></span>
       </div>
       <div className="post-comment-item-parent-action">
-        <span onClick={appendInputChildReply}>Trả lời</span>
+        <span onClick={() => appendInputChildReply(commentChild.commentUserId, commentChild.commentUser)}>Trả lời</span>
         <span>{commentChild.commentCreated}</span>
       </div>
     </div>

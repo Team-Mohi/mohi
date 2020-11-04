@@ -36,16 +36,9 @@ const StyleEmoji = style.div`
 `;
 
 export default class CommentEditor extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      editorState: createEditorStateWithText(text),
-      idUserReceivedReply: props.idUserReceivedReply,
-      userReceivedReply: props.userReceivedReply
-    };
-    console.log(props);
+    state = {
+      editorState: createEditorStateWithText(text)
   }
-
 
   onChange = (editorState) => {
     this.setState({

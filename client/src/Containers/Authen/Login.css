@@ -1,16 +1,300 @@
-.ant-layout-header{
-    background: rgba(0, 128, 128, 1) !important;
+.header-login {
+  background: rgba(0, 128, 128, 1) !important;
+  padding: 0 !important;
 }
-.logo img{
-    border-radius: 3px;
+
+.logo {
+  color: white;
+  font-size: 30px;
+  font-weight: 700;
 }
-.button-login{
-    background-color:  rgba(0, 128, 128, 1) !important;
-    color: white !important;
-    font-weight: 700 !important;
-    box-shadow: 0 0 0.3px 0.3px white !important;
-    border: 0 !important;
+
+.logo:hover {
+  color: white;
+  text-decoration: none;
 }
-.layout-login{
-    background: linear-gradient(white, rgba(0,128,128)) !important;
+
+label {
+  margin-bottom: 0 !important;
+}
+
+input {
+  outline: none !important;
+}
+
+.site-layout-register-container h2 {
+  text-align: center;
+  color: rgba(0, 128, 128);
+  text-shadow: 2px 2px white;
+}
+
+.site-layout-register-container h4 {
+  margin: 50px 0 20px 0;
+}
+
+.header-login-container {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.login-form {
+  display: flex;
+  align-items: center;
+}
+
+.form-login-group {
+  margin: 0 10px;
+  display: flex;
+  align-items: center;
+}
+
+.form-login-group input, .form-login-group button {
+  height: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+
+.form-login-group input {
+  padding: 0 5px;
+}
+
+.form-login-group button {
+  color: rgba(0, 128, 128);
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  background: white;
+  font-weight: 600;
+}
+
+.logo img {
+  border-radius: 3px;
+}
+
+.button-login {
+  background-color: white !important;
+  color: rgba(0, 128, 128, 1) !important;
+  font-weight: 700 !important;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 3px 10px;
+  border-radius: 3px;
+}
+
+.button-login:active {
+  color: rgba(0, 128, 128, 0.5) !important;
+}
+
+.button-login:focus {
+  outline: none !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+.layout-login {
+  background: linear-gradient(white, rgba(0, 128, 128)) !important;
+}
+
+.site-layout-content {
+  display: flex;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.site-layout-register {
+  width: 692px;
+  min-width: 692px;
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.site-layout-register-container {
+  width: 80%;
+  min-width: 80%;
+}
+
+.site-layout-viet-nam {
+  width: 700px;
+  min-width: 700px;
+  margin-top: 20px;
+  margin-left: 50px;
+}
+
+.site-layout-register-group {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 20px;
+}
+
+.site-layout-register-group button {
+  width: 80%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(0, 128, 128, 0.8);
+  margin: auto;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 3px;
+  transition: all 0.2s ease;
+  padding: 3px;
+  height: 50px;
+}
+
+.site-layout-register-group button:hover {
+  background: rgba(0, 128, 128);
+}
+
+.register-email {
+  display: flex;
+  flex-direction: column;
+}
+
+.site-layout-register-group {
+  display: flex;
+}
+
+.site-layout-register-group input {
+  padding: 3px 10px;
+}
+
+.register-first-name {
+  margin-right: 2%;
+}
+
+.register-first-name, .register-last-name {
+  width: 49%;
+}
+
+.register-email, .register-password {
+  width: 100%;
+}
+
+.site-layout-register-group label {
+  margin-right: 15px;
+  font-weight: 500;
+  font-size: 17px;
+  margin-bottom: 10px !important;
+}
+
+.register-sex input {
+  margin-right: 5px;
+}
+
+.register-first-name input, .register-last-name input, .register-email input, .register-confirm-password input, .register-password input {
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  line-height: 30px;
+  font-size: 15px;
+}
+
+.register-birthday select {
+  margin: 0 5px;
+  height: 30px;
+  padding: 0 30px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+.error_sex_tooltip {
+  background: white;
+  margin-bottom: 0;
+  padding: 3px 10px;
+  color: red;
+  border-radius: 5px;
+  font-weight: 600;
+}
+
+.error_sex {
+  font-size: 25px;
+  cursor: pointer;
+  fill: red;
+}
+
+.site-layout-register-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.site-layout-register-input .error_sex {
+  position: absolute;
+  right: 10px;
+}
+
+.veri-code-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80vh;
+}
+
+.veri-code-container form {
+  background: white;
+  padding: 50px 100px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  max-width: 700px;
+}
+
+.veri-code-container form h2 {
+  font-weight: 700;
+  color: rgba(0, 128, 128);
+  margin-bottom: 50px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.veri-code-message {
+  font-size: 15px;
+  color: green;
+  font-weight: 600;
+  margin-bottom: 5px;
+  word-wrap: break-word;
+}
+
+.form-veri-code-group label {
+  font-size: 15px;
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+.form-veri-code-group {
+  display: flex;
+  align-items: center;
+}
+
+.form-veri-code-group input {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  line-height: 30px;
+  padding: 3px 10px;
+  background: #ddd;
+  color: black;
+  width: 100%;
+}
+
+.form-veri-code-group button {
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(0, 128, 128, 0.8);
+  margin-top: 20px;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 3px;
+  transition: all 0.2s ease;
+  padding: 3px;
+  height: 50px;
+}
+
+@media(max-width: 1024px) {
+  .site-layout-viet-nam {
+    display: none;
+    visibility: hidden;
+  }
 }

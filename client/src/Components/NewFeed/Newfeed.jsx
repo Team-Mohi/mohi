@@ -6,6 +6,7 @@ import CreatePost from './CreatePost.jsx';
 
 function NewFeed() {
     const { Content } = Layout;
+
     return (
         <Content className="pl-3 pr-3">
             <CreatePost />

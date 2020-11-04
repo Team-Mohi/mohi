@@ -1,0 +1,69 @@
+.popup-edit-page {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 9999999;
+}
+
+.popup-edit-page-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.leaflet-control-attribution {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+.map-page-container {
+  padding: 50px;
+  border-radius: 5px;
+  background: white;
+  position: absolute;
+  z-index: 9999999;
+  top: 120px;
+  left: 300px;
+}
+
+.map-page-button {
+  text-align: center;
+}
+
+.map-page-button button {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  background: rgba(0, 128, 128, 0.8);
+  transition: all 0.2s ease;
+  padding: 5px 20px;
+  font-size: 17px;
+  font-weight: 600;
+  color: white;
+  margin: 20px 50px 0 50px;
+}
+
+.map-page-container h5 {
+  margin-bottom: 20px;
+}
+
+.map_page {
+  width: 1200px;
+  height: 500px;
+}
+
+.popup-edit-page-container svg {
+  position: absolute;
+  right: 10px;
+  color: white;
+  font-size: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  top: 10px;
+}

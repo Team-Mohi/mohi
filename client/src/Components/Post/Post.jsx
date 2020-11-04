@@ -10,7 +10,6 @@ import {FaRegCommentAlt} from "react-icons/fa";
 import {IoIosShareAlt} from "react-icons/io";
 import {gql} from 'apollo-boost';
 import {useQuery} from '@apollo/react-hooks';
-import lozad from 'lozad';
 
 function PostPage(props) {
   const inputCommentRef = useRef();

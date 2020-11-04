@@ -1,55 +1,67 @@
-.input-comment-newfeed{
-    border-radius: 30px;
+.input-comment-newfeed {
+  border-radius: 30px;
 }
-.action-post{ 
-    font-size: 17px;
+
+.action-post {
+  font-size: 17px;
 }
-.input-comment-newfeed:focus{
-    border-color: rgba(0, 128, 128, 1) !important;
+
+.input-comment-newfeed:focus {
+  border-color: rgba(0, 128, 128, 1) !important;
 }
-.ant-card-actions > li{
-    margin: 0 !important;
-    cursor: pointer;
+
+.ant-card-actions>li {
+  margin: 0 !important;
+  cursor: pointer;
 }
-.ant-card-actions > li span div{
-    padding:12px 0 !important;
+
+.ant-card-actions>li span div {
+  padding: 12px 0 !important;
 }
-.ant-card-actions > li:hover{
-    background: #f5f6f7;
+
+.ant-card-actions>li:hover {
+  background: #f5f6f7;
 }
-.setting-post div div li{
-    font-weight: 600;
-    padding: 12px;
-    display: flex !important;
-    align-items: center;
-    justify-content: flex-start !important;
+
+.setting-post div div li {
+  font-weight: 600;
+  padding: 12px;
+  display: flex !important;
+  align-items: center;
+  justify-content: flex-start !important;
 }
-.setting-post div div li:hover{
-    background: rgba(0, 128, 128, 1);
-    color:white;
+
+.setting-post div div li:hover {
+  background: rgba(0, 128, 128, 1);
+  color: white;
 }
-.setting-post div div li svg{
-    margin-right: 5px;
+
+.setting-post div div li svg {
+  margin-right: 5px;
 }
-.ant-popover-inner-content{
-    padding: 0;
-    border-radius: 2px;
+
+.ant-popover-inner-content {
+  padding: 0;
+  border-radius: 2px;
 }
-.ant-card-cover img{
-    cursor: pointer;
+
+.ant-card-cover img {
+  cursor: pointer;
 }
-.modal-image{
-    z-index: 101;
+
+.modal-image {
+  z-index: 101;
 }
-.modal-image-post{
-    background: rgba(0, 0, 0, 0.9);
-    bottom: 0%;
-    left: 0;
-    opacity: 0;
-    position: fixed;
-    visibility: hidden;
-    right: 0;
-    top: 0;
-    transition: opacity .3s, bottom 0s .3s;
-    z-index: 100;
+
+.modal-image-post {
+  background: rgba(0, 0, 0, 0.9);
+  bottom: 0%;
+  left: 0;
+  opacity: 0;
+  position: fixed;
+  visibility: hidden;
+  right: 0;
+  top: 0;
+  transition: opacity .3s, bottom 0s .3s;
+  z-index: 100;
 }

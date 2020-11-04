@@ -11,12 +11,12 @@ import Watch from './../Components/Watch/Watch.jsx';
 import Page from './../Components/Page/Page.jsx';
 import ModalPost from './../Components/ModalPost/index.jsx';
 import {PUBLIC_URL} from './../Constants/public.jsx';
-const Main = lazy(() => import('./../Components/NewFeed/Index.jsx'));
-const MyProfile = lazy(() => import('./../Components/Profiles/MyProfile/Index.jsx'));
-const Messenger = lazy(() => import('./../Components/Messenger/index.jsx'));
-const SearchNavigation = lazy(() => import('./../Components/Search/index.jsx'));
-const FriendRequests = lazy(() => import('./../Components/FriendRequests/FriendRequests.jsx'));
-const FriendSent = lazy(() => import('./../Components/FriendRequests/FriendSent.jsx'));
+import  Main from './../Components/NewFeed/Index.jsx';
+import  MyProfile from './../Components/Profiles/MyProfile/Index.jsx';
+import  Messenger from './../Components/Messenger/index.jsx';
+import  SearchNavigation from './../Components/Search/index.jsx';
+import  FriendRequests from './../Components/FriendRequests/FriendRequests.jsx';
+import  FriendSent from './../Components/FriendRequests/FriendSent.jsx';
 
 const menu = (
     <Menu>
@@ -463,8 +463,6 @@ function Home() {
                         </Menu>
                     </div>
                 </Header>
-
-                <Suspense fallback={(<div></div>)}>
                     <Switch>
                       <Route exact path="/" component={Main} />
                       <Route path="/profile" component={MyProfile} />
@@ -476,7 +474,6 @@ function Home() {
                       <Route path="/page" component={Page} />
                       <Route path="/photo/:index" component={ModalPost} />
                     </Switch>
-                </Suspense>
                 {history.location.pathname !== '/messenger' ?
                   <>
                     {listChatMini.length === 0 ? null :

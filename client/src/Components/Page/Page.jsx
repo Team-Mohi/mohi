@@ -3,7 +3,6 @@ import './Page.css';
 import {Link, Route, Switch, useLocation} from 'react-router-dom';
 import HomePage from './HomePage.jsx';
 import VideosPage from './VideosPage.jsx';
-import PostsPage from './PostsPage.jsx';
 import SettingsPage from './SettingsPage.jsx';
 import ImagesPage from './ImagesPage.jsx';
 import { AiFillCamera } from "react-icons/ai";
@@ -27,6 +26,7 @@ function Page(){
   const [showModalCreatePost, setShowModalCreatePost] = useState(false);
   const optionFixedRef = useRef();
   const [optionFixed, setOptionFixed] = useState(false);
+  const [sidebarFixed, setSidebarFixed] = useState(false);
 
   useEffect(() => {
     document.addEventListener('scroll', fixedOptionHead, false);
@@ -39,8 +39,10 @@ function Page(){
     if(curentRef){
       if(window.scrollY - curentRef.offsetTop > -64){
         setOptionFixed(true)
+        setSidebarFixed(true)
       }else {
         setOptionFixed(false)
+        setSidebarFixed(false)
       }
     }
   }
@@ -125,7 +127,7 @@ function Page(){
       </div>
     )
   }
-  const IndexPage = useMemo(() => <HomePage  showModalCreatePost={showModalCreatePost} showModalCreatePostFunc={showModalCreatePostFunc}/>, [showModalCreatePost])
+  const IndexPage = useMemo(() => <HomePage  sidebarFixed={sidebarFixed} showModalCreatePost={showModalCreatePost} showModalCreatePostFunc={showModalCreatePostFunc}/>, [sidebarFixed, showModalCreatePost])
   return(
     <div>
     <div className="wrapper">
@@ -162,11 +164,6 @@ function Page(){
                 <Link to="/page">
                   <li className={isActive === 'home' || !isActive ? `page-active` : ''}>
                     <span>Trang chủ</span>
-                  </li>
-                </Link>
-                <Link to="/page/posts">
-                  <li className={isActive === 'posts'  ? `page-active` : ''}>
-                    <span>Bài viết</span>
                   </li>
                 </Link>
                 <Link to="/page/images">
@@ -212,7 +209,7 @@ function Page(){
                 </div>
                 <div>
                 <div ref={optionFixedRef} style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
-                  <div className="page-header-option page-header-option-container" style={optionFixed ? {position: 'fixed', zIndex: '999999', width: '45%', top: '64px'} : null}>
+                  <div className="page-header-option page-header-option-container" style={optionFixed ? {position: 'fixed', zIndex: '999999', width: '940px', top: '64px'} : null}>
                     <ul className="page-header-navigation">
                       <li>
                         {isLiked ?
@@ -258,7 +255,6 @@ function Page(){
               </Route>
               <Route path="/page/videos" component={VideosPage} />
               <Route path="/page/images" component={ImagesPage} />
-              <Route path="/page/posts" component={PostsPage} />
               <Route path="/page/settings" component={SettingsPage} />
             </Switch>
           </div>

@@ -55,6 +55,7 @@ img {
   position: fixed;
   width: -webkit-fill-available;
   z-index: 10;
+  background: rgba(0, 128, 128) !important;
 }
 
 .menu-home {

@@ -3,13 +3,18 @@ import Editor, { createEditorStateWithText } from "draft-js-plugins-editor";
 import createEmojiPlugin from "draft-js-emoji-plugin";
 import "draft-js-emoji-plugin/lib/plugin.css";
 import style from 'styled-components';
+import { EditorState, Modifier, ContentState, convertToRaw } from 'draft-js';
+import htmlToDraft from 'html-to-draftjs';
+import createLinkifyPlugin from 'draft-js-linkify-plugin';
+import draftToHtml from 'draftjs-to-html';
 
 const emojiPlugin = createEmojiPlugin({
   useNativeArt: true
 });
+const linkifyPlugin = createLinkifyPlugin();
+
 const { EmojiSuggestions, EmojiSelect } = emojiPlugin;
-const plugins = [emojiPlugin];
-const text = ``;
+const plugins = [emojiPlugin, linkifyPlugin];
 
 const StyleEditor = style.div`
   width: 100%;
@@ -37,8 +42,46 @@ const StyleEmoji = style.div`
 
 export default class CommentReplyEditor extends Component {
     state = {
-      editorState: createEditorStateWithText(text)
+      editorState: EditorState.createEmpty(),
+      idUserReceivedReply: this.props.idUserReceivedReply,
+      userReceivedReply: this.props.userReceivedReply,
+      idUserReceivedReplyArr: []
     };
+
+
+
+    static getDerivedStateFromProps(props, state) {
+     if (props.idUserReceivedReply !== state.idUserReceivedReply || props.userReceivedReply !== state.userReceivedReply) {
+       if(state.idUserReceivedReplyArr.indexOf(props.idUserReceivedReply) < 0){
+
+         const insertUserReceivedReply = (userReceivedReply, idUserReceivedReply, editorState) => {
+             const currentContent = editorState.getCurrentContent(),
+                   currentSelection = editorState.getSelection();
+              const linkUserReceivedReply = "<a href='"+idUserReceivedReply+"' ><strong>"+ userReceivedReply +"</strong></a>";
+              let { contentBlocks, entityMap } = htmlToDraft(linkUserReceivedReply);
+
+             const newContent = Modifier.replaceWithFragment(
+               currentContent,
+               currentSelection,
+               ContentState.createFromBlockArray(contentBlocks, entityMap).getBlockMap()
+             );
+             const newEditorState = EditorState.set(editorState, {
+                currentContent: newContent,
+              });
+             return  EditorState.forceSelection(newEditorState, newContent.getSelectionAfter());
+           }
+
+         return {
+           idUserReceivedReply: props.idUserReceivedReply,
+           userReceivedReply: props.userReceivedReply,
+           editorState: insertUserReceivedReply(props.userReceivedReply, props.idUserReceivedReply, state.editorState),
+           idUserReceivedReplyArr: [...state.idUserReceivedReplyArr, props.idUserReceivedReply]
+         };
+       }
+     }
+      // Return null to indicate no change to state.
+      return null;
+     }
 
   onChange = (editorState) => {
     this.setState({
@@ -46,11 +89,8 @@ export default class CommentReplyEditor extends Component {
     });
   };
 
-  focusCommentInput(){
-    this.commentInput.focus();
-  }
-
   render() {
+    console.log(convertToRaw(this.state.editorState.getCurrentContent()));
     return (
       <Wrapper>
         <StyleEditor>
@@ -59,9 +99,6 @@ export default class CommentReplyEditor extends Component {
             onChange={this.onChange}
             plugins={plugins}
             placeholder="Viết bình luận..."
-            ref={(element) => {
-              this.commentInput = element;
-            }}
           />
         </StyleEditor>
         <EmojiSuggestions />
