@@ -120,7 +120,7 @@ function PostNewFeed() {
                             <img
                                 onClick={() => setModalImagePostVisible()}
                                 alt="example"
-                                src="http://thuvienanhdep.net/wp-content/uploads/2016/02/hinh-anh-gai-xinh-mac-ao-dai-dep-an-tuong-nhat-nam-201619.jpg"
+                                src="https://i.pinimg.com/564x/c3/3e/0f/c33e0f308942d422219c9e401ac7dd35.jpg"
                             />
                             <div
                                 className="modal-image-post"
@@ -144,13 +144,13 @@ function PostNewFeed() {
                                     <div className="ant-card-cover">
                                         <img
                                             alt="example"
-                                            src="http://thuvienanhdep.net/wp-content/uploads/2016/02/hinh-anh-gai-xinh-mac-ao-dai-dep-an-tuong-nhat-nam-201619.jpg"
+                                            src="https://i.pinimg.com/564x/c3/3e/0f/c33e0f308942d422219c9e401ac7dd35.jpg"
                                         />
                                     </div>
                                     <div className="ant-card-cover">
                                         <img
                                             alt="example"
-                                            src="http://thuvienanhdep.net/wp-content/uploads/2016/02/hinh-anh-gai-xinh-mac-ao-dai-dep-an-tuong-nhat-nam-201619.jpg"
+                                            src="https://i.pinimg.com/564x/c3/3e/0f/c33e0f308942d422219c9e401ac7dd35.jpg"
                                         />
                                     </div>
                                 </div>

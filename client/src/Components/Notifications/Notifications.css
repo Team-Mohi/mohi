@@ -1,0 +1,51 @@
+.noti-all{
+  width: 1080px;
+  margin: 0 auto;
+}
+.noti-container{
+  background-color: rgba(0,0,0,0.02 );
+  margin-top: 70px;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+.noti-content-avatar img{
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  margin-top: 5px;
+}
+.noti-title{
+  display: flex;
+  padding: 10px;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+
+}
+.noti-title h4{
+  width: 80%;
+  color: rgba(0,128,128,0.7);
+}
+.noti-title a{
+  color: rgba(0,128,128,1);
+}
+.noti-main-content{
+  width: 100%;
+  display: flex;
+  padding: 10px;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+}
+.noti-main-content:hover{
+  background-color:rgba(0,0,0,0.1);
+}
+.noti-content{
+  margin-left: 10px;
+  width: 90%;
+
+}
+.noti-notification{
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre-line;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}

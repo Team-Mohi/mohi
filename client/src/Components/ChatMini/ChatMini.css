@@ -1,0 +1,200 @@
+.list-chatmini-container {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: row-reverse;
+  right: 17%;
+}
+
+.chatmini-container {
+  width: 300px;
+  margin-left: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.chatmini-title {
+  background: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.chatmini-title a {
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 500;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.chatmini-title a span {
+  margin-right: 10px;
+}
+
+.chatmini-title a:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.chatmini-title-avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-right: 10px;
+}
+
+.chatmini-title-option {
+  margin-left: auto;
+}
+
+.chatmini-title-option svg {
+  stroke-width: 1;
+  font-size: 17px;
+  stroke: rgba(0, 128, 128);
+  fill: rgba(0, 128, 128);
+}
+
+.chatmini-title-option svg:not(:last-child) {
+  margin-right: 10px;
+}
+
+.chatmini-body {
+  background: white;
+  position: relative;
+  height: 350px;
+}
+
+.chatmini-messenger-input {
+  position: absolute;
+  bottom: 0;
+  background: white;
+  width: 100%;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 5px;
+}
+
+.chatmini-messenger-input-text input:focus {
+  outline: none;
+}
+
+.chatmini-messenger-input-text input {
+  width: 100%;
+  border: 0;
+  line-height: 20px;
+  font-size: 14px;
+}
+
+p {
+  margin-bottom: 0 !important;
+}
+
+.chatmini-messenger-user-chat-content-avatar {
+  min-width: 30px;
+  width: 30px;
+  min-height: 30px;
+  height: 30px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chatmini-messenger-my-chat-content-status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 15px;
+  width: 15px;
+  min-height: 15px;
+  height: 15px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.chatmini-messenger-user-chat, .chatmini-messenger-my-chat {
+  width: 100%;
+}
+
+.chatmini-messenger-user-chat-content, .chatmini-messenger-my-chat-content {
+  width: 80%;
+  margin-bottom: 10px;
+}
+
+.chatmini-messenger-my-chat-content {
+  float: right;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.chatmini-messenger-user-chat-content {
+  display: flex;
+  align-items: flex-end;
+}
+
+.chatmini-messenger-input-text input {
+  outline: none;
+}
+
+.chatmini-messenger-my-chat-content p {
+  background: rgba(0, 128, 128);
+  color: white;
+  font-size: 14px;
+}
+
+.chatmini-messenger-user-chat-content p {
+  background: #f5f6f7;
+  font-size: 14px;
+}
+
+.chatmini-messenger-my-chat-content p, .chatmini-messenger-user-chat-content p {
+  padding: 5px 10px;
+  border-radius: 5px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin-bottom: 0;
+}
+
+.body-mess {
+  height: 291px;
+  overflow: auto;
+  background: white;
+  padding: 5px;
+}
+
+.clear {
+  clear: both;
+}
+
+.chatmini-messenger-input-react svg:last-child {
+  margin-left: auto;
+}
+
+.chatmini-messenger-input-react svg:not(:last-child) {
+  margin-right: 10px;
+}
+
+.chatmini-messenger-input-react svg {
+  fill: rgba(0, 128, 128);
+  font-size: 17px;
+}
+
+.chatmini-messenger-input-react {
+  display: flex;
+  align-items: center;
+  padding: 5px 0;
+}

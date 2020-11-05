@@ -1,0 +1,189 @@
+.setting-container{
+    width: 1140px;
+    margin: 0 auto;
+    padding: 5px;
+    background-color:  rgba(240, 240, 240, 0.7);
+}
+.setting-content{
+    width: 100%;
+    margin-top: 75px;
+    display: flex;
+}
+.setting-content-left{
+    width: 25%;
+    border-right: 0.5px solid rgba(0,0,0,0.7);
+    height: 80vh;
+}
+.setting-content-left ul a li{
+    position: relative;
+    list-style: none;
+    font-size: 17px;
+    font-weight: 500;
+    color: rgba(0,128,128,0.8);
+    padding: 7px;
+}
+.setting-content-left ul li:hover{
+    background-color:  rgba(0,0,0,0.05);
+    text-decoration: none;
+    border-radius: 2px;
+}
+.setting-content-left ul li.active:before {
+    content: ' ';
+    position: absolute;
+    height: 80%;
+    width: 4px;
+    right: 0px;
+    background: rgba(0, 128, 128);
+    transition: all 0.2s ease;
+  }
+.setting-content-left a:hover{
+    
+    text-decoration: none;
+}
+.setting-content-right{
+    width: 75%;
+    margin-left: 20px;
+}
+.general-container{
+    padding: 10px;
+}
+.general-title{
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.general-title h5{
+    font-weight: 700;
+}
+.general-content{
+    margin-top: 5px;
+}
+.general-information{
+    width: 100%;
+    align-items: baseline;
+    padding: 5px;
+}
+.general-information button{
+    margin:10px 0px 0px 140px;
+}
+.general-information:hover{
+    background-color:  rgba(0,0,0,0.03);
+}
+.general-item span{
+    width: 150px;
+   font-weight: 700;
+   padding-left: 10px;
+}
+.ant-collapse-header{
+    padding: 2px !important;
+}
+.ant-collapse-header  svg {
+    display: none !important;
+}
+.ant-descriptions-row td{
+    margin: 0;
+}
+.ant-collapse .ant-descriptions-item{
+    padding: 3px !important;
+    
+}
+.setting-general-name{
+    width: 40%;
+    margin: 0 auto;
+}
+
+.setting-password{
+    width: 70%;
+    margin: 0 auto;
+    padding: 10px;
+}
+.setting-general-email{
+    width: 50%;
+    margin: 0 auto;
+}
+.setting-general-email b{
+    width: 100%;
+    margin: 0 auto;
+}
+.setting-general-name form{
+    margin-top: 10px;
+}
+
+.setting-form-edit-name{
+    width: 100%;
+    margin-top: 5px;
+    align-items: center ;
+}
+.setting-form-edit-name a{
+    color:rgba(0, 128, 128,0.7);
+}
+.setting-form-edit-name label{
+    width: 130px;
+    font-weight: 700;
+    text-align: right;
+    padding-right: 10px;
+ }
+ .setting-form-edit-password{
+    width: 100%;
+    margin-top: 5px;
+    align-items: center ;
+}
+.setting-form-edit-password a{
+    color:rgba(0, 128, 128,0.7);
+    padding: 5px;
+}
+.setting-form-edit-password label{
+    width: 190px;
+    font-weight: 700;
+    text-align: right;
+    padding-right: 10px;
+ }
+.setting-form-edit-password input{
+   border: 1px solid rgba(0,0,0,0.19);
+   padding: 2px;
+}
+.setting-form-edit-name-button button:first-child{
+    border: 0;
+    padding: 5px;
+    margin: 5px;
+    font-weight: 500;
+    color: aliceblue;
+    background-color: rgba(0, 128, 128,0.9);
+    border-radius: 5px;
+}
+.setting-form-edit-name-button button:first-child:hover{
+    background-color: rgba(0, 128, 128,0.7);
+}
+.setting-form-edit-name-button button{
+    border: 0;
+    padding: 5px;
+    margin: 5px;
+    font-weight: 500;
+    color: aliceblue;
+    background-color: rgba(0, 0, 0,0.9);
+    border-radius: 5px;
+}
+.setting-form-edit-name-button button:hover{
+    background-color: rgba(0, 0, 0,0.7);
+}
+.setting-form-edit-email-button button{
+    border: 0;
+    padding: 5px;
+    margin: 5px;
+    font-weight: 500;
+    color: aliceblue;
+    background-color: rgba(0, 0, 0,0.9);
+    border-radius: 5px;
+}
+.setting-form-edit-email-button a{
+    color: aliceblue;
+}
+.setting-general-button button{
+    background-color: rgba(0, 128, 128,0.9);
+    color: white;
+    border: 0;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: 500;
+}
+.setting-general-button button:hover{
+    background-color: rgba(0, 128, 128,0.7);
+}

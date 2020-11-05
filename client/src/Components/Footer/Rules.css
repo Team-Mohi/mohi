@@ -1,0 +1,48 @@
+.rules-container{
+    width: 1140px;
+    margin: 0 auto;
+}
+.rules-content{
+    margin-top: 80px;
+}
+.ant-tabs-nav-list{
+    margin: 0 auto ;
+    border: 0px 
+}
+.ant-tabs-tab-btn{
+    font-size: 17px;
+    font-weight: 700;
+    color: rgba(0,128,128) !important;
+}
+.ant-tabs-tab-active{
+    border:0 !important;
+}
+
+.ant-tabs-tabpane{
+    margin:  0 auto;
+    width: 100%;
+}
+.footer-content{
+width: 100%;
+   margin-left: 20px;
+}
+.footer-content span{
+    width: 95%;
+    display: block;
+    padding: 5px;
+    font-weight: 500;
+ }
+.rules-detals{
+    padding: 20px;
+}
+.rules-detals strong{
+    padding: 20px;
+ }
+.ant-collapse-header{
+    font-weight: 700;
+    color: rgba(0,128,128,0.7) !important;
+    font-size: 14px;
+}
+.anticon-right{
+    display: none !important;
+}

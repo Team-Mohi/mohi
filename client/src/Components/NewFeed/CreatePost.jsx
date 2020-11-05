@@ -64,7 +64,6 @@ function CreatePost() {
             <Form >
                 <Form.Item>
                     <Input
-                        autoFocus
                         style={{ wordWrap: "break-word", whiteSpace: "pre-wrap", outline: 'none', userSelect: 'text', overflowWrap: 'break-word' }}
                         className="input-create-post"
                         onChange={onChange}

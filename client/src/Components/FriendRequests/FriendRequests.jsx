@@ -1,25 +1,11 @@
-import React, { useEffect, useState,lazy } from 'react';
-import { AiFillPicture, AiOutlineLike } from 'react-icons/ai';
-import { FaCheck } from 'react-icons/fa';
-import { BsSearch } from 'react-icons/bs';
-import { Link, Route, Switch, useLocation } from 'react-router-dom';
-import { Row, Col, Layout } from 'antd';
+import React from 'react';
+import { AiFillPicture } from 'react-icons/ai';
+import { Link, Route, Switch } from 'react-router-dom';
 import './FriendRequests.css';
 
 
 
 function FriendRequests() {
-  const path = useLocation().pathname.split('/');
-  const isActive = path[3];
-  const [isChangeAlbum, setIsChangeAlbum] = useState(true);
-
-  useEffect(() => {
-    setIsChangeAlbum(true)
-  }, [isActive])
-
-  function changeContentAlbum() {
-    setIsChangeAlbum(false)
-  }
 
   const FriendRequests = () => {
     return (
@@ -29,7 +15,7 @@ function FriendRequests() {
             <div className="friend-requests-title">
               <h4> Trả lời 100 lời mời kết bạn của bạn</h4>
               <Link to="/friend-sent">
-                <a> Xem yêu cầu đã gửi</a>
+                Xem yêu cầu đã gửi
             </Link>
             </div>
             <div className="friend-requests-item-container">

@@ -6,16 +6,28 @@ import { GrGroup } from "react-icons/gr";
 import { GoPrimitiveDot } from "react-icons/go";
 import { AiFillFlag } from "react-icons/ai";
 import { FaUserFriends, FaFacebookMessenger } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import NewFeed from './Newfeed.jsx';
+import useSound from 'use-sound';
+import {PUBLIC_URL} from './../../Constant/public.jsx';
 
 function Main() {
+    const history = useHistory();
     const { Content, Sider } = Layout;
+    const [play1] = useSound(PUBLIC_URL + '/sounds/2.mp3');
+    const [play2] = useSound(PUBLIC_URL + '/sounds/1.flac');
+    const [play3] = useSound(PUBLIC_URL + '/sounds/3.wav');
     const yearNow = new Date().getFullYear();
 
+    const changeActiveKey = (key) => {
+        history.push('/rules-mohi',{
+            key: key,
+        });
+    }
+    console.log(useHistory);
     return (
         <>
-            <Content style={{ padding: '0 50px', marginTop: '65px' }}>
+            <Content style={{ marginTop: '65px' }}>
                 <div className="container mt-2 mb-2">
                     <Layout >
                         <Sider width="200" >
@@ -26,6 +38,11 @@ function Main() {
                                         <span>Nguyễn Văn Phước</span>
                                     </List.Item>
                                     <List className="box-option-sider-left" >
+                                      <List.Item className="active">
+                                      <div onClick={() => play1()}>sound1</div>
+                                      <div onClick={() => play2()}>sound2</div>
+                                      <div onClick={() => play3()}>sound3</div>
+                                      </List.Item>
                                         <Link to="/">
                                             <List.Item className="active">
                                                 <GrArticle /> Trang chủ
@@ -84,16 +101,16 @@ function Main() {
                                 <div className="box-footer">
                                     <ul>
                                         <li><GoPrimitiveDot />
-                                            <Link to="privacy">Quyền riêng tư</Link>
+                                            <span onClick={() => changeActiveKey(2)}>Quyền riêng tư</span>
                                         </li>
                                         <li><GoPrimitiveDot />
-                                            <Link to="rules-mohi">Điều khoản</Link>
+                                            <span onClick={() => changeActiveKey(1)}>Điều khoản</span>
                                         </li>
                                         <li><GoPrimitiveDot />
-                                            <Link to="privacy-policy">Chính sách bảo mật</Link>
+                                            <span onClick={() => changeActiveKey(3)}>Chính sách bảo mật</span>
                                         </li>
                                         <li><GoPrimitiveDot />
-                                            <Link to="help">Trợ giúp</Link>
+                                            <span>Trợ Giúp</span>
                                         </li>
                                     </ul>
                                     <div className="brand-app">Mohi &copy; {yearNow}</div>
