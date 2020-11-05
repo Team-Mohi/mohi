@@ -6,6 +6,7 @@ import { FaUserFriends, FaFacebookMessenger, FaBell } from 'react-icons/fa';
 import { AiFillCaretDown } from "react-icons/ai";
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
+<<<<<<< HEAD
 import ChatSider from './../Components/ChatSider/ChatSider.jsx';
 import ChatMini from './../Components/ChatMini/ChatMini.jsx';
 import Watch from './../Components/Watch/Watch.jsx';
@@ -14,6 +15,13 @@ import {menunoti} from '../Components/Notifications/NotificationsMenu.jsx';
 import {menumessenger} from './../Components/Messenger/MessengerMenu.jsx';
 import {menufriendrequests} from './../Components/FriendRequests/FriendRequestsMenu.jsx';
 import {menusetting} from './../Components/Setting/SettingMenu.jsx';
+=======
+import MenuItem from 'antd/lib/menu/MenuItem';
+import ChatSider from './../Components/ChatSider/ChatSider.jsx';
+import ChatMini from './../Components/ChatMini/ChatMini.jsx';
+import Watch from './../Components/Watch/Watch.jsx';
+import {PUBLIC_URL} from './../Constant/public.jsx';
+>>>>>>> 418dfa94ce97f42e03b559df51e2bfb8f83356ae
 const Main = lazy(() => import('./../Components/NewFeed/Index.jsx'));
 const MyProfile = lazy(() => import('./../Components/Profiles/MyProfile/Index.jsx'));
 const Messenger = lazy(() => import('./../Components/Messenger/index.jsx'));
@@ -35,6 +43,7 @@ function Home() {
     const antIcon = <LoadingOutlined style={{ fontSize: 50, color: 'rgba(0,128,128)' }} spin />;
     const [listChatMini, setListChatMini] = useState([]);
 
+<<<<<<< HEAD
     useEffect(() => {
         if (listChatMini.length === 0) {
             if (localStorage.getItem('listChatMini')) {
@@ -56,11 +65,33 @@ function Home() {
             setLoadingContent(false)
         }
     }, [key]);
+=======
+
+      if(listChatMini.length === 0){
+        if(localStorage.getItem('listChatMini')){
+          setListChatMini(localStorage.getItem('listChatMini').split(','))
+        }
+      }
+
+    },[]);
+
+    useEffect(() => {
+      if(!path[2]){
+        window.scrollTo(0, 0)
+        setLoadingContent(true)
+
+        setTimeout(() => {
+          setLoadingContent(false)
+        }, 200);
+      }
+    },[key]);
+>>>>>>> 418dfa94ce97f42e03b559df51e2bfb8f83356ae
 
     function onSearch(value) {
         history.push('/search/' + value)
     }
 
+<<<<<<< HEAD
     const increaseChatMini = (iduser) => {
         if (!listChatMini.includes(iduser)) {
             if (listChatMini.length > 2) {
@@ -80,6 +111,27 @@ function Home() {
             setListChatMini(newListChatMini)
             localStorage.setItem('listChatMini', newListChatMini)
         }
+=======
+    const increaseChatMini = (iduser) =>{
+      if(!listChatMini.includes(iduser)){
+        if(listChatMini.length > 2){
+          listChatMini.splice(0,1)
+          setListChatMini([...listChatMini, iduser])
+          localStorage.setItem('listChatMini', [...listChatMini, iduser,])
+        }else {
+          setListChatMini([...listChatMini, iduser])
+          localStorage.setItem('listChatMini', [...listChatMini, iduser,])
+        }
+      }
+    }
+
+    const closeChatMini = (iduser) => {
+      if(listChatMini.includes(iduser)){
+        let newListChatMini = listChatMini.filter(chatmini => chatmini !== iduser)
+        setListChatMini(newListChatMini)
+        localStorage.setItem('listChatMini', newListChatMini)
+      }
+>>>>>>> 418dfa94ce97f42e03b559df51e2bfb8f83356ae
     }
 
     return (
@@ -119,12 +171,20 @@ function Home() {
                                 </Dropdown>
                             </Menu.Item>
                             <Menu.Item >
+<<<<<<< HEAD
                                 <Dropdown className="dropdown-setting" trigger={['click']} overlay={menunoti} placement="bottomCenter" >
+=======
+                                <Dropdown className="dropdown-setting" trigger={['click']} overlay={menu} placement="bottomCenter" >
+>>>>>>> 418dfa94ce97f42e03b559df51e2bfb8f83356ae
                                     <FaBell title="Thông báo" />
                                 </Dropdown>
                             </Menu.Item>
                             <Menu.Item >
+<<<<<<< HEAD
                                 <Dropdown className="dropdown-setting" trigger={['click']} overlay={menusetting} placement="bottomCenter" >
+=======
+                                <Dropdown className="dropdown-setting" trigger={['click']} overlay={menu} placement="bottomCenter" >
+>>>>>>> 418dfa94ce97f42e03b559df51e2bfb8f83356ae
                                     <AiFillCaretDown title="Cài đặt" />
                                 </Dropdown>
                             </Menu.Item>
@@ -148,9 +208,11 @@ function Home() {
                                 <Route path={`/search/:value`} component={SearchNavigation} />
                             </>
                         }
+
                     </Switch>
                 </Suspense>
                 {history.location.pathname !== '/messenger' ? <>
+<<<<<<< HEAD
                     {listChatMini.length === 0 ? null :
                         <div className="list-chatmini-container">
                             {listChatMini.map((chatmini, index) => {
@@ -164,6 +226,21 @@ function Home() {
                     <ChatSider increaseChatMini={increaseChatMini} />
                 </>
                     : null}
+=======
+                {listChatMini.length === 0 ? null :
+                  <div className="list-chatmini-container">
+                  {listChatMini.map((chatmini, index) => {
+                    return(
+                      <ChatMini key={index} iduser={chatmini} closeChatMini={closeChatMini}/>
+                    )
+                  })
+                  }
+                  </div>
+                }
+                <ChatSider increaseChatMini={increaseChatMini} />
+                </>
+                : null}
+>>>>>>> 418dfa94ce97f42e03b559df51e2bfb8f83356ae
             </Layout>
         </>
     )

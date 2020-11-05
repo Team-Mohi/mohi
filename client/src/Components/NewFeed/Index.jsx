@@ -18,6 +18,7 @@ function Main() {
     const [play2] = useSound(PUBLIC_URL + '/sounds/1.flac');
     const [play3] = useSound(PUBLIC_URL + '/sounds/3.wav');
     const yearNow = new Date().getFullYear();
+<<<<<<< HEAD
 
     const changeActiveKey = (key) => {
         history.push('/rules-mohi',{
@@ -25,6 +26,8 @@ function Main() {
         });
     }
     console.log(useHistory);
+=======
+>>>>>>> 418dfa94ce97f42e03b559df51e2bfb8f83356ae
     return (
         <>
             <Content style={{ marginTop: '65px' }}>

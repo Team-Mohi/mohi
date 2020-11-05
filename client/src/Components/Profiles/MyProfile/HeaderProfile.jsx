@@ -67,7 +67,12 @@ function HeaderProfile(){
                 <div className="profile-header-avatar-container">
                   <div className="profile-header-avatar-img">
                     <Link to="/profile">
+<<<<<<< HEAD
                       <img src={PUBLIC_URL+`/images/gaixinh.jpg`} alt="" />
+=======
+                      <img src={PUBLIC_URL + `images/gaixinh.jpg`} alt="" />
+
+>>>>>>> 418dfa94ce97f42e03b559df51e2bfb8f83356ae
                     </Link>
                   </div>
                 </div>
