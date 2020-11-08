@@ -8,8 +8,6 @@ import {AiOutlineLike} from "react-icons/ai";
 import {BsThreeDots} from "react-icons/bs";
 import {FaRegCommentAlt} from "react-icons/fa";
 import {IoIosShareAlt} from "react-icons/io";
-import {gql} from 'apollo-boost';
-import {useQuery} from '@apollo/react-hooks';
 
 function PostPage(props) {
   const inputCommentRef = useRef();

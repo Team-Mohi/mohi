@@ -21,12 +21,12 @@ const StyleEditor = style.div`
 
 
 export default class CustomEmojiEditor extends Component {
-    state = {
-      editorState: createEditorStateWithText(text)
-    };
+  state = {
+    editorState: createEditorStateWithText(text)
+  };
 
-  componentDidMount(){
-    if(this.props.showModalCreatePost){
+  componentDidMount() {
+    if (this.props.showModalCreatePost) {
       this.editor.focus();
     }
   }
@@ -53,10 +53,10 @@ export default class CustomEmojiEditor extends Component {
         </StyleEditor>
         <EmojiSuggestions />
         {this.props.showModalCreatePost ?
-          <div className="create-post-reaction" style={{textAlign: 'right'}}>
+          <div className="create-post-reaction" style={{ textAlign: 'right' }}>
             <EmojiSelect />
           </div>
-        :null}
+          : null}
       </div>
     );
   }

@@ -1,0 +1,76 @@
+.popup-edit-page-full{
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top:0;
+  left: 0;
+  z-index: 999999999;
+}
+.popup-edit-page-presentation{
+  position: absolute;
+  z-index: 99999998;
+  background: rgba(0,0,0,0.8);
+  width: 100%;
+  height: 100%;
+}
+.popup-edit-page-ctn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+}
+.popup-edit-page-content{
+    background: white;
+    border-radius: 5px;
+    border: 1px solid rgba(0,0,0,0.1);
+    padding: 20px;
+    z-index: 99999999;
+    position: relative;
+}
+.popup-edit-form-group{
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+.popup-edit-form-group label{
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 5px !important;
+}
+.popup-edit-form-group .DraftEditor-root{
+  padding: 5px 10px;
+}
+.popup-edit-form-group input{
+  padding: 3px 10px;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 5px;
+  width: 500px;
+}
+.popup-edit-form-group button{
+  margin: 20px 20px 0 20px;
+  width: 100px;
+  padding: 5px;
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 5px;
+  background: rgba(0,128,128,0.8);
+}
+.popup-edit-form-group button:hover{
+  background: rgba(0,128,128);
+}
+.form-button{
+  flex-direction: row;
+  justify-content: center;
+}
+.page-name-edit a:hover{
+  color: rgba(0,128,128);
+}
+
+.page-name-edit a{
+  color: rgba(0,128,128);
+}

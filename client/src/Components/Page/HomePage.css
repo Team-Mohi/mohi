@@ -67,8 +67,6 @@
 .public-DraftEditorPlaceholder-root {
   margin-bottom: -20px;
   color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
-  position: relative;
 }
 
 .DraftEditor-editorContainer {

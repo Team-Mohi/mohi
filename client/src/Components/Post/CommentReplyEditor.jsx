@@ -90,7 +90,6 @@ export default class CommentReplyEditor extends Component {
   };
 
   render() {
-    console.log(convertToRaw(this.state.editorState.getCurrentContent()));
     return (
       <Wrapper>
         <StyleEditor>

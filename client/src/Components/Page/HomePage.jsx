@@ -2,6 +2,7 @@ import React, {useState, useMemo} from 'react';
 import './HomePage.css';
 import EditorEmoji from './EditorEmoji.jsx';
 import PopupEditPage from './PopupEditPage.jsx';
+import EditPage from './EditPage.jsx';
 import EditorMention from './EditorMention.jsx';
 import Post from './../Post/Post.jsx';
 import {Select, Switch, Button, Tooltip, Row, Col} from 'antd';
@@ -25,6 +26,10 @@ function HomePage(props, { posts }){
   const [listMention, setListMention] = useState([]);
   const [firstMention, setFirstMention] = useState();
   const [closeEditLocationPage, setCloseEditLocationPage] = useState(true);
+  const [editPage, setEditPage] = useState({
+    status: false,
+    action: ''
+  });
   const listGalleryDemo = [
     'https://1.bp.blogspot.com/-HfDzvytpbDI/U0z-eqAMV8I/AAAAAAAABtI/YBOXzwY4d6I/s1600/anh-girl-xinh__Hinhnendl.com+(4).jpg',
     'https://2.bp.blogspot.com/-AX9DuH5Sjos/UeAs8QFXCGI/AAAAAAAAE5o/LbVCOeVHBv8/s1600/hinh-anh-gai-xinh-hd-taihinhnendep.com-4.jpg',
@@ -44,6 +49,20 @@ function HomePage(props, { posts }){
 
   const changeStatusButtonSubmit = (value) => {
     setValueEditor(value)
+  }
+
+  const showEditPage = (action) => {
+    setEditPage({
+      status: true,
+      action: action
+    })
+  }
+
+  const closeEditPage = () => {
+    setEditPage({
+      status: false,
+      action: ''
+    })
   }
 
   function showInputTag(){
@@ -200,11 +219,11 @@ function HomePage(props, { posts }){
         <div className="page-introduce">
           <h5>Giới thiệu</h5>
           <ul>
-            <li onClick={showEditLocationPage}>
+            <li>
               <span className="page-introduce-icon">
                 <FaMapMarkerAlt />
               </span>
-              <span>
+              <span onClick={showEditLocationPage}>
                 Nhập vị trí
               </span>
             </li>
@@ -212,7 +231,7 @@ function HomePage(props, { posts }){
               <span className="page-introduce-icon">
                 <AiFillInfoCircle />
               </span>
-              <span>
+              <span onClick={() => showEditPage('description')}>
                 Mô tả
               </span>
             </li>
@@ -236,7 +255,7 @@ function HomePage(props, { posts }){
               <span className="page-introduce-icon">
                 <GiPhone />
               </span>
-              <span>
+              <span onClick={() => showEditPage('phone')}>
                 Nhập số điện thoại
               </span>
             </li>
@@ -244,7 +263,7 @@ function HomePage(props, { posts }){
               <span className="page-introduce-icon">
                 <MdEmail />
               </span>
-              <span>
+              <span onClick={() => showEditPage('email')}>
                 Nhập email
               </span>
             </li>
@@ -252,12 +271,12 @@ function HomePage(props, { posts }){
               <span className="page-introduce-icon">
                 <FaListAlt />
               </span>
-              <span>
+              <span >
                 Thể loại page
               </span>
             </li>
           </ul>
-          <button>Chỉnh sửa thông tin trang</button>
+          <button onClick={() => showEditPage('full')}>Chỉnh sửa thông tin trang</button>
         </div>
         <div className="page-gallery">
           <h5>Ảnh <span className="page-gallery-more"><Link to="">Xem thêm</Link></span></h5>
@@ -294,6 +313,7 @@ function HomePage(props, { posts }){
       </div>
     </div>
     {!closeEditLocationPage && <PopupEditPage closeEditLocationPageFunc={closeEditLocationPageFunc}/>}
+    {editPage.status && <EditPage editPage={editPage} closeEditPage={closeEditPage}/>}
     </div>
   )
 }

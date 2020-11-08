@@ -1,0 +1,66 @@
+.friend-requests-menu{
+    display: flex;
+  }
+
+  .friend-requests-menu-avatar img{
+    float: left;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+  .friend-requests-menu-name a{
+    font-weight: 700;
+    color: rgba(0,128,128);
+    margin-left: 10px;
+  }
+  .friend-requests-menu-mutual-friends{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: pre;
+  }
+
+  .friend-requests-menu-mutual-friends a{
+    color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+
+  }
+  .friend-requests-menu-button{
+    padding: 10px;
+    margin-left: 20px;
+  }
+  .friend-requests-menu-button button{
+    margin-right: 5px;
+  }
+  .friend-requests-accept-btn{
+    background-color: rgba(0,128,128);
+    color: white;
+    border-radius: 5px;
+  border:0;
+  padding:5px;
+  }
+  .friend-requests-refuse-btn{
+    background-color: rgba(0,0,0,0.1);
+    color: rgba(0,0,0,0.7);
+    border-radius: 5px;
+    border:0;
+    padding:5px;
+  }
+  .friendrequests-menu-container{
+    width: 350px;
+    margin: 50px;
+    padding: 50px;
+  }
+
+  .friendrequests-menu-title h5{
+      float: left;
+      text-decoration: none;
+      color: rgba(0,128,128);
+      font-size: 16px;
+      font-weight: 700;
+  }
+  .friendrequests-menu-title a{
+    float: right;
+    padding-right: 10px;
+    text-decoration: none;
+    color: rgba(0,128,128);
+  }
