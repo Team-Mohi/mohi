@@ -78,7 +78,7 @@ function Home() {
                 <Header className="nav-home">
                     <div className="wrapper d-flex header-home " >
                         <div className="logo " >
-                            <img src={PUBLIC_URL + "/logo.png"} alt="Mohi.vn" title="Mohi.vn" />
+                            <img src={PUBLIC_URL + "logo.png"} alt="Mohi.vn" title="Mohi.vn" />
                         </div>
                         <Search
                             className="search-all"
@@ -108,12 +108,12 @@ function Home() {
                                 </Dropdown>
                             </Menu.Item>
                             <Menu.Item >
-                                <Dropdown className="dropdown-setting" trigger={['click']} overlay={menunoti} placement="bottomCenter" >
+                                <Dropdown className="dropdown-setting" trigger={['click']} overlay={menunoti} placement="bottomCenter" arrow>
                                     <FaBell title="Thông báo" />
                                 </Dropdown>
                             </Menu.Item>
                             <Menu.Item className="menu-item-last-child">
-                                <Dropdown className="dropdown-setting" trigger={['click']} overlay={menusetting} placement="bottomCenter" >
+                                <Dropdown className="dropdown-setting" trigger={['click']} overlay={menusetting} placement="bottomCenter" arrow>
                                     <AiFillCaretDown title="Cài đặt" />
                                 </Dropdown>
                             </Menu.Item>
@@ -130,6 +130,9 @@ function Home() {
                       <Route path="/watch" component={Watch} />
                       <Route path="/page" component={Page} />
                       <Route path="/photo/:index" component={ModalPost} />
+                      <Route path="/setting" component={Setting} />
+                      <Route path="/notifications" component={Notifications} />
+                      <Route path="/rules-mohi" component={Rules} />
                     </Switch>
                 {history.location.pathname !== '/messenger' ?
                   <>

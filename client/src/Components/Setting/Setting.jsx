@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Setting.css';
 import { AiOutlinePlusCircle, AiFillEdit } from "react-icons/ai";
 import { FiSettings } from "react-icons/fi";
@@ -12,6 +12,15 @@ import { Descriptions, Button, Collapse } from 'antd';
 const { Panel } = Collapse;
 
 const General = () => {
+  const [styleInputAddContact, setStyleInputAddContact] = useState();
+
+  const openInputAddContact = () => {
+    setStyleInputAddContact({
+      display: 'block',
+      transition: 'all 0.2s ease',
+    })
+  }
+
   return (
     <div className="general-container">
       <div className="general-title">
@@ -25,11 +34,11 @@ const General = () => {
               <form>
                 <div className="setting-form-edit-name">
                   <label htmlFor="">Họ</label>
-                  <input type="text" value="Vũ" />
+                  <input type="text" placeholder="Vũ"  />
                 </div>
                 <div className="setting-form-edit-name">
                   <label htmlFor="">Tên</label>
-                  <input type="text" value="Lập" />
+                  <input type="text" placeholder="Lập" />
                 </div>
                 <div className="setting-form-edit-name">
                   <label htmlFor="">Tên khác</label>
@@ -50,7 +59,7 @@ const General = () => {
               <form>
                 <div className="setting-form-edit-name">
                   <label htmlFor="">Tên người dùng</label>
-                  <input type="text" value="vtl2406" />
+                  <input type="text" placeholder="vtl2406"  />
                 </div>
                 <div className="setting-form-edit-name-button">
                   <button type="submit">Xác nhận thay đổi</button>
@@ -61,14 +70,19 @@ const General = () => {
             </div>
           </Panel>
           <Panel header={<SettingGeneralContact />} key="3">
-            <div className="setting-general-email">
+            <div className="setting-general-email" >
               <div className="setting-general-email-title">
-                <b>Email hiện tại của bạn là: lap24062000@gmail.com</b>
+                <b> Liên hệ hiện tại</b>
+                <p>Email : lap24062000@gmail.com</p>
+                <p>Di động: 0365610561</p>
               </div>
-              <Link to="/profile/about/contact-info">Thêm email khác</Link>
-              <div className="setting-form-edit-email-button">
-                <button type="submit"><Link to="/setting">Đóng</Link></button>
-              </div>
+              <div className="setting-general-add-email-click" onClick={openInputAddContact}>Thêm email khác</div>
+              <form  className="setting-general-form-add-email" style={styleInputAddContact}>
+                <div className="setting-general-add-email" >
+                    <input type="text" placeholder="Nhập email hoặc số điện thoại..."/>
+                    <button type="submit">Lưu</button>
+                </div>
+              </form>
             </div>
           </Panel>
         </Collapse>
@@ -119,14 +133,22 @@ const SettingGeneralContact = () => {
   );
 }
 const Password = () => {
+  
+  const [openPopupChangePassword, setOpenPopupChangePassword] = useState(false);
+
+  const openPopupChangePasswordFunc = () => {
+    setOpenPopupChangePassword(!openPopupChangePassword)
+  }
+
   return (
     <>
       <div className="general-container">
         <div className="general-title">
           <h5> Đổi mật khẩu</h5>
         </div>
+        {!openPopupChangePassword ? 
         <div className="setting-password">
-          <b>	Bạn nên sử dụng mật khẩu mạnh mà mình chưa sử dụng ở đâu khác</b>
+          <h6>	Bạn nên sử dụng mật khẩu mạnh mà mình chưa sử dụng ở đâu khác</h6>
           <form >
             <div className="setting-form-edit-password">
               <label htmlFor="">Mật khẩu hiện tại</label>
@@ -141,7 +163,7 @@ const Password = () => {
               <input type="password" />
             </div>
             <div className="setting-form-edit-password">
-              <Link to="/profile/about/contact-info">Quên mật khẩu?</Link>
+              <div className="setting-general-add-email-click" onClick={openPopupChangePasswordFunc}>Quên mật khẩu?</div>
             </div>
             <div className="setting-form-edit-name-button">
               <button type="submit">Xác nhận thay đổi</button>
@@ -149,6 +171,20 @@ const Password = () => {
             </div>
           </form>
         </div>
+        :
+        <div className="setting-password">
+          <form>
+          <div className="setting-form-change-password">
+            <label htmlFor="">Nhập email hoặc số điện thoại để lấy lại mật khẩu</label>
+            <input type="text" placeholder="Nhập email hoặc số điện thoại..." />
+          </div>
+          <div className="setting-form-change-password-button">
+              <button type="submit">Gửi</button>
+              <button onClick={openPopupChangePasswordFunc}>Quay lại</button>
+          </div>
+        </form>
+      </div>
+      }
       </div>
     </>
   )
@@ -172,7 +208,6 @@ function Setting() {
   const path = useLocation().pathname.split('/');
   const isActive = path[2];
   return (
-    <>
       <div className="setting-container">
         <div className="setting-content">
           <div className="setting-content-left">
@@ -204,7 +239,6 @@ function Setting() {
           </div>
         </div>
       </div>
-    </>
   )
 }
 export default Setting;

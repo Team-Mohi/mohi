@@ -7,15 +7,14 @@
 }
 .ant-tabs-nav-list{
     margin: 0 auto ;
-    border: 0px
+    border: 0px 
 }
 .ant-tabs-tab-btn{
     font-size: 17px;
-    font-weight: 700;
     color: rgba(0,128,128) !important;
 }
-.ant-tabs-tab-active{
-    border:0 !important;
+.ant-tabs-tab-active .ant-tabs-tab-btn{
+    font-weight: 700;
 }
 
 .ant-tabs-tabpane{
@@ -45,4 +44,10 @@ width: 100%;
 }
 .anticon-right{
     display: none !important;
+}
+.rules-collapse .ant-collapse-item{
+    padding: 10px 20px;
+}
+.ant-tabs-ink-bar{
+    background: rgba(0,128,128) !important;
 }

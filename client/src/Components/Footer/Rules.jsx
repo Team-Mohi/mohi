@@ -8,15 +8,14 @@ function Rules() {
     const { TabPane } = Tabs;
     const { Panel } = Collapse;
     const history = useHistory();
-    let key = history.location.state.key ? history.location.state.key : 1;
-console.log(key);
+    let key = history.location.state ? history.location.state.key : 1;
     const Rules = () => {
         return (
             <>
                 <div className="rules-container">
                     <div className="rules-content">
                         <Tabs defaultActiveKey={`${key}`}>
-                            <TabPane tab="Điều khoản dịch vụ" key="1">
+                            <TabPane tab="Điều khoản và dịch vụ" key="1">
                                 <Collapse className="rules-collapse" defaultActiveKey={['0']} >
                                     <Panel header="1. Dịch vụ chúng tôi cung cấp" key="1">
                                         <div className="footer-content">

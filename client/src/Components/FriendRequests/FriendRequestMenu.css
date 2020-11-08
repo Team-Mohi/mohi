@@ -1,5 +1,6 @@
 .friend-requests-menu{
     display: flex;
+    justify-content: space-between;
   }
 
   .friend-requests-menu-avatar img{
@@ -18,7 +19,9 @@
     text-overflow: ellipsis;
     white-space: pre;
   }
-
+.friend-requests-menu-info{
+  margin-right: auto;
+}
   .friend-requests-menu-mutual-friends a{
     color: rgba(0, 0, 0, 0.7);
     padding: 10px;
@@ -46,7 +49,7 @@
     padding:5px;
   }
   .friendrequests-menu-container{
-    width: 350px;
+    width: 400px;
     margin: 50px;
     padding: 50px;
   }

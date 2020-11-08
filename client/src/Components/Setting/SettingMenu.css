@@ -1,8 +1,10 @@
+.setting-menu-container{
+    padding: 0 !important;
+}
 .setting-menu-items{
     width: 200px;
     border-bottom: 0.5px solid rgba(0,0,0,0.1);
-    height: 30px;
-    padding: 5px;
+    padding: 10px 30px !important;
 }
 .setting-menu-items a{
     padding: 10px;

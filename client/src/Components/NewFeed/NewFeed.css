@@ -23,3 +23,10 @@
 .ant-comment-inner{
     padding: 5px 10px 10px 10px;
 }
+.box-footer ul li{
+    margin-bottom: 10px;
+}
+.box-footer span:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}

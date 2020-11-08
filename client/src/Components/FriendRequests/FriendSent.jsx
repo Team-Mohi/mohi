@@ -9,7 +9,7 @@ function FriendSent() {
   const FriendSent = () => {
     return (
       <>
-        <div className="friends-requests-all">
+        <div className="friends-requests-all" style={{marginTop: "65px"}}>
           <div className="friend-requests-container">
             <div className="friend-requests-title">
               <h4>Đã gửi lời mời kết bạn</h4>
@@ -201,20 +201,10 @@ function FriendSent() {
 
 
   return (
-    <div className="profile-firends-container">
-      <div className="galerry-head">
-        <div className="galerry-title">
-          <AiFillPicture /><h5> Bạn bè</h5>
-        </div>
-
-      </div>
-      <div className="galerry-content">
-        <Switch>
-          <Route path="/friendsent" component={FriendSent} />
-          <Route component={FriendSent} />
-        </Switch>
-      </div>
-    </div>
+      <Switch>
+        <Route path="/friendsent" component={FriendSent} />
+        <Route component={FriendSent} />
+      </Switch>
   )
 
 

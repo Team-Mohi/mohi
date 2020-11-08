@@ -1,9 +1,13 @@
 .messenger-menu-container{
-    width: 400px;
+    width: 500px;
     padding: 50px;
   }
   .messenger-menu{
     display: flex;
+    justify-content: space-between;
+  }
+  .messenger-menu-info{
+    margin-right:auto ;
   }
   .messenger-menu-title h5{
     float: left;
@@ -20,7 +24,7 @@
     color: rgba(0,128,128);
   }
   .messenger-menu-right{
-    margin: 0;
+    margin-left: 20px;
     text-align: center;
   }
   .messenger-menu-right p{
@@ -38,7 +42,7 @@
     margin-left: 10px;
   }
   .messenger-menu-mutual-friends{
-    width: 250px;
+    width: 325px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: pre;

@@ -7,7 +7,7 @@ function FriendRequests() {
   const FriendRequests = () => {
     return (
       <>
-        <div className="friends-requests-all">
+        <div className="friends-requests-all" style={{marginTop: "65px"}}>
           <div className="friend-requests-container">
             <div className="friend-requests-title">
               <h4> Trả lời 100 lời mời kết bạn của bạn</h4>
@@ -239,19 +239,9 @@ function FriendRequests() {
   }
 
   return (
-    <div className="profile-firends-container" style={{marginTop: "65px"}}>
-      <div className="galerry-head" >
-        <div className="galerry-title">
-          <AiFillPicture /><h5> Bạn bè</h5>
-        </div>
-
-      </div>
-      <div className="galerry-content">
         <Switch>
           <Route component={FriendRequests} />
         </Switch>
-      </div>
-    </div>
   )
 
 

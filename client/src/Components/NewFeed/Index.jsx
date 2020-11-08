@@ -6,17 +6,24 @@ import { GrGroup } from "react-icons/gr";
 import { GoPrimitiveDot } from "react-icons/go";
 import { AiFillFlag } from "react-icons/ai";
 import { FaUserFriends, FaFacebookMessenger } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useHistory  } from 'react-router-dom';
 import NewFeed from './Newfeed.jsx';
 import useSound from 'use-sound';
 import {PUBLIC_URL} from './../../Constants/public.jsx';
 
 function Main() {
+    const history = useHistory();
     const { Content, Sider } = Layout;
     const [play1] = useSound(PUBLIC_URL + '/sounds/2.mp3');
     const [play2] = useSound(PUBLIC_URL + '/sounds/1.flac');
     const [play3] = useSound(PUBLIC_URL + '/sounds/3.wav');
     const yearNow = new Date().getFullYear();
+    const changeActiveKey = (key) => {
+        history.push('/rules-mohi',{
+            key: key,
+        });
+    }
+
     return (
         <>
             <Content style={{ marginTop: '65px' }}>
@@ -87,22 +94,22 @@ function Main() {
                         </Sider>
                         <NewFeed />
                         <Sider width="350" >
-                            <div style={{ position: "fixed" }}>
+                            <div style={{ position: "fixed", width: '350px' }}>
                                 <div className="language-app">
                                 </div>
                                 <div className="box-footer">
                                     <ul>
                                         <li><GoPrimitiveDot />
-                                            <Link to="privacy">Quyền riêng tư</Link>
+                                            <span onClick={() => changeActiveKey(2)}>Chính sách dữ liệu</span>
                                         </li>
                                         <li><GoPrimitiveDot />
-                                            <Link to="rules-mohi">Điều khoản</Link>
+                                            <span onClick={() => changeActiveKey(1)}>Điều khoản và dịch vụ</span>
                                         </li>
                                         <li><GoPrimitiveDot />
-                                            <Link to="privacy-policy">Chính sách bảo mật</Link>
+                                            <span onClick={() => changeActiveKey(3)}>Tiêu chuẩn cộng đồng</span>
                                         </li>
                                         <li><GoPrimitiveDot />
-                                            <Link to="help">Trợ giúp</Link>
+                                            <span>Trợ Giúp</span>
                                         </li>
                                     </ul>
                                     <div className="brand-app">Mohi &copy; {yearNow}</div>
