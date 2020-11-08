@@ -182,6 +182,11 @@ function Setting() {
   const path = useLocation().pathname.split('/');
   const isActive = path[2];
 
+  const [addInput, setaddInput] = useState();
+  useState(() => {
+    addInput = ({ showForm: false });
+  }, []);
+
   return (
     <>
       <div className="setting-container">
