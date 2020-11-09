@@ -24,13 +24,13 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     margin: 5px;
   }
-  
+
   .friend-requests-item-container, .friend-requests-item-left, .friend-requests-item-right {
     display: flex;
     align-items: center;
     padding: 5px;
   }
-  
+
   .friend-requests-item-right {
     margin: 10px;
   }
@@ -62,7 +62,7 @@
     color: #4b4f56;
     background: #f5f6f7;
   }
-  
+
   .friend-requests-item-avatar {
     width: 85px;
     height: 85px;
@@ -72,24 +72,41 @@
     align-items: center;
     border: 1px solid rgba(0, 0, 0, 0.1);
   }
-  
+
   .friend-requests-item-name a {
     font-size: 18px;
     font-weight: 600;
     color: rgba(0, 128, 128);
   }
-  
-  
+
+
   .friend-requests-item-info {
     margin-left: 10px;
   }
   .friend-queue-item-info {
     margin-left: 15px;
   }
-  
-  .friend-requests-mutual-friends {
+
+  .friend-requests-mutual-friends{
     color: #90949c;
     font-size: 14px;
+    display: flex;
+    margin-right: 5px;
+  }
+  .friend-mutual-avatar{
+    width: 25px;
+    height: 25px;
+    min-width: 25px;
+    min-height: 25px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  .friend-mutual-avatar img{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    object-fit: cover;
+    align-items: center;
   }
   .friend-queue-mutual-friends{
     color: #90949c;
@@ -99,10 +116,9 @@
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    margin-right: 5px;
   }
-  .friend-requests-mutual-friends a{
-    margin-left: 5px;
+  .friend-requests-mutual-friends span{
+    margin-left: 10px;
     color:  rgba(0, 0, 0, 0.8);
     text-decoration: none;
   }

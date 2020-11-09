@@ -1,389 +1,261 @@
 import React from 'react';
 import './FriendRequestMenu.css';
-import { Menu } from 'antd';
-import { Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
-export const menufriendrequests = (
-    <Menu className="friendrequests-menu-container">
-        <div className="menu-dropdown-scroll">
-            <div className="friendrequests-menu-title">
-                <h5 aria-disabled>Lời mời kết bạn</h5>
-                <Link to="/friendrequests">Tìm thêm bạn bè</Link>
-                <Link >Cài đặt</Link>
+function MenuFriendRequests() {
+
+  return (<> < div className = "menu-noti-container" > <div className="menu-noti-main">
+    <div className="menu-noti-title">
+      <h5>Lời mời kết bạn</h5>
+    </div>
+    <div className="menu-dropdown-scroll">
+      <div className="menu-dropdown-scroll-thumb">
+        <div className="menu-friend-requests-content">
+          <div className="menu-noti-content-avatar">
+            <img src="https://i.pinimg.com/564x/90/e9/fc/90e9fce92c5bd12860b07b1cd1af41cb.jpg" alt=""/>
+          </div>
+          <div className="menu-friend-requests-content-title">
+            <Link to="/">Nguyễn Văn Phước</Link>
+            <div className="menu-friend-requests-content-button">
+              {/* <FaCommentAlt /> */}
+              <p>100 bạn chung
+              </p>
             </div>
-            <div className="menu-dropdown-scroll-thumb">
-                <Menu.Item className="menu-items">
-                    <div className="friend-requests-menu">
-                        <div className="friend-requests-menu-avatar">
-                            <Link to="">
-                                <img src="https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-9/s960x960/118943523_1217233628646223_8263972168525947345_o.jpg?_nc_cat=107&_nc_sid=13bebb&_nc_ohc=3DHwSBguDtIAX9nw-Td&_nc_ht=scontent-sin6-1.xx&tp=7&oh=ac4947175cf0a07bc5cbc98e1be81e0b&oe=5F9AD6DF" alt="" />
-                            </Link>
-                        </div>
-                        <div className="friend-requests-menu-info">
-                            <div className="friend-requests-menu-name">
-                                <Link to="">
-                                    Hồ Thị Vân Anh
-                                </Link>
-                            </div>
-                            <div className="friend-requests-menu-mutual-friends">
-                                <a>3 bạn chung</a>
-                            </div>
-                        </div>
-                        <div className="friend-requests-menu-button">
-                            <button className="friend-requests-accept-btn"> Xác nhận</button>
-                            <button className="friend-requests-refuse-btn"> Xóa</button>
-                        </div>
-                    </div>
-                </Menu.Item>
-                <Menu.Item className="menu-items">
-                    <div className="friend-requests-menu">
-                        <div className="friend-requests-menu-avatar">
-                            <Link to="">
-                                <img src="https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-9/s960x960/118943523_1217233628646223_8263972168525947345_o.jpg?_nc_cat=107&_nc_sid=13bebb&_nc_ohc=3DHwSBguDtIAX9nw-Td&_nc_ht=scontent-sin6-1.xx&tp=7&oh=ac4947175cf0a07bc5cbc98e1be81e0b&oe=5F9AD6DF" alt="" />
-                            </Link>
-                        </div>
-                        <div className="friend-requests-menu-info">
-                            <div className="friend-requests-menu-name">
-                                <Link to="">
-                                    Hồ Thị Vân Anh
-                                </Link>
-                            </div>
-                            <div className="friend-requests-menu-mutual-friends">
-                                <a>3 bạn chung</a>
-                            </div>
-                        </div>
-                        <div className="friend-requests-menu-button">
-                            <button className="friend-requests-accept-btn"> Xác nhận</button>
-                            <button className="friend-requests-refuse-btn"> Xóa</button>
-                        </div>
-                    </div>
-                </Menu.Item>
-                <Menu.Item className="menu-items">
-                    <div className="friend-requests-menu">
-                        <div className="friend-requests-menu-avatar">
-                            <Link to="">
-                                <img src="https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-9/s960x960/118943523_1217233628646223_8263972168525947345_o.jpg?_nc_cat=107&_nc_sid=13bebb&_nc_ohc=3DHwSBguDtIAX9nw-Td&_nc_ht=scontent-sin6-1.xx&tp=7&oh=ac4947175cf0a07bc5cbc98e1be81e0b&oe=5F9AD6DF" alt="" />
-                            </Link>
-                        </div>
-                        <div className="friend-requests-menu-info">
-                            <div className="friend-requests-menu-name">
-                                <Link to="">
-                                    Hồ Thị Vân Anh
-                                </Link>
-                            </div>
-                            <div className="friend-requests-menu-mutual-friends">
-                                <a>3 bạn chung</a>
-                            </div>
-                        </div>
-                        <div className="friend-requests-menu-button">
-                            <button className="friend-requests-accept-btn"> Xác nhận</button>
-                            <button className="friend-requests-refuse-btn"> Xóa</button>
-                        </div>
-                    </div>
-                </Menu.Item>
-                <Menu.Item className="menu-items">
-                    <div className="friend-requests-menu">
-                        <div className="friend-requests-menu-avatar">
-                            <Link to="">
-                                <img src="https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-9/s960x960/118943523_1217233628646223_8263972168525947345_o.jpg?_nc_cat=107&_nc_sid=13bebb&_nc_ohc=3DHwSBguDtIAX9nw-Td&_nc_ht=scontent-sin6-1.xx&tp=7&oh=ac4947175cf0a07bc5cbc98e1be81e0b&oe=5F9AD6DF" alt="" />
-                            </Link>
-                        </div>
-                        <div className="friend-requests-menu-info">
-                            <div className="friend-requests-menu-name">
-                                <Link to="">
-                                    Hồ Thị Vân Anh
-                                </Link>
-                            </div>
-                            <div className="friend-requests-menu-mutual-friends">
-                                <a>3 bạn chung</a>
-                            </div>
-                        </div>
-                        <div className="friend-requests-menu-button">
-                            <button className="friend-requests-accept-btn"> Xác nhận</button>
-                            <button className="friend-requests-refuse-btn"> Xóa</button>
-                        </div>
-                    </div>
-                </Menu.Item>
-                <Menu.Item className="menu-items">
-                    <div className="friend-requests-menu">
-                        <div className="friend-requests-menu-avatar">
-                            <Link to="">
-                                <img src="https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-9/s960x960/118943523_1217233628646223_8263972168525947345_o.jpg?_nc_cat=107&_nc_sid=13bebb&_nc_ohc=3DHwSBguDtIAX9nw-Td&_nc_ht=scontent-sin6-1.xx&tp=7&oh=ac4947175cf0a07bc5cbc98e1be81e0b&oe=5F9AD6DF" alt="" />
-                            </Link>
-                        </div>
-                        <div className="friend-requests-menu-info">
-                            <div className="friend-requests-menu-name">
-                                <Link to="">
-                                    Hồ Thị Vân Anh
-                                </Link>
-                            </div>
-                            <div className="friend-requests-menu-mutual-friends">
-                                <a>3 bạn chung</a>
-                            </div>
-                        </div>
-                        <div className="friend-requests-menu-button">
-                            <button className="friend-requests-accept-btn"> Xác nhận</button>
-                            <button className="friend-requests-refuse-btn"> Xóa</button>
-                        </div>
-                    </div>
-                </Menu.Item>
-                <Menu.Item className="menu-items">
-                    <div className="friend-requests-menu">
-                        <div className="friend-requests-menu-avatar">
-                            <Link to="">
-                                <img src="https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-9/s960x960/118943523_1217233628646223_8263972168525947345_o.jpg?_nc_cat=107&_nc_sid=13bebb&_nc_ohc=3DHwSBguDtIAX9nw-Td&_nc_ht=scontent-sin6-1.xx&tp=7&oh=ac4947175cf0a07bc5cbc98e1be81e0b&oe=5F9AD6DF" alt="" />
-                            </Link>
-                        </div>
-                        <div className="friend-requests-menu-info">
-                            <div className="friend-requests-menu-name">
-                                <Link to="">
-                                    Hồ Thị Vân Anh
-                                </Link>
-                            </div>
-                            <div className="friend-requests-menu-mutual-friends">
-                                <a>3 bạn chung</a>
-                            </div>
-                        </div>
-                        <div className="friend-requests-menu-button">
-                            <button className="friend-requests-accept-btn"> Xác nhận</button>
-                            <button className="friend-requests-refuse-btn"> Xóa</button>
-                        </div>
-                    </div>
-                </Menu.Item>
-                <Menu.Item className="menu-items">
-                    <div className="friend-requests-menu">
-                        <div className="friend-requests-menu-avatar">
-                            <Link to="">
-                                <img src="https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-9/s960x960/118943523_1217233628646223_8263972168525947345_o.jpg?_nc_cat=107&_nc_sid=13bebb&_nc_ohc=3DHwSBguDtIAX9nw-Td&_nc_ht=scontent-sin6-1.xx&tp=7&oh=ac4947175cf0a07bc5cbc98e1be81e0b&oe=5F9AD6DF" alt="" />
-                            </Link>
-                        </div>
-                        <div className="friend-requests-menu-info">
-                            <div className="friend-requests-menu-name">
-                                <Link to="">
-                                    Hồ Thị Vân Anh
-                                </Link>
-                            </div>
-                            <div className="friend-requests-menu-mutual-friends">
-                                <a>3 bạn chung</a>
-                            </div>
-                        </div>
-                        <div className="friend-requests-menu-button">
-                            <button className="friend-requests-accept-btn"> Xác nhận</button>
-                            <button className="friend-requests-refuse-btn"> Xóa</button>
-                        </div>
-                    </div>
-                </Menu.Item>
-                <Menu.Item className="menu-items">
-                    <div className="friend-requests-menu">
-                        <div className="friend-requests-menu-avatar">
-                            <Link to="">
-                                <img src="https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-9/s960x960/118943523_1217233628646223_8263972168525947345_o.jpg?_nc_cat=107&_nc_sid=13bebb&_nc_ohc=3DHwSBguDtIAX9nw-Td&_nc_ht=scontent-sin6-1.xx&tp=7&oh=ac4947175cf0a07bc5cbc98e1be81e0b&oe=5F9AD6DF" alt="" />
-                            </Link>
-                        </div>
-                        <div className="friend-requests-menu-info">
-                            <div className="friend-requests-menu-name">
-                                <Link to="">
-                                    Hồ Thị Vân Anh
-                                </Link>
-                            </div>
-                            <div className="friend-requests-menu-mutual-friends">
-                                <a>3 bạn chung</a>
-                            </div>
-                        </div>
-                        <div className="friend-requests-menu-button">
-                            <button className="friend-requests-accept-btn"> Xác nhận</button>
-                            <button className="friend-requests-refuse-btn"> Xóa</button>
-                        </div>
-                    </div>
-                </Menu.Item>
-                <Menu.Item className="menu-items">
-                    <div className="friend-requests-menu">
-                        <div className="friend-requests-menu-avatar">
-                            <Link to="">
-                                <img src="https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-9/s960x960/118943523_1217233628646223_8263972168525947345_o.jpg?_nc_cat=107&_nc_sid=13bebb&_nc_ohc=3DHwSBguDtIAX9nw-Td&_nc_ht=scontent-sin6-1.xx&tp=7&oh=ac4947175cf0a07bc5cbc98e1be81e0b&oe=5F9AD6DF" alt="" />
-                            </Link>
-                        </div>
-                        <div className="friend-requests-menu-info">
-                            <div className="friend-requests-menu-name">
-                                <Link to="">
-                                    Hồ Thị Vân Anh
-                                </Link>
-                            </div>
-                            <div className="friend-requests-menu-mutual-friends">
-                                <a>3 bạn chung</a>
-                            </div>
-                        </div>
-                        <div className="friend-requests-menu-button">
-                            <button className="friend-requests-accept-btn"> Xác nhận</button>
-                            <button className="friend-requests-refuse-btn"> Xóa</button>
-                        </div>
-                    </div>
-                </Menu.Item>
-                <Menu.Item className="menu-items">
-                    <div className="friend-requests-menu">
-                        <div className="friend-requests-menu-avatar">
-                            <Link to="">
-                                <img src="https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-9/s960x960/118943523_1217233628646223_8263972168525947345_o.jpg?_nc_cat=107&_nc_sid=13bebb&_nc_ohc=3DHwSBguDtIAX9nw-Td&_nc_ht=scontent-sin6-1.xx&tp=7&oh=ac4947175cf0a07bc5cbc98e1be81e0b&oe=5F9AD6DF" alt="" />
-                            </Link>
-                        </div>
-                        <div className="friend-requests-menu-info">
-                            <div className="friend-requests-menu-name">
-                                <Link to="">
-                                    Hồ Thị Vân Anh
-                                </Link>
-                            </div>
-                            <div className="friend-requests-menu-mutual-friends">
-                                <a>3 bạn chung</a>
-                            </div>
-                        </div>
-                        <div className="friend-requests-menu-button">
-                            <button className="friend-requests-accept-btn"> Xác nhận</button>
-                            <button className="friend-requests-refuse-btn"> Xóa</button>
-                        </div>
-                    </div>
-                </Menu.Item>
-                <Menu.Item className="menu-items">
-                    <div className="friend-requests-menu">
-                        <div className="friend-requests-menu-avatar">
-                            <Link to="">
-                                <img src="https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-9/s960x960/118943523_1217233628646223_8263972168525947345_o.jpg?_nc_cat=107&_nc_sid=13bebb&_nc_ohc=3DHwSBguDtIAX9nw-Td&_nc_ht=scontent-sin6-1.xx&tp=7&oh=ac4947175cf0a07bc5cbc98e1be81e0b&oe=5F9AD6DF" alt="" />
-                            </Link>
-                        </div>
-                        <div className="friend-requests-menu-info">
-                            <div className="friend-requests-menu-name">
-                                <Link to="">
-                                    Hồ Thị Vân Anh
-                                </Link>
-                            </div>
-                            <div className="friend-requests-menu-mutual-friends">
-                                <a>3 bạn chung</a>
-                            </div>
-                        </div>
-                        <div className="friend-requests-menu-button">
-                            <button className="friend-requests-accept-btn"> Xác nhận</button>
-                            <button className="friend-requests-refuse-btn"> Xóa</button>
-                        </div>
-                    </div>
-                </Menu.Item>
-                <Menu.Item className="menu-items">
-                    <div className="friend-requests-menu">
-                        <div className="friend-requests-menu-avatar">
-                            <Link to="">
-                                <img src="https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-9/s960x960/118943523_1217233628646223_8263972168525947345_o.jpg?_nc_cat=107&_nc_sid=13bebb&_nc_ohc=3DHwSBguDtIAX9nw-Td&_nc_ht=scontent-sin6-1.xx&tp=7&oh=ac4947175cf0a07bc5cbc98e1be81e0b&oe=5F9AD6DF" alt="" />
-                            </Link>
-                        </div>
-                        <div className="friend-requests-menu-info">
-                            <div className="friend-requests-menu-name">
-                                <Link to="">
-                                    Hồ Thị Vân Anh
-                                </Link>
-                            </div>
-                            <div className="friend-requests-menu-mutual-friends">
-                                <a>3 bạn chung</a>
-                            </div>
-                        </div>
-                        <div className="friend-requests-menu-button">
-                            <button className="friend-requests-accept-btn"> Xác nhận</button>
-                            <button className="friend-requests-refuse-btn"> Xóa</button>
-                        </div>
-                    </div>
-                </Menu.Item>
-                <Menu.Item className="menu-items">
-                    <div className="friend-requests-menu">
-                        <div className="friend-requests-menu-avatar">
-                            <Link to="">
-                                <img src="https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-9/s960x960/118943523_1217233628646223_8263972168525947345_o.jpg?_nc_cat=107&_nc_sid=13bebb&_nc_ohc=3DHwSBguDtIAX9nw-Td&_nc_ht=scontent-sin6-1.xx&tp=7&oh=ac4947175cf0a07bc5cbc98e1be81e0b&oe=5F9AD6DF" alt="" />
-                            </Link>
-                        </div>
-                        <div className="friend-requests-menu-info">
-                            <div className="friend-requests-menu-name">
-                                <Link to="">
-                                    Hồ Thị Vân Anh
-                                </Link>
-                            </div>
-                            <div className="friend-requests-menu-mutual-friends">
-                                <a>3 bạn chung</a>
-                            </div>
-                        </div>
-                        <div className="friend-requests-menu-button">
-                            <button className="friend-requests-accept-btn"> Xác nhận</button>
-                            <button className="friend-requests-refuse-btn"> Xóa</button>
-                        </div>
-                    </div>
-                </Menu.Item>
-                <Menu.Item className="menu-items">
-                    <div className="friend-requests-menu">
-                        <div className="friend-requests-menu-avatar">
-                            <Link to="">
-                                <img src="https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-9/s960x960/118943523_1217233628646223_8263972168525947345_o.jpg?_nc_cat=107&_nc_sid=13bebb&_nc_ohc=3DHwSBguDtIAX9nw-Td&_nc_ht=scontent-sin6-1.xx&tp=7&oh=ac4947175cf0a07bc5cbc98e1be81e0b&oe=5F9AD6DF" alt="" />
-                            </Link>
-                        </div>
-                        <div className="friend-requests-menu-info">
-                            <div className="friend-requests-menu-name">
-                                <Link to="">
-                                    Hồ Thị Vân Anh
-                                </Link>
-                            </div>
-                            <div className="friend-requests-menu-mutual-friends">
-                                <a>3 bạn chung</a>
-                            </div>
-                        </div>
-                        <div className="friend-requests-menu-button">
-                            <button className="friend-requests-accept-btn"> Xác nhận</button>
-                            <button className="friend-requests-refuse-btn"> Xóa</button>
-                        </div>
-                    </div>
-                </Menu.Item>
-                <Menu.Item className="menu-items">
-                    <div className="friend-requests-menu">
-                        <div className="friend-requests-menu-avatar">
-                            <Link to="">
-                                <img src="https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-9/s960x960/118943523_1217233628646223_8263972168525947345_o.jpg?_nc_cat=107&_nc_sid=13bebb&_nc_ohc=3DHwSBguDtIAX9nw-Td&_nc_ht=scontent-sin6-1.xx&tp=7&oh=ac4947175cf0a07bc5cbc98e1be81e0b&oe=5F9AD6DF" alt="" />
-                            </Link>
-                        </div>
-                        <div className="friend-requests-menu-info">
-                            <div className="friend-requests-menu-name">
-                                <Link to="">
-                                    Hồ Thị Vân Anh
-                                </Link>
-                            </div>
-                            <div className="friend-requests-menu-mutual-friends">
-                                <a>3 bạn chung</a>
-                            </div>
-                        </div>
-                        <div className="friend-requests-menu-button">
-                            <button className="friend-requests-accept-btn"> Xác nhận</button>
-                            <button className="friend-requests-refuse-btn"> Xóa</button>
-                        </div>
-                    </div>
-                </Menu.Item>
-                <Menu.Item className="menu-items">
-                    <div className="friend-requests-menu">
-                        <div className="friend-requests-menu-avatar">
-                            <Link to="">
-                                <img src="https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-9/s960x960/118943523_1217233628646223_8263972168525947345_o.jpg?_nc_cat=107&_nc_sid=13bebb&_nc_ohc=3DHwSBguDtIAX9nw-Td&_nc_ht=scontent-sin6-1.xx&tp=7&oh=ac4947175cf0a07bc5cbc98e1be81e0b&oe=5F9AD6DF" alt="" />
-                            </Link>
-                        </div>
-                        <div className="friend-requests-menu-info">
-                            <div className="friend-requests-menu-name">
-                                <Link to="">
-                                    Hồ Thị Vân Anh
-                                </Link>
-                            </div>
-                            <div className="friend-requests-menu-mutual-friends">
-                                <a>3 bạn chung</a>
-                            </div>
-                        </div>
-                        <div className="friend-requests-menu-button">
-                            <button className="friend-requests-accept-btn"> Xác nhận</button>
-                            <button className="friend-requests-refuse-btn"> Xóa</button>
-                        </div>
-                    </div>
-                </Menu.Item>
-            </div>
-            <div className="footer-dropdown-menu" >
-                <Link to="/friendrequests">Xem tất cả các yêu cầu</Link>
-            </div>
+          </div>
+          <div className="menu-friend-requests-content-right">
+            <button>Xác nhận</button>
+            <button>Hủy</button>
+          </div>
         </div>
-    </Menu>
-);
+        <div className="menu-friend-requests-content">
+          <div className="menu-noti-content-avatar">
+            <img src="https://i.pinimg.com/564x/90/e9/fc/90e9fce92c5bd12860b07b1cd1af41cb.jpg" alt=""/>
+          </div>
+          <div className="menu-friend-requests-content-title">
+            <Link to="/">Nguyễn Văn Phước</Link>
+            <div className="menu-friend-requests-content-button">
+              {/* <FaCommentAlt /> */}
+              <p>100 bạn chung
+              </p>
+            </div>
+          </div>
+          <div className="menu-friend-requests-content-right">
+            <button>Xác nhận</button>
+            <button>Hủy</button>
+          </div>
+        </div>
+        <div className="menu-friend-requests-content">
+          <div className="menu-noti-content-avatar">
+            <img src="https://i.pinimg.com/564x/90/e9/fc/90e9fce92c5bd12860b07b1cd1af41cb.jpg" alt=""/>
+          </div>
+          <div className="menu-friend-requests-content-title">
+            <Link to="/">Nguyễn Văn Phước</Link>
+            <div className="menu-friend-requests-content-button">
+              {/* <FaCommentAlt /> */}
+              <p>100 bạn chung
+              </p>
+            </div>
+          </div>
+          <div className="menu-friend-requests-content-right">
+            <button>Xác nhận</button>
+            <button>Hủy</button>
+          </div>
+        </div>
+        <div className="menu-friend-requests-content">
+          <div className="menu-noti-content-avatar">
+            <img src="https://i.pinimg.com/564x/90/e9/fc/90e9fce92c5bd12860b07b1cd1af41cb.jpg" alt=""/>
+          </div>
+          <div className="menu-friend-requests-content-title">
+            <Link to="/">Nguyễn Văn Phước</Link>
+            <div className="menu-friend-requests-content-button">
+              {/* <FaCommentAlt /> */}
+              <p>100 bạn chung
+              </p>
+            </div>
+          </div>
+          <div className="menu-friend-requests-content-right">
+            <button>Xác nhận</button>
+            <button>Hủy</button>
+          </div>
+        </div>
+        <div className="menu-friend-requests-content">
+          <div className="menu-noti-content-avatar">
+            <img src="https://i.pinimg.com/564x/90/e9/fc/90e9fce92c5bd12860b07b1cd1af41cb.jpg" alt=""/>
+          </div>
+          <div className="menu-friend-requests-content-title">
+            <Link to="/">Nguyễn Văn Phước</Link>
+            <div className="menu-friend-requests-content-button">
+              {/* <FaCommentAlt /> */}
+              <p>100 bạn chung
+              </p>
+            </div>
+          </div>
+          <div className="menu-friend-requests-content-right">
+            <button>Xác nhận</button>
+            <button>Hủy</button>
+          </div>
+        </div>
+        <div className="menu-friend-requests-content">
+          <div className="menu-noti-content-avatar">
+            <img src="https://i.pinimg.com/564x/90/e9/fc/90e9fce92c5bd12860b07b1cd1af41cb.jpg" alt=""/>
+          </div>
+          <div className="menu-friend-requests-content-title">
+            <Link to="/">Nguyễn Văn Phước</Link>
+            <div className="menu-friend-requests-content-button">
+              {/* <FaCommentAlt /> */}
+              <p>100 bạn chung
+              </p>
+            </div>
+          </div>
+          <div className="menu-friend-requests-content-right">
+            <button>Xác nhận</button>
+            <button>Hủy</button>
+          </div>
+        </div>
+        <div className="menu-friend-requests-content">
+          <div className="menu-noti-content-avatar">
+            <img src="https://i.pinimg.com/564x/90/e9/fc/90e9fce92c5bd12860b07b1cd1af41cb.jpg" alt=""/>
+          </div>
+          <div className="menu-friend-requests-content-title">
+            <Link to="/">Nguyễn Văn Phước</Link>
+            <div className="menu-friend-requests-content-button">
+              {/* <FaCommentAlt /> */}
+              <p>100 bạn chung
+              </p>
+            </div>
+          </div>
+          <div className="menu-friend-requests-content-right">
+            <button>Xác nhận</button>
+            <button>Hủy</button>
+          </div>
+        </div>
+        <div className="menu-friend-requests-content">
+          <div className="menu-noti-content-avatar">
+            <img src="https://i.pinimg.com/564x/90/e9/fc/90e9fce92c5bd12860b07b1cd1af41cb.jpg" alt=""/>
+          </div>
+          <div className="menu-friend-requests-content-title">
+            <Link to="/">Nguyễn Văn Phước</Link>
+            <div className="menu-friend-requests-content-button">
+              {/* <FaCommentAlt /> */}
+              <p>100 bạn chung
+              </p>
+            </div>
+          </div>
+          <div className="menu-friend-requests-content-right">
+            <button>Xác nhận</button>
+            <button>Hủy</button>
+          </div>
+        </div>
+        <div className="menu-friend-requests-content">
+          <div className="menu-noti-content-avatar">
+            <img src="https://i.pinimg.com/564x/90/e9/fc/90e9fce92c5bd12860b07b1cd1af41cb.jpg" alt=""/>
+          </div>
+          <div className="menu-friend-requests-content-title">
+            <Link to="/">Nguyễn Văn Phước</Link>
+            <div className="menu-friend-requests-content-button">
+              {/* <FaCommentAlt /> */}
+              <p>100 bạn chung
+              </p>
+            </div>
+          </div>
+          <div className="menu-friend-requests-content-right">
+            <button>Xác nhận</button>
+            <button>Hủy</button>
+          </div>
+        </div>
+        <div className="menu-friend-requests-content">
+          <div className="menu-noti-content-avatar">
+            <img src="https://i.pinimg.com/564x/90/e9/fc/90e9fce92c5bd12860b07b1cd1af41cb.jpg" alt=""/>
+          </div>
+          <div className="menu-friend-requests-content-title">
+            <Link to="/">Nguyễn Văn Phước</Link>
+            <div className="menu-friend-requests-content-button">
+              {/* <FaCommentAlt /> */}
+              <p>100 bạn chung
+              </p>
+            </div>
+          </div>
+          <div className="menu-friend-requests-content-right">
+            <button>Xác nhận</button>
+            <button>Hủy</button>
+          </div>
+        </div>
+        <div className="menu-friend-requests-content">
+          <div className="menu-noti-content-avatar">
+            <img src="https://i.pinimg.com/564x/90/e9/fc/90e9fce92c5bd12860b07b1cd1af41cb.jpg" alt=""/>
+          </div>
+          <div className="menu-friend-requests-content-title">
+            <Link to="/">Nguyễn Văn Phước</Link>
+            <div className="menu-friend-requests-content-button">
+              {/* <FaCommentAlt /> */}
+              <p>100 bạn chung
+              </p>
+            </div>
+          </div>
+          <div className="menu-friend-requests-content-right">
+            <button>Xác nhận</button>
+            <button>Hủy</button>
+          </div>
+        </div>
+        <div className="menu-friend-requests-content">
+          <div className="menu-noti-content-avatar">
+            <img src="https://i.pinimg.com/564x/90/e9/fc/90e9fce92c5bd12860b07b1cd1af41cb.jpg" alt=""/>
+          </div>
+          <div className="menu-friend-requests-content-title">
+            <Link to="/">Nguyễn Văn Phước</Link>
+            <div className="menu-friend-requests-content-button">
+              {/* <FaCommentAlt /> */}
+              <p>100 bạn chung
+              </p>
+            </div>
+          </div>
+          <div className="menu-friend-requests-content-right">
+            <button>Xác nhận</button>
+            <button>Hủy</button>
+          </div>
+        </div>
+        <div className="menu-friend-requests-content">
+          <div className="menu-noti-content-avatar">
+            <img src="https://i.pinimg.com/564x/90/e9/fc/90e9fce92c5bd12860b07b1cd1af41cb.jpg" alt=""/>
+          </div>
+          <div className="menu-friend-requests-content-title">
+            <Link to="/">Nguyễn Văn Phước</Link>
+            <div className="menu-friend-requests-content-button">
+              {/* <FaCommentAlt /> */}
+              <p>100 bạn chung
+              </p>
+            </div>
+          </div>
+          <div className="menu-friend-requests-content-right">
+            <button>Xác nhận</button>
+            <button>Hủy</button>
+          </div>
+        </div>
+        <div className="menu-friend-requests-content">
+          <div className="menu-noti-content-avatar">
+            <img src="https://i.pinimg.com/564x/90/e9/fc/90e9fce92c5bd12860b07b1cd1af41cb.jpg" alt=""/>
+          </div>
+          <div className="menu-friend-requests-content-title">
+            <Link to="/">Nguyễn Văn Phước</Link>
+            <div className="menu-friend-requests-content-button">
+              {/* <FaCommentAlt /> */}
+              <p>100 bạn chung
+              </p>
+            </div>
+          </div>
+          <div className="menu-friend-requests-content-right">
+            <button>Xác nhận</button>
+            <button>Hủy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div className="menu-noti-footer">
+      <Link to="/friendrequests">Xem tất cả</Link>
+    </div>
+  </div>
+</div>
+</>)
+}
+export default MenuFriendRequests;

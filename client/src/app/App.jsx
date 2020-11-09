@@ -1,27 +1,20 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Home from './Home.jsx';
 import LoginContainer from './../Containers/LoginContainer.jsx';
 
 function App() {
-  const token = localStorage.getItem('ustk') ? localStorage.getItem('ustk') : '';
+  let ustk = localStorage.getItem('ustk') ? JSON.parse(localStorage.getItem('ustk')) : '';
+  let token = ustk.access_token ? ustk.access_token : '';
 
-  const [isLogin, setIsLogin] = useState({
-    status: false,
-    token: ''
-  })
-
-  const setLoginFunc = () => {
-    setIsLogin({
-      status: true,
-      token: token
-    })
-    localStorage.setItem('ustk', 'a')
-  }
+  const setLoginFunc = async (res) => {
+    localStorage.setItem('ustk', JSON.stringify(res.data));
+    window.location = '/';
+}
 
   return (<div className="App">
     <Router>
-      {isLogin.status || token ? <Home /> : <LoginContainer setLoginFunc={setLoginFunc}/>}
+        { token ? <Home /> : <LoginContainer setLoginFunc={setLoginFunc}/>}
     </Router>
   </div>);
 }

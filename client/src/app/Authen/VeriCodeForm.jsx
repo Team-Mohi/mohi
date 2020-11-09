@@ -6,7 +6,7 @@ var CryptoJS = require("crypto-js");
 
 function VeriCode() {
   const history = useHistory();
-  const code_encrypt = history.location.state.code;
+  const code_encrypt = history.location.state ? history.location.state.code : '';
   if (!code_encrypt) {
     history.push('/')
   }

@@ -16,7 +16,6 @@ function RegisterForm(props) {
   const [errorEmailAndPhone, setErrorEmailAndPhone] = useState('Vui lòng nhập số điện thoại hoặc email');
 
   const onSubmit = (data) => {
-    console.log(data);
     //callapi
     // Encrypt
     let code = CryptoJS.AES.encrypt(JSON.stringify(897263), 'code_veri').toString();
@@ -54,7 +53,7 @@ function RegisterForm(props) {
     }
     return false;
   }
-console.log(errors.register_first_name);
+  
   return (<form onSubmit={handleSubmit(onSubmit)}>
     <div className="site-layout-register-group">
       <div className="register-first-name">

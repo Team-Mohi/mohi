@@ -16,10 +16,10 @@ import  Messenger from './../Components/Messenger/index.jsx';
 import  SearchNavigation from './../Components/Search/index.jsx';
 import  FriendRequests from './../Components/FriendRequests/FriendRequests.jsx';
 import  FriendSent from './../Components/FriendRequests/FriendSent.jsx';
-import {menunoti} from '../Components/Notifications/NotificationsMenu.jsx';
-import {menumessenger} from './../Components/Messenger/MessengerMenu.jsx';
-import {menufriendrequests} from './../Components/FriendRequests/FriendRequestMenu.jsx';
-import {menusetting} from './../Components/Setting/SettingMenu.jsx';
+import menunoti from '../Components/Notifications/NotificationsMenu.jsx';
+import menumessenger from './../Components/Messenger/MessengerMenu.jsx';
+import menufriendrequests from './../Components/FriendRequests/FriendRequestMenu.jsx';
+import menusetting from './../Components/Setting/SettingMenu.jsx';
 import Notifications from './../Components/Notifications/Notifications.jsx';
 import Rules from './../Components/Footer/Rules.jsx';
 import Setting from '../Components/Setting/Setting.jsx';
@@ -40,7 +40,6 @@ function Home() {
           setListChatMini(localStorage.getItem('listChatMini').split(','))
         }
       }
-
     },[]);
 
     useEffect(() => {

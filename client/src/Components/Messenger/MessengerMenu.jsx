@@ -1,389 +1,187 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+import {FaDotCircle} from 'react-icons/fa';
+import {MdDone} from 'react-icons/md';
 import './MessengerMenu.css';
-import { Menu } from 'antd';
-import { Link} from 'react-router-dom';
-import { FaDotCircle, FaShare } from 'react-icons/fa';
 
-export const menumessenger = (
-    <Menu className="messenger-menu-container">
-        <div className="menu-dropdown-scroll">
-            <div className="messenger-menu-title">
-                <h5>Gần đây</h5>
-                <Link to="/friendrequests">Tin nhắn mới</Link>
-                <Link >Nhóm mới</Link>
+function MenuMessenger() {
+
+  return (<> < div className = "menu-noti-container" > <div className="menu-noti-main">
+    <div className="menu-noti-title">
+      <h5>Tin nhắn</h5>
+    </div>
+    <div className="menu-dropdown-scroll">
+      <div className="menu-dropdown-scroll-thumb">
+        <Link to="/">
+          <div className="menu-messenger-content">
+            <div className="menu-noti-content-avatar">
+              <img src="https://i.pinimg.com/564x/90/e9/fc/90e9fce92c5bd12860b07b1cd1af41cb.jpg"/>
             </div>
-            <div className="menu-dropdown-scroll-thumb">
-                <Menu.Item className="menu-items">
-
-                    <div className="messenger-menu">
-                        <div className="messenger-menu-avatar">
-                            <Link to="">
-                                <img src="https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-9/s960x960/118943523_1217233628646223_8263972168525947345_o.jpg?_nc_cat=107&_nc_sid=13bebb&_nc_ohc=3DHwSBguDtIAX9nw-Td&_nc_ht=scontent-sin6-1.xx&tp=7&oh=ac4947175cf0a07bc5cbc98e1be81e0b&oe=5F9AD6DF" alt="" />
-                            </Link>
-                        </div>
-                        <div className="messenger-menu-info">
-                            <div className="messenger-menu-name">
-                                <Link to="">
-                                    Hồ Thị Vân Anh
-                                </Link>
-                            </div>
-                            <div className="messenger-menu-mutual-friends">
-                                <a >
-                                    anh đang làm gì thếaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                                </a>
-                            </div>
-                        </div>
-                        <div className="messenger-menu-right">
-                            <p>2:20pm</p>
-                            <p><FaDotCircle /></p>
-                        </div>
-                    </div>
-                </Menu.Item>
-                <Menu.Item className="menu-items">
-
-                    <div className="messenger-menu">
-                        <div className="messenger-menu-avatar">
-                            <Link to="">
-                                <img src="https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-9/s960x960/118943523_1217233628646223_8263972168525947345_o.jpg?_nc_cat=107&_nc_sid=13bebb&_nc_ohc=3DHwSBguDtIAX9nw-Td&_nc_ht=scontent-sin6-1.xx&tp=7&oh=ac4947175cf0a07bc5cbc98e1be81e0b&oe=5F9AD6DF" alt="" />
-                            </Link>
-                        </div>
-                        <div className="messenger-menu-info">
-                            <div className="messenger-menu-name">
-                                <Link to="">
-                                    Hồ Thị Vân Anh
-                                </Link>
-                            </div>
-                            <div className="messenger-menu-mutual-friends">
-                                <a >
-                                    <FaShare /> anh đang làm gì thế
-                                </a>
-                            </div>
-                        </div>
-                        <div className="messenger-menu-right">
-                            <p>2:20pm</p>
-                            <p><FaDotCircle /></p>
-                        </div>
-                    </div>
-                </Menu.Item>
-                <Menu.Item className="menu-items">
-
-                    <div className="messenger-menu">
-                        <div className="messenger-menu-avatar">
-                            <Link to="">
-                                <img src="https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-9/s960x960/118943523_1217233628646223_8263972168525947345_o.jpg?_nc_cat=107&_nc_sid=13bebb&_nc_ohc=3DHwSBguDtIAX9nw-Td&_nc_ht=scontent-sin6-1.xx&tp=7&oh=ac4947175cf0a07bc5cbc98e1be81e0b&oe=5F9AD6DF" alt="" />
-                            </Link>
-                        </div>
-                        <div className="messenger-menu-info">
-                            <div className="messenger-menu-name">
-                                <Link to="">
-                                    Hồ Thị Vân Anh
-                                </Link>
-                            </div>
-                            <div className="messenger-menu-mutual-friends">
-                                <a >
-                                    <FaShare /> anh đang làm gì thếaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                                </a>
-                            </div>
-                        </div>
-                        <div className="messenger-menu-right">
-                            <p>2:20pm</p>
-                            <p><FaDotCircle /></p>
-                        </div>
-                    </div>
-                </Menu.Item>
-                <Menu.Item className="menu-items">
-
-                    <div className="messenger-menu">
-                        <div className="messenger-menu-avatar">
-                            <Link to="">
-                                <img src="https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-9/s960x960/118943523_1217233628646223_8263972168525947345_o.jpg?_nc_cat=107&_nc_sid=13bebb&_nc_ohc=3DHwSBguDtIAX9nw-Td&_nc_ht=scontent-sin6-1.xx&tp=7&oh=ac4947175cf0a07bc5cbc98e1be81e0b&oe=5F9AD6DF" alt="" />
-                            </Link>
-                        </div>
-                        <div className="messenger-menu-info">
-                            <div className="messenger-menu-name">
-                                <Link to="">
-                                    Hồ Thị Vân Anh
-                                </Link>
-                            </div>
-                            <div className="messenger-menu-mutual-friends">
-                                <a >
-                                    <FaShare /> anh đang làm gì thếaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                                </a>
-                            </div>
-                        </div>
-                        <div className="messenger-menu-right">
-                            <p>2:20pm</p>
-                            <p><FaDotCircle /></p>
-                        </div>
-                    </div>
-                </Menu.Item>
-                <Menu.Item className="menu-items">
-
-                    <div className="messenger-menu">
-                        <div className="messenger-menu-avatar">
-                            <Link to="">
-                                <img src="https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-9/s960x960/118943523_1217233628646223_8263972168525947345_o.jpg?_nc_cat=107&_nc_sid=13bebb&_nc_ohc=3DHwSBguDtIAX9nw-Td&_nc_ht=scontent-sin6-1.xx&tp=7&oh=ac4947175cf0a07bc5cbc98e1be81e0b&oe=5F9AD6DF" alt="" />
-                            </Link>
-                        </div>
-                        <div className="messenger-menu-info">
-                            <div className="messenger-menu-name">
-                                <Link to="">
-                                    Hồ Thị Vân Anh
-                                </Link>
-                            </div>
-                            <div className="messenger-menu-mutual-friends">
-                                <a >
-                                    <FaShare /> anh đang làm gì thếaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                                </a>
-                            </div>
-                        </div>
-                        <div className="messenger-menu-right">
-                            <p>2:20pm</p>
-                            <p><FaDotCircle /></p>
-                        </div>
-                    </div>
-                </Menu.Item>
-                <Menu.Item className="menu-items">
-
-                    <div className="messenger-menu">
-                        <div className="messenger-menu-avatar">
-                            <Link to="">
-                                <img src="https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-9/s960x960/118943523_1217233628646223_8263972168525947345_o.jpg?_nc_cat=107&_nc_sid=13bebb&_nc_ohc=3DHwSBguDtIAX9nw-Td&_nc_ht=scontent-sin6-1.xx&tp=7&oh=ac4947175cf0a07bc5cbc98e1be81e0b&oe=5F9AD6DF" alt="" />
-                            </Link>
-                        </div>
-                        <div className="messenger-menu-info">
-                            <div className="messenger-menu-name">
-                                <Link to="">
-                                    Hồ Thị Vân Anh
-                                </Link>
-                            </div>
-                            <div className="messenger-menu-mutual-friends">
-                                <a >
-                                    <FaShare /> anh đang làm gì thếaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                                </a>
-                            </div>
-                        </div>
-                        <div className="messenger-menu-right">
-                            <p>2:20pm</p>
-                            <p><FaDotCircle /></p>
-                        </div>
-                    </div>
-                </Menu.Item>
-                <Menu.Item className="menu-items">
-
-                    <div className="messenger-menu">
-                        <div className="messenger-menu-avatar">
-                            <Link to="">
-                                <img src="https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-9/s960x960/118943523_1217233628646223_8263972168525947345_o.jpg?_nc_cat=107&_nc_sid=13bebb&_nc_ohc=3DHwSBguDtIAX9nw-Td&_nc_ht=scontent-sin6-1.xx&tp=7&oh=ac4947175cf0a07bc5cbc98e1be81e0b&oe=5F9AD6DF" alt="" />
-                            </Link>
-                        </div>
-                        <div className="messenger-menu-info">
-                            <div className="messenger-menu-name">
-                                <Link to="">
-                                    Hồ Thị Vân Anh
-                                </Link>
-                            </div>
-                            <div className="messenger-menu-mutual-friends">
-                                <a >
-                                    <FaShare /> anh đang làm gì thếaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                                </a>
-                            </div>
-                        </div>
-                        <div className="messenger-menu-right">
-                            <p>2:20pm</p>
-                            <p><FaDotCircle /></p>
-                        </div>
-                    </div>
-                </Menu.Item>
-                <Menu.Item className="menu-items">
-
-                    <div className="messenger-menu">
-                        <div className="messenger-menu-avatar">
-                            <Link to="">
-                                <img src="https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-9/s960x960/118943523_1217233628646223_8263972168525947345_o.jpg?_nc_cat=107&_nc_sid=13bebb&_nc_ohc=3DHwSBguDtIAX9nw-Td&_nc_ht=scontent-sin6-1.xx&tp=7&oh=ac4947175cf0a07bc5cbc98e1be81e0b&oe=5F9AD6DF" alt="" />
-                            </Link>
-                        </div>
-                        <div className="messenger-menu-info">
-                            <div className="messenger-menu-name">
-                                <Link to="">
-                                    Hồ Thị Vân Anh
-                                </Link>
-                            </div>
-                            <div className="messenger-menu-mutual-friends">
-                                <a >
-                                    <FaShare /> anh đang làm gì thếaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                                </a>
-                            </div>
-                        </div>
-                        <div className="messenger-menu-right">
-                            <p>2:20pm</p>
-                            <p><FaDotCircle /></p>
-                        </div>
-                    </div>
-                </Menu.Item>
-                <Menu.Item className="menu-items">
-
-                    <div className="messenger-menu">
-                        <div className="messenger-menu-avatar">
-                            <Link to="">
-                                <img src="https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-9/s960x960/118943523_1217233628646223_8263972168525947345_o.jpg?_nc_cat=107&_nc_sid=13bebb&_nc_ohc=3DHwSBguDtIAX9nw-Td&_nc_ht=scontent-sin6-1.xx&tp=7&oh=ac4947175cf0a07bc5cbc98e1be81e0b&oe=5F9AD6DF" alt="" />
-                            </Link>
-                        </div>
-                        <div className="messenger-menu-info">
-                            <div className="messenger-menu-name">
-                                <Link to="">
-                                    Hồ Thị Vân Anh
-                                </Link>
-                            </div>
-                            <div className="messenger-menu-mutual-friends">
-                                <a >
-                                    <FaShare /> anh đang làm gì thếaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                                </a>
-                            </div>
-                        </div>
-                        <div className="messenger-menu-right">
-                            <p>2:20pm</p>
-                            <p><FaDotCircle /></p>
-                        </div>
-                    </div>
-                </Menu.Item>
-                <Menu.Item className="menu-items">
-
-                    <div className="messenger-menu">
-                        <div className="messenger-menu-avatar">
-                            <Link to="">
-                                <img src="https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-9/s960x960/118943523_1217233628646223_8263972168525947345_o.jpg?_nc_cat=107&_nc_sid=13bebb&_nc_ohc=3DHwSBguDtIAX9nw-Td&_nc_ht=scontent-sin6-1.xx&tp=7&oh=ac4947175cf0a07bc5cbc98e1be81e0b&oe=5F9AD6DF" alt="" />
-                            </Link>
-                        </div>
-                        <div className="messenger-menu-info">
-                            <div className="messenger-menu-name">
-                                <Link to="">
-                                    Hồ Thị Vân Anh
-                                </Link>
-                            </div>
-                            <div className="messenger-menu-mutual-friends">
-                                <a >
-                                    <FaShare /> anh đang làm gì thếaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                                </a>
-                            </div>
-                        </div>
-                        <div className="messenger-menu-right">
-                            <p>2:20pm</p>
-                            <p><FaDotCircle /></p>
-                        </div>
-                    </div>
-                </Menu.Item>
-                <Menu.Item className="menu-items">
-
-                    <div className="messenger-menu">
-                        <div className="messenger-menu-avatar">
-                            <Link to="">
-                                <img src="https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-9/s960x960/118943523_1217233628646223_8263972168525947345_o.jpg?_nc_cat=107&_nc_sid=13bebb&_nc_ohc=3DHwSBguDtIAX9nw-Td&_nc_ht=scontent-sin6-1.xx&tp=7&oh=ac4947175cf0a07bc5cbc98e1be81e0b&oe=5F9AD6DF" alt="" />
-                            </Link>
-                        </div>
-                        <div className="messenger-menu-info">
-                            <div className="messenger-menu-name">
-                                <Link to="">
-                                    Hồ Thị Vân Anh
-                                </Link>
-                            </div>
-                            <div className="messenger-menu-mutual-friends">
-                                <a >
-                                    <FaShare /> anh đang làm gì thếaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                                </a>
-                            </div>
-                        </div>
-                        <div className="messenger-menu-right">
-                            <p>2:20pm</p>
-                            <p><FaDotCircle /></p>
-                        </div>
-                    </div>
-                </Menu.Item>
-                <Menu.Item className="menu-items">
-
-                    <div className="messenger-menu">
-                        <div className="messenger-menu-avatar">
-                            <Link to="">
-                                <img src="https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-9/s960x960/118943523_1217233628646223_8263972168525947345_o.jpg?_nc_cat=107&_nc_sid=13bebb&_nc_ohc=3DHwSBguDtIAX9nw-Td&_nc_ht=scontent-sin6-1.xx&tp=7&oh=ac4947175cf0a07bc5cbc98e1be81e0b&oe=5F9AD6DF" alt="" />
-                            </Link>
-                        </div>
-                        <div className="messenger-menu-info">
-                            <div className="messenger-menu-name">
-                                <Link to="">
-                                    Hồ Thị Vân Anh
-                                </Link>
-                            </div>
-                            <div className="messenger-menu-mutual-friends">
-                                <a >
-                                    <FaShare /> anh đang làm gì thếaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                                </a>
-                            </div>
-                        </div>
-                        <div className="messenger-menu-right">
-                            <p>2:20pm</p>
-                            <p><FaDotCircle /></p>
-                        </div>
-                    </div>
-                </Menu.Item>
-                <Menu.Item className="menu-items">
-
-                    <div className="messenger-menu">
-                        <div className="messenger-menu-avatar">
-                            <Link to="">
-                                <img src="https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-9/s960x960/118943523_1217233628646223_8263972168525947345_o.jpg?_nc_cat=107&_nc_sid=13bebb&_nc_ohc=3DHwSBguDtIAX9nw-Td&_nc_ht=scontent-sin6-1.xx&tp=7&oh=ac4947175cf0a07bc5cbc98e1be81e0b&oe=5F9AD6DF" alt="" />
-                            </Link>
-                        </div>
-                        <div className="messenger-menu-info">
-                            <div className="messenger-menu-name">
-                                <Link to="">
-                                    Hồ Thị Vân Anh
-                                </Link>
-                            </div>
-                            <div className="messenger-menu-mutual-friends">
-                                <a >
-                                    <FaShare /> anh đang làm gì thếaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                                </a>
-                            </div>
-                        </div>
-                        <div className="messenger-menu-right">
-                            <p>2:20pm</p>
-                            <p><FaDotCircle /></p>
-                        </div>
-                    </div>
-                </Menu.Item>
-                <Menu.Item className="menu-items">
-
-                    <div className="messenger-menu">
-                        <div className="messenger-menu-avatar">
-                            <Link to="">
-                                <img src="https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-9/s960x960/118943523_1217233628646223_8263972168525947345_o.jpg?_nc_cat=107&_nc_sid=13bebb&_nc_ohc=3DHwSBguDtIAX9nw-Td&_nc_ht=scontent-sin6-1.xx&tp=7&oh=ac4947175cf0a07bc5cbc98e1be81e0b&oe=5F9AD6DF" alt="" />
-                            </Link>
-                        </div>
-                        <div className="messenger-menu-info">
-                            <div className="messenger-menu-name">
-                                <Link to="">
-                                    Hồ Thị Vân Anh
-                                </Link>
-                            </div>
-                            <div className="messenger-menu-mutual-friends">
-                                <a >
-                                    <FaShare /> anh đang làm gì thếaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                                </a>
-                            </div>
-                        </div>
-                        <div className="messenger-menu-right">
-                            <p>2:20pm</p>
-                            <p><FaDotCircle /></p>
-                        </div>
-                    </div>
-                </Menu.Item>
-
+            <div className="menu-messenger-content-title">
+              <h6>Nguyễn Văn Phước</h6>
+              <div className="menu-noti-content-button">
+                <MdDone/>
+                <p>Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?</p>
+              </div>
             </div>
-
-            <div className="footer-dropdown-menu" >
-                <Link to="/messenger">Xem tất cả các tin nhắn</Link>
-                <Link to="">Đánh dấu tất cả là đã đọc</Link>
+            <div className="menu-messenger-content-right">
+              <p>7:20 PM</p>
+              <FaDotCircle/>
             </div>
-        </div>
-    </Menu>
-);
+          </div>
+        </Link>
+        <Link to="/">
+          <div className="menu-messenger-content">
+            <div className="menu-noti-content-avatar">
+              <img src="https://i.pinimg.com/564x/90/e9/fc/90e9fce92c5bd12860b07b1cd1af41cb.jpg"/>
+            </div>
+            <div className="menu-messenger-content-title">
+              <h6>Nguyễn Văn Phước</h6>
+              <div className="menu-noti-content-button">
+                <MdDone/>
+                <p>Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?</p>
+              </div>
+            </div>
+            <div className="menu-messenger-content-right">
+              <p>7:20 PM</p>
+              <FaDotCircle/>
+            </div>
+          </div>
+        </Link>
+        <Link to="/">
+          <div className="menu-messenger-content">
+            <div className="menu-noti-content-avatar">
+              <img src="https://i.pinimg.com/564x/90/e9/fc/90e9fce92c5bd12860b07b1cd1af41cb.jpg"/>
+            </div>
+            <div className="menu-messenger-content-title">
+              <h6>Nguyễn Văn Phước</h6>
+              <div className="menu-noti-content-button">
+                <MdDone/>
+                <p>Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?</p>
+              </div>
+            </div>
+            <div className="menu-messenger-content-right">
+              <p>7:20 PM</p>
+              <FaDotCircle/>
+            </div>
+          </div>
+        </Link>
+        <Link to="/">
+          <div className="menu-messenger-content">
+            <div className="menu-noti-content-avatar">
+              <img src="https://i.pinimg.com/564x/90/e9/fc/90e9fce92c5bd12860b07b1cd1af41cb.jpg"/>
+            </div>
+            <div className="menu-messenger-content-title">
+              <h6>Nguyễn Văn Phước</h6>
+              <div className="menu-noti-content-button">
+                <MdDone/>
+                <p>Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?</p>
+              </div>
+            </div>
+            <div className="menu-messenger-content-right">
+              <p>7:20 PM</p>
+              <FaDotCircle/>
+            </div>
+          </div>
+        </Link>
+        <Link to="/">
+          <div className="menu-messenger-content">
+            <div className="menu-noti-content-avatar">
+              <img src="https://i.pinimg.com/564x/90/e9/fc/90e9fce92c5bd12860b07b1cd1af41cb.jpg"/>
+            </div>
+            <div className="menu-messenger-content-title">
+              <h6>Nguyễn Văn Phước</h6>
+              <div className="menu-noti-content-button">
+                <MdDone/>
+                <p>Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?</p>
+              </div>
+            </div>
+            <div className="menu-messenger-content-right">
+              <p>7:20 PM</p>
+              <FaDotCircle/>
+            </div>
+          </div>
+        </Link>
+        <Link to="/">
+          <div className="menu-messenger-content">
+            <div className="menu-noti-content-avatar">
+              <img src="https://i.pinimg.com/564x/90/e9/fc/90e9fce92c5bd12860b07b1cd1af41cb.jpg"/>
+            </div>
+            <div className="menu-messenger-content-title">
+              <h6>Nguyễn Văn Phước</h6>
+              <div className="menu-noti-content-button">
+                <MdDone/>
+                <p>Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?</p>
+              </div>
+            </div>
+            <div className="menu-messenger-content-right">
+              <p>7:20 PM</p>
+              <FaDotCircle/>
+            </div>
+          </div>
+        </Link>
+        <Link to="/">
+          <div className="menu-messenger-content">
+            <div className="menu-noti-content-avatar">
+              <img src="https://i.pinimg.com/564x/90/e9/fc/90e9fce92c5bd12860b07b1cd1af41cb.jpg"/>
+            </div>
+            <div className="menu-messenger-content-title">
+              <h6>Nguyễn Văn Phước</h6>
+              <div className="menu-noti-content-button">
+                <MdDone/>
+                <p>Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?</p>
+              </div>
+            </div>
+            <div className="menu-messenger-content-right">
+              <p>7:20 PM</p>
+              <FaDotCircle/>
+            </div>
+          </div>
+        </Link>
+        <Link to="/">
+          <div className="menu-messenger-content">
+            <div className="menu-noti-content-avatar">
+              <img src="https://i.pinimg.com/564x/90/e9/fc/90e9fce92c5bd12860b07b1cd1af41cb.jpg"/>
+            </div>
+            <div className="menu-messenger-content-title">
+              <h6>Nguyễn Văn Phước</h6>
+              <div className="menu-noti-content-button">
+                <MdDone/>
+                <p>Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?</p>
+              </div>
+            </div>
+            <div className="menu-messenger-content-right">
+              <p>7:20 PM</p>
+              <FaDotCircle/>
+            </div>
+          </div>
+        </Link>
+        <Link to="/">
+          <div className="menu-messenger-content">
+            <div className="menu-noti-content-avatar">
+              <img src="https://i.pinimg.com/564x/90/e9/fc/90e9fce92c5bd12860b07b1cd1af41cb.jpg"/>
+            </div>
+            <div className="menu-messenger-content-title">
+              <h6>Nguyễn Văn Phước</h6>
+              <div className="menu-noti-content-button">
+                <MdDone/>
+                <p>Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?</p>
+              </div>
+            </div>
+            <div className="menu-messenger-content-right">
+              <p>7:20 PM</p>
+              <FaDotCircle/>
+            </div>
+          </div>
+        </Link>
+      </div>
+    </div>
+
+    <div className="menu-noti-footer">
+      <Link to="/messenger">Xem tất cả tin nhắn</Link>
+    </div>
+  </div>
+</div>
+</>);
+}
+export default MenuMessenger;

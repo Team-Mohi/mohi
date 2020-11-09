@@ -1,3 +1,129 @@
+.menu-noti-container{
+  width: 460px;
+}
+.menu-noti-main{
+  background-color: rgb(255, 255, 255);
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, .5);
+
+}
+.menu-noti-title{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+
+}
+.menu-noti-title h5{
+  margin-right: auto;
+  color: rgba(0,128,128,0.8);
+  cursor: pointer;
+}
+
+.menu-noti-title-control{
+  margin-left: auto;
+  display: flex;
+  justify-content: space-between;
+}
+.menu-noti-title-control span{
+  font-weight: 500;
+  margin-right: 5px;
+  cursor: pointer;
+}
+.menu-noti-title-control a{
+  color: rgba(0,128,128,0.8);
+  padding: 0px 5px;
+}
+.menu-noti-content{
+  width: 100%;
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+  border-radius: 2px;
+}
+.menu-noti-content:hover{
+  background-color:rgba(0,0,0,0.1);
+  translate: 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+.menu-noti-content:hover .menu-noti-content-right-button path{
+  display: block;
+}
+.menu-noti-content-avatar{
+  width: 55px;
+  height: 55px;
+  min-width: 55px;
+  min-height: 55px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+.menu-noti-content-avatar img{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  align-items: center;
+}
+.menu-noti-content-title{
+  width: 75%;
+  padding: 0px 10px;
+  color: black;
+}
+.menu-noti-content-title p{
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre-line;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.menu-noti-content-right{
+  margin-left: auto;
+  display: flex;
+}
+.menu-noti-content-right-img{
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+.menu-noti-content-right-img img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.menu-noti-content-right-button{
+  width: 10px;
+}
+.menu-noti-content-right-button path{
+  display: none;
+}
+.menu-noti-content-button{
+  display: flex;
+  align-items: center;
+}
+.menu-noti-content-button p{
+  margin-left: 5px;
+}
+.menu-noti-footer{
+  width: 100%;
+  text-align: center;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 5px;
+  border-top: 1px solid rgba(0,0,0,0.1);
+}
+.menu-noti-footer a{
+  color: rgba(0,128,128,0.8);
+}
+.menu-noti-footer a:hover{
+  color: rgba(0,128,128,0.7);
+}
+.menu-dropdown-scroll-thumb a:hover{
+  text-decoration: none;
+}
 .noti-all{
   width: 1140px;
   margin: 0 auto;

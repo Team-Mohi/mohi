@@ -246,7 +246,6 @@ img {
 }
 .ant-dropdown{
   position: fixed !important;
-  text-align: center;
 }
 
 .ant-dropdown-menu {
