@@ -10,6 +10,7 @@ import { Link, useHistory  } from 'react-router-dom';
 import NewFeed from './Newfeed.jsx';
 import useSound from 'use-sound';
 import {PUBLIC_URL} from './../../Constants/public.jsx';
+import FriendMayKnow from '../Footer/FriendMayKnow.jsx';
 
 function Main() {
     const history = useHistory();
@@ -96,6 +97,7 @@ function Main() {
                         <Sider width="350" >
                             <div style={{ position: "fixed", width: '350px' }}>
                                 <div className="language-app">
+                                    <FriendMayKnow />
                                 </div>
                                 <div className="box-footer">
                                     <ul>

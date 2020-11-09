@@ -1,0 +1,60 @@
+.footer-friend{
+    max-height: 500px;
+    overflow: auto;
+}
+.friend-may-know-container h5{
+    font-size: 16px;
+    font-weight: 700;
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+
+}
+.friend-may-know-avatar{
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    min-height: 50px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.1);
+    margin-right: auto;
+    overflow: hidden;
+}
+.friend-may-know-content{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+.friend-may-know-content img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.friend-may-know-content a{
+    width: 130px;
+    margin-right: auto;
+    font-weight: 500;
+    font-size:15px ;
+    color: rgba(0,128,128);
+}
+.friend-may-know-content a:hover{
+    text-decoration: underline;
+    color: black;
+}
+.footer-friend-button{
+    margin-left: auto;
+    padding: 3px;
+}
+.footer-friend-button button{
+    padding: 3px 10px;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 2px;
+    translate: 0.2s ease;
+    background-color: rgba(0,128,128,0.8);
+    color: white;
+    margin-right: 3px;
+}
+.footer-friend-button button:hover{
+    background-color: rgba(0,128,128,0.5);
+}
