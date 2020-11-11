@@ -1,8 +1,19 @@
-.presential-modal{
+.modal-public{
   position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100vh;
-  z-index: 9999999999;
+  top: 0;
+  left: 0;
+  z-index: 9999999998;
+}
+.presential-modal{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 9999999998;
   background: rgba(0,0,0,0.6);
   top: 0;
   left: 0;

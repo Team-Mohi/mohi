@@ -1,0 +1,5 @@
+.modal-create-group-container{
+    position: relative;
+    z-index: 9999999999;
+    background: white;
+}

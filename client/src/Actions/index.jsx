@@ -33,8 +33,9 @@ export const toggleStatusSpin = () => {
   }
 }
 
-export const toggleStatusPresentialModal = () => {
+export const toggleStatusPresentialModal = (action) => {
   return {
-    type: Types.TOGGLE_STATUS_PRESENTIAL_MODAL
+    type: Types.TOGGLE_STATUS_PRESENTIAL_MODAL,
+    action
   }
 }

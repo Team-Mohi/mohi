@@ -4,16 +4,16 @@ import { Link } from 'react-router-dom';
 import { GrGroup } from "react-icons/gr";
 import { BsPlus } from "react-icons/bs";
 import ButtonJoin from './buttonJoin.jsx';
-
-
+import { useDispatch} from 'react-redux';
+import { toggleStatusPresentialModal } from './../../Actions/index.jsx';
 
 function Group() {
+    const dispatch = useDispatch();
 
-    const [popupCreataGroup, setPopupCreataGroup] = useState(true);
-
-    function creataGroupFunc(){
-        setPopupCreataGroup(!popupCreataGroup);
+    const  CreataGroupFunc = () =>{
+        dispatch(toggleStatusPresentialModal('modal_create_group'));
     }
+
     return (
         <div className="wrapper">
             <div className="group-container">
@@ -24,11 +24,7 @@ function Group() {
                             <h5>Nhóm</h5>
                         </div>
                         <div className="group-main-left-title-button">
-                            {!creataGroupFunc ?
-                            <button onclick={creataGroupFunc}><BsPlus />Hủy</button>
-                            :
-                            <button onclick={creataGroupFunc}><BsPlus />Tạo nhóm</button>
-                            }
+                            <button onClick={CreataGroupFunc}><BsPlus />Tạo nhóm</button>
                         </div>
                         <div className="group-list">
                             <div className="group-list-title">
