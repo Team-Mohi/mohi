@@ -1,0 +1,177 @@
+.group-container{
+    background-color: white;
+    padding: 10px;
+    margin-top: 70px;
+    display: flex;
+    justify-content: space-between;
+    min-height: 80vh;
+}
+.group-main-left{
+    width: 25%;
+    border-right: 1px solid rgba(0,0,0,0.3);
+}
+.group-main-right{
+    width:75%;
+    padding: 5px 0px 5px 10px;
+}
+.group-main-left-title{
+    display:flex;
+    align-items: center;
+    padding: 5px;
+}
+.group-main-left-title h5{
+    margin: 0px 10px;
+}
+.group-main-left button{
+    width: 100%;
+}
+
+.group-main-left-title-button{
+    padding: 15px 10px;
+}
+.group-main-left-title-button button{
+    background-color: rgba(0,128,128,0.8);
+    color: white;
+    font-weight: 500;
+    padding: 5px;
+    border-radius: 2px;
+    border: 1px solid rgba(0,0,0,0.1);
+    align-items: center;
+}
+.group-main-left-title-button button:hover{
+    background-color: rgba(0,128,128,0.6);
+    translate: 0.2s ease;
+}
+.group-list{
+    padding: 0px 10px;
+}
+.group-list-title h6{
+    font-size: 16px;
+    font-weight: 500;
+    color:black;
+}
+.group-list-ul{
+    list-style: none;
+}
+.group-list-li{
+    align-items: center;
+    display: flex;
+    padding:7px 10px;
+    border-radius: 2px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition:all 0.2s ease;
+}
+.group-list-li:hover{
+ background-color: rgba(0,0,0,0.1);
+  border: 1px solid rgba(0,0,0,0.1);
+}
+.group-list-li a{
+    font-weight: 500;
+    margin-left: 10px;
+    color: rgba(0,128,128,0.9);
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: pre-line;
+    display: -webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient: vertical;
+}
+.group-list-li a:hover{
+    color: rgba(0,128,128,0.9);
+    text-decoration: none;
+}
+.group-list-li-avt {
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    min-height: 30px;
+    overflow: hidden;
+    background-attachment: fixed;
+    background-position: center;
+}
+.group-list-li-avt img{
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    align-items: center;
+}
+.group-main-right-title{
+    width: 100%;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding: 5px 15px;
+
+}
+.group-main-right-title h5{
+    color: black;
+    font-weight: 500;
+    font-size: 18px;
+}
+.group-main-right-content{
+    width: 100%;
+    padding: 5px;
+    overflow: auto;
+    box-sizing: border-box;
+}
+.group-content-box{
+    margin:10px;
+    width: 30%;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    float: left;
+}
+.group-content-box-img{
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
+    background-attachment: fixed;
+    background-position: center;
+}
+.group-content-box-img img{
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    align-items: center;
+    border-radius: 3px;
+}
+.group-content-box-title{
+    padding: 5px 10px;
+}
+.group-content-box-title a{
+    width: 100%;
+    color: black;
+    font-weight: 600;
+    font-size: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: pre-line;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.group-content-box-title a:hover{
+    color: black;
+
+}
+.group-content-box-title span{
+    font-weight: 400;
+    font-size: 14px;
+}
+.group-content-box-button{
+    width: 100%;
+    padding: 15px 10px;
+}
+.group-content-box-button button{
+    width: 100%;
+    background-color: rgba(0,0,0,0.1);
+    color: black;
+    border: 1px solid rgba(0,0,0,0.1);
+    padding: 2px 0px;
+    font-weight: 500;
+    font-size: 14px;
+    border-radius: 3px;
+}
+.group-content-box-button button:hover{
+    background-color: rgba(0,0,0,0.2);
+    color: black;
+}

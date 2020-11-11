@@ -3,7 +3,6 @@ import './SettingMenu.css';
 import { Menu } from 'antd';
 import { Link } from 'react-router-dom';
 
-
 function MenuSetting(){
 
   const logoutFunc = () => {
@@ -28,8 +27,8 @@ function MenuSetting(){
         <Menu.Item className="setting-menu-items">
             <Link to="/setting">Cài đặt</Link>
         </Menu.Item>
-        <Menu.Item className="setting-menu-items">
-            <span onClick={logoutFunc}>Đăng xuất</span>
+        <Menu.Item className="setting-menu-items" onClick={logoutFunc}>
+            <span >Đăng xuất</span>
         </Menu.Item>
     </Menu>
 )

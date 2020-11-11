@@ -9,6 +9,7 @@ import ChatSider from './../Components/ChatSider/ChatSider.jsx';
 import ChatMini from './../Components/ChatMini/ChatMini.jsx';
 import Watch from './../Components/Watch/Watch.jsx';
 import Page from './../Components/Page/Page.jsx';
+import Group from './../Components/Group/Group.jsx';
 import ModalPost from './../Components/ModalPost/index.jsx';
 import  Main from './../Components/NewFeed/Index.jsx';
 import  MyProfile from './../Components/Profiles/MyProfile/Index.jsx';
@@ -24,6 +25,7 @@ import Notifications from './../Components/Notifications/Notifications.jsx';
 import Rules from './../Components/Footer/Rules.jsx';
 import Setting from '../Components/Setting/Setting.jsx';
 import {PUBLIC_URL} from './../Constants/public.jsx';
+// import './../axios/inceptor.jsx';
 
 function Home() {
     const { Header } = Layout;
@@ -128,6 +130,7 @@ function Home() {
                       <Route path="/friend-sent" component={FriendSent} />
                       <Route path="/watch" component={Watch} />
                       <Route path="/page" component={Page} />
+                      <Route path="/group" component={Group} />
                       <Route path="/photo/:index" component={ModalPost} />
                       <Route path="/setting" component={Setting} />
                       <Route path="/notifications" component={Notifications} />

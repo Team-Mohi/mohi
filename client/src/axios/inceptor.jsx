@@ -1,16 +1,16 @@
 import axios from 'axios';
 import {API_REFRESH_TOKEN} from './../Constants/Api.jsx';
 
-const token = localStorage.getItem('ustk');
-
 axios.interceptors.request.use(
    config => {
+      const token = JSON.parse(localStorage.getItem('ustk')).access_token;
        if (token) {
            config.headers['Authorization'] = 'Bearer ' + token;
        }
        return config;
    },
    error => {
+     console.log(error);
        Promise.reject(error)
  });
 
@@ -34,8 +34,7 @@ axios.interceptors.response.use((response) => {
 },
 function (error) {
    const originalRequest = error.config;
-
-   if (error.response.status === 401 && !originalRequest._retry) {
+   if (error.response && error.response.status === 401 && !originalRequest._retry) {
 
      if (isRefreshing) {
         return new Promise(function(resolve, reject) {
@@ -53,12 +52,12 @@ function (error) {
        return new Promise(function (resolve, reject) {
          axios.post(API_REFRESH_TOKEN,
              {
-                 'token' : token
+                 'token' : JSON.parse(localStorage.getItem('ustk')).access_token
              })
-             .then(res => {
+             .then((res) => {
                  if (res.status === 200) {
-                     localStorage.setItem('ustk', res.data.access_token);
-                     let new_token = localStorage.getItem('ustk');
+                     localStorage.setItem('ustk', JSON.stringify(res.data));
+                     let new_token = JSON.parse(localStorage.getItem('ustk')).access_token;
                      processQueue(null, res.data.access_token);
                      axios.defaults.headers.common['Authorization'] = 'Bearer ' + new_token;
                      originalRequest.headers['Authorization'] = 'Bearer ' + new_token;

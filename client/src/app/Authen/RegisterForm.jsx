@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useForm} from 'react-hook-form';
 import {RiErrorWarningLine} from "react-icons/ri";
 import {Tooltip} from 'antd';
@@ -15,15 +15,17 @@ function RegisterForm(props) {
   const [errorConfirmPassword, setErrorConfirmPassword] = useState('Vui lòng nhập lại mật khẩu');
   const [errorEmailAndPhone, setErrorEmailAndPhone] = useState('Vui lòng nhập số điện thoại hoặc email');
 
+  useEffect(() => {
+    if(props.duplicateEmail){
+      setError("user_email", {
+            type: "manual",
+            message: "Email hoặc số điện thoại đã được đăng kí"
+          });
+      setErrorEmailAndPhone('Email hoặc số điện thoại đã được đăng kí')
+    }
+  },[props.duplicateEmail])
   const onSubmit = (data) => {
-    //callapi
-    // Encrypt
-    let code = CryptoJS.AES.encrypt(JSON.stringify(897263), 'code_veri').toString();
-    let message = "Chúng tôi đã gửi mã";
-    history.push('/register/step-2', {
-      message: message,
-      code: code
-    });
+    props.onSubmitRegister(data)
   }
 
   for (let i = 1; i <= 31; i++) {
@@ -53,7 +55,7 @@ function RegisterForm(props) {
     }
     return false;
   }
-  
+
   return (<form onSubmit={handleSubmit(onSubmit)}>
     <div className="site-layout-register-group">
       <div className="register-first-name">

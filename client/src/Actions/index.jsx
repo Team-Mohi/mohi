@@ -20,3 +20,21 @@ export const fetchPost = (post) => {
     post
   }
 }
+
+export const statusSpin = () => {
+  return {
+    type: Types.STATUS_SPIN
+  }
+}
+
+export const toggleStatusSpin = () => {
+  return {
+    type: Types.TOGGLE_STATUS_SPIN
+  }
+}
+
+export const toggleStatusPresentialModal = () => {
+  return {
+    type: Types.TOGGLE_STATUS_PRESENTIAL_MODAL
+  }
+}

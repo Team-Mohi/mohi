@@ -2,6 +2,7 @@ import React, { useState} from 'react';
 import {useForm} from 'react-hook-form';
 import './LoginTwo.css';
 import {RiErrorWarningLine} from "react-icons/ri";
+import {Link} from 'react-router-dom';
 
 function LoginTwo(props){
   const {register, handleSubmit, errors} = useForm();
@@ -47,7 +48,7 @@ function LoginTwo(props){
               {errors.user_password && <div className = "error_login_two" ><RiErrorWarningLine className="error_sex"/></div>}
             </div>
             <div className="form-login-two-group">
-              <span className="forget-password">Quên mật khẩu?</span>
+              <Link to="/forgot-password" className="forget-password">Quên mật khẩu?</Link>
             </div>
             <div className="form-login-two-group">
               <button type="submit">Đăng nhập</button>
