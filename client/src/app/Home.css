@@ -2,7 +2,15 @@ body {
   overflow-y: scroll;
   font-size: 14px !important;
 }
-
+ul{
+  margin-bottom: 0 !important;
+}
+.ant-dropdown{
+  z-index: 999999 !important;
+}
+.ant-spin-dot-item{
+  background-color: rgba(0,128,128) !important;
+}
 button:focus {
   outline: none !important;
 }
@@ -49,7 +57,9 @@ img {
 .ant-layout-sider {
   background: none !important;
 }
-
+.ant-layout-content{
+  overflow-y: hidden;
+}
 .nav-home {
   position: fixed;
   width: -webkit-fill-available;
@@ -110,7 +120,7 @@ img {
 }
 
 .logo img {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .avatar-home {
@@ -202,10 +212,10 @@ img {
   border-radius: 2px;
   max-height: 500px;
   overflow: auto;
+  margin-bottom: 10px;
 }
 
 .box-footer {
-  margin-top: 10px;
   font-size: 14px;
 }
 
@@ -295,4 +305,38 @@ img {
   border-radius: 10px;
   background-color:  rgba(0, 0, 0, 0.1);
 
+}
+.icon-reaction:not(:first-child){
+  margin-left: -5px;
+}
+.icon-reaction:first-child{
+  z-index: 6;
+}
+.icon-reaction:nth-child(2){
+  z-index: 5;
+}
+.icon-reaction:nth-child(3){
+  z-index: 4;
+}
+.icon-reaction:nth-child(4){
+  z-index: 3;
+}
+.icon-reaction:nth-child(5){
+  z-index: 2;
+}
+.icon-reaction:last-child{
+  z-index: 1;
+}
+.icon-reaction{
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid white;
+  position: relative;
+  background: white;
+}
+.icon-like-22{
+  width: 22px;
+}
+.icon-like-48{
+  width: 48px;
 }

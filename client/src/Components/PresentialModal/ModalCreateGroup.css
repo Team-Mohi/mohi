@@ -2,4 +2,132 @@
     position: relative;
     z-index: 9999999999;
     background: white;
+    width: 530px;
+    padding: 10px;
+    border-radius: 2px;
+
 }
+.modal-custom{
+    animation-name: modalgroup;
+    animation-duration: 0.5s;
+    position: relative;
+    z-index: 9999999999;
+    background: white;
+    width: 530px;
+    padding: 10px;
+    border-radius: 2px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+.modal-custom:hover::-webkit-scrollbar {
+  width: 5px;
+}
+.modal-custom:hover::-webkit-scrollbar-thumb {
+  background: rgba(0, 128, 128, 0.7);
+  border-radius: 10px;
+}
+.modal-custom::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 10px;
+}
+.modal-custom:hover::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+}
+
+/* Handle */
+.modal-custom::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+/* Handle on hover */
+.modal-custom::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 128, 128);
+}
+
+@keyframes modalgroup {
+    0%   {  transform: scale(0.1,0.1) }
+    100% { transform: scale(1,1)}
+  }
+.modal-create-group-introduce{
+    display: flex;
+    justify-content: center;
+}
+.modal-create-group-header{
+    width: 100%;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding: 5px 10px;
+}
+.modal-create-group-header h5{
+    font-weight: 700;
+    font-size: 16px;
+}
+.modal-create-group-introduce{
+    width: 100%;
+    padding: 5px;
+    align-items: center;
+}
+.modal-create-group-introduce p{
+    padding: 10px;
+    font-weight: 400;
+}
+.modal-create-group-introduce-img{
+    width: 250px;
+    height: 100px;
+    min-width: 250px;
+    min-height: 100px;
+    overflow: hidden;
+    background-attachment: fixed;
+    background-position: center;
+}
+.modal-create-group-introduce-img img{
+    width: 250px;
+    height: 100px;
+    object-fit: cover;
+    align-items: center
+}
+.modal-create-group-content-form{
+    padding: 0px 10px;
+}
+.modal-create-group-content-form label{
+    width: 100%;
+    font-weight: 500;
+    padding: 7px 0px;
+}
+.modal-create-group-content-form input{
+    padding: 5px 10px;
+    width: 100%;
+    border: 1px solid rgba(0,0,0,0.3);
+    border-radius: 2px;
+}
+.modal-create-group-content-input{
+    border: 1px solid rgba(0,0,0,0.3);
+    padding: 5px 10px;
+    border-radius: 2px;
+    max-height: 250px;
+    overflow-y: auto;
+}
+.modal-create-group-private{
+    padding: 10px 0px;
+    width: 100%;
+}
+.modal-create-group-button{
+    text-align: center;
+    margin: 10px 0;
+    padding: 10px 0px 0 0px;
+}
+.modal-create-group-button button{
+    font-weight: 500;
+    font-size: 16px;
+    width: 100px;
+    padding: 2px 10px;
+    color: white;
+    background-color: rgba(0,128,128,0.7);
+    border:1px solid rgba(0,0,0,0.3);
+    border-radius: 2px;
+
+}
+.ant-select-dropdown-placement-bottomLeft {
+    z-index: 9999999999 !important;
+    position: fixed;
+}
+/* ant-select-dropdown ant-select-dropdown-placement-bottomLeft  ant-select-dropdown-hidden */

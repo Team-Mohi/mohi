@@ -1,9 +1,31 @@
 import React, {useRef} from 'react';
 import {Link} from 'react-router-dom';
 import {BsThreeDots} from "react-icons/bs";
+import moment from 'moment';
 
 function CommentParent(props) {
   let commentChild = props.commentChild;
+
+  moment.updateLocale('en', {
+    relativeTime : {
+        future: "%s",
+        past:   "%s trước",
+        s  : 'vài giây',
+        ss : '%d phút',
+        m:  "1 phút trước",
+        mm: "%d phút",
+        h:  "an giờ",
+        hh: "%d giờ",
+        d:  "một ngày",
+        dd: "%d ngày",
+        w:  "một tuần",
+        ww: "%d tuần",
+        M:  "một tháng",
+        MM: "%d tháng",
+        y:  "một năm",
+        yy: "%d năm"
+    }
+  });
 
   const inputCommentChildReplyRef = useRef();
 
@@ -13,21 +35,21 @@ function CommentParent(props) {
 
   return (<div className="post-comment-item-child" ref={inputCommentChildReplyRef}>
     <div className="post-comment-item-parent-avatar">
-      <Link to="">
-        <img src={commentChild.commentAvatar} alt={commentChild.commentUser}/>
+      <Link to={'/'+ commentChild.user_username}>
+        <img src={commentChild.user_avatar} alt={commentChild.user_first_name + ' ' + commentChild.user_last_name}/>
       </Link>
     </div>
     <div className="post-comment-item-parent-info">
       <div className="post-comment-item-parent-info-user">
-        <Link to="">{commentChild.commentUser}</Link>
+        <Link to={'/'+ commentChild.user_username}>{commentChild.user_first_name + ' ' + commentChild.user_last_name}</Link>
       </div>
       <div className="post-comment-item-parent-content">
-        <p>{commentChild.commentContent}</p>
+        <p>{commentChild.pivot.comment_Content}</p>
         <span><BsThreeDots/></span>
       </div>
       <div className="post-comment-item-parent-action">
-        <span onClick={() => appendInputChildReply(commentChild.commentUserId, commentChild.commentUser)}>Trả lời</span>
-        <span>{commentChild.commentCreated}</span>
+        <span onClick={() => appendInputChildReply(commentChild.id, commentChild.user_first_name + ' ' + commentChild.user_last_name)}>Trả lời</span>
+        <span>{moment(commentChild.pivot.created_at, "YYYYMMDD\h:m:s").fromNow()}</span>
       </div>
     </div>
   </div>)

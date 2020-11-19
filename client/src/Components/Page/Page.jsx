@@ -1,6 +1,6 @@
 import React, {useState, useRef, useEffect, useMemo} from 'react';
 import './Page.css';
-import {Link, Route, Switch, useLocation} from 'react-router-dom';
+import {Link, Route, Switch, useParams, useLocation} from 'react-router-dom';
 import HomePage from './HomePage.jsx';
 import VideosPage from './VideosPage.jsx';
 import SettingsPage from './SettingsPage.jsx';
@@ -15,8 +15,8 @@ import {Dropdown} from 'antd';
 
 function Page(){
   const location = useLocation().pathname.split('/');
-  const path = location[2];
-  const isActive = location[2];
+  const {idPage} = useParams();
+  const isActive = location[3];
   const [toggleSpan, setToggleSpan] = useState();
   const [toggleTopLeft, setToggleTopLeft] = useState();
   const [isAdmin, setIsAdmin] = useState(true);
@@ -161,22 +161,22 @@ function Page(){
             </div>
             <div className="page-navigation">
               <ul>
-                <Link to="/page">
+                <Link to={"/pages/"+ idPage}>
                   <li className={isActive === 'home' || !isActive ? `page-active` : ''}>
                     <span>Trang chủ</span>
                   </li>
                 </Link>
-                <Link to="/page/images">
+                <Link to={"/pages/"+ idPage + "/images"}>
                   <li className={isActive === 'images'  ? `page-active` : ''}>
                     <span>Ảnh</span>
                   </li>
                 </Link>
-                <Link to="/page/videos">
+                <Link to={"/pages/"+ idPage + "/videos"}>
                   <li className={isActive === 'videos'  ? `page-active` : ''}>
                     <span>Video</span>
                   </li>
                 </Link>
-                <Link to="/page/settings">
+                <Link to={"/pages/"+ idPage + "/settings"}>
                   <li className={isActive === 'settings'  ? `page-active` : ''}>
                     <span>Cài đặt</span>
                   </li>
@@ -250,12 +250,12 @@ function Page(){
               </div>
             </div>
             <Switch>
-              <Route exact path="/page">
+              <Route exact path={"/pages/:idPage"}>
                 {IndexPage}
               </Route>
-              <Route path="/page/videos" component={VideosPage} />
-              <Route path="/page/images" component={ImagesPage} />
-              <Route path="/page/settings" component={SettingsPage} />
+              <Route path={"/pages/:idPage/videos"} component={VideosPage} />
+              <Route path={"/pages/:idPage/images"} component={ImagesPage} />
+              <Route path={"/pages/:idPage/settings"} component={SettingsPage} />
             </Switch>
           </div>
       </div>

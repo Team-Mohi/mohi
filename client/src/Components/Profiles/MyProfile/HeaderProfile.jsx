@@ -7,8 +7,6 @@ import {PUBLIC_URL} from "./../../../Constants/public.jsx";
 function HeaderProfile(){
   const [toggleSpan, setToggleSpan] = useState();
   const [toggleTopLeft, setToggleTopLeft] = useState();
-  console.log('public url: ', process.env.PUBLIC_URL);
-
 
   function handleShow(){
     setToggleSpan({
@@ -57,7 +55,7 @@ function HeaderProfile(){
                 <button type="submit">Chỉnh sửa trang cá nhân <BsPencil /></button>
               </div>
               <div className="button-view-history-action-profile">
-                <button type="submit">Nhật kí hoạt động <BsThreeDots /></button>
+                <Link to="/profile/activity-log"><button type="submit">Nhật kí hoạt động <BsThreeDots /></button></Link>
               </div>
             </div>
           </div>
@@ -85,6 +83,10 @@ function HeaderProfile(){
                   </div>
                 </div>
               </div >
+              <div className="profile-header-name">
+                <Link to="">Nguyễn Văn Phước</Link>
+                <p>(Nguyễn Văn Phước)</p>
+              </div>
             </div>
             <div className="profile-header-timeline-container">
               <ul className="profile-header-navigation">

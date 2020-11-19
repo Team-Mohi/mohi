@@ -21,7 +21,7 @@ function VeriCode(props) {
   const id_user = history.location.state.id_user;
   const {register, handleSubmit, errors} = useForm();
   const [errorCode, setErrorCode] = useState();
-  const [cookies, setCookie] = useCookies(["vrctrgt"]);
+  const [cookies, setCookie, removeCookie] = useCookies(["vrctrgt"]);
   const now = new Date().getTime();
 
   useEffect(() => {
@@ -38,7 +38,7 @@ function VeriCode(props) {
     if(Number(data.code) === code){
       if(cookies.vrctrgt - new Date().getTime() > 0){
         setErrorCode('');
-        cookies.remove("vrctrgt");
+        removeCookie("vrctrgt");
         let new_data = {
           id: id_user,
           user_email: user_email,

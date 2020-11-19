@@ -1,6 +1,7 @@
-import React, {useState, useMemo} from 'react';
+import React, {useState} from 'react';
 import EditorEmoji from './EditorEmoji.jsx';
 import EditorMention from './EditorMention.jsx';
+import UploadMuti from './../Upload/UploadMuti.jsx';
 import {Select, Switch, Button, Tooltip, Row, Col} from 'antd';
 import {Link} from 'react-router-dom';
 import { FaUserTag, FaImage, FaUserFriends, FaLock, FaMapMarkerAlt, FaListAlt} from "react-icons/fa";
@@ -18,6 +19,7 @@ function CreatePost() {
   const [listMention, setListMention] = useState([]);
   const [firstMention, setFirstMention] = useState();
   const [showModalCreatePost, setShowModalCreatePost] = useState(false);
+  const currentUser = JSON.parse(localStorage.getItem('ustk')).info;
 
   function showModalCreatePostFunc(){
     setShowModalCreatePost(true)
@@ -61,13 +63,14 @@ function CreatePost() {
         <div className="create-post" onClick={() => showModalCreatePostFunc()} style={showModalCreatePost ? {zIndex: '10'} : null}>
           <div className="create-post-input">
             <div className="create-post-avatar">
-              <img src="http://xemanhdep.com/wp-content/uploads/2016/04/hinh-anh-girl-xinh-dep-nhat-2016-10.jpg" alt="" />
+              <img src={currentUser.user_avatar} alt={currentUser.user_first_name + ' ' + currentUser.user_last_name} />
             </div>
             <div className="create-post-editor">
             <EditorEmoji showModalCreatePost={showModalCreatePost} changeStatusButtonSubmit={changeStatusButtonSubmit}/>
             </div>
           </div>
-          {isShowInputTag ?
+          <UploadMuti showModalCreatePost={showModalCreatePost}/>
+          {isShowInputTag && showModalCreatePost ?
             <>
               <div className="create-post-input-tag">
               {showModalCreatePost && <EditorMention showMentionList={showMentionList}/>}
@@ -102,11 +105,10 @@ function CreatePost() {
           :null}
           <div className="create-post-option">
             <div className="create-post-choose-image">
-              <label htmlFor="choose-image">
+              <label htmlFor="create_post_upload_image">
                 <FaImage style={{ fontSize: "20px", marginRight: '7px' }} />
                 Ảnh/video
               </label>
-              <input type="file" id="choose-image" />
             </div>
             <div className="create-post-tag" onClick={() => showInputTag()}>
               <FaUserTag style={{ fontSize: "20px", marginRight: '7px' }} />

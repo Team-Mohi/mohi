@@ -101,8 +101,8 @@ function SearchNavigation(){
             <Route  component={FilterAll}/>
           </Switch>
           </Col>
-          <Col span={6} style={{padding: '0 20px', position:'relative'}}>
-            <div className="box-footer" style={{marginTop: '0', position:'fixed', width: '277px'}}>
+          <Col span={6} style={{ position:'relative'}}>
+            <div className="box-footer" style={{marginTop: '0', position:'fixed', width: '285px'}}>
                 <ul>
                     <li><GoPrimitiveDot />
                         <Link to="privacy">Quyền riêng tư</Link>

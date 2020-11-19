@@ -10,6 +10,7 @@ import ChatMini from './../Components/ChatMini/ChatMini.jsx';
 import Watch from './../Components/Watch/Watch.jsx';
 import Page from './../Components/Page/Page.jsx';
 import Group from './../Components/Group/Group.jsx';
+import GroupAllContainer from './../Containers/GroupAllContainer.jsx';
 import ModalPost from './../Components/ModalPost/index.jsx';
 import  Main from './../Components/NewFeed/Index.jsx';
 import  MyProfile from './../Components/Profiles/MyProfile/Index.jsx';
@@ -17,17 +18,18 @@ import  Messenger from './../Components/Messenger/index.jsx';
 import  SearchNavigation from './../Components/Search/index.jsx';
 import  FriendRequests from './../Components/FriendRequests/FriendRequests.jsx';
 import  FriendSent from './../Components/FriendRequests/FriendSent.jsx';
-import menunoti from '../Components/Notifications/NotificationsMenu.jsx';
-import menumessenger from './../Components/Messenger/MessengerMenu.jsx';
-import menufriendrequests from './../Components/FriendRequests/FriendRequestMenu.jsx';
-import menusetting from './../Components/Setting/SettingMenu.jsx';
+import PageAllContainer from './../Containers/PageAllContainer.jsx';
+import MenuNoti from '../Components/Notifications/NotificationsMenu.jsx';
+import MenuMessenger from './../Components/Messenger/MessengerMenu.jsx';
+import MenuFriendRequests from './../Components/FriendRequests/FriendRequestMenu.jsx';
+import MenuSetting from './../Components/Setting/SettingMenu.jsx';
 import Notifications from './../Components/Notifications/Notifications.jsx';
 import Rules from './../Components/Footer/Rules.jsx';
 import Setting from '../Components/Setting/Setting.jsx';
+import Help from '../Components/Footer/Help.jsx';
 import {PUBLIC_URL} from './../Constants/public.jsx';
-// import './../axios/inceptor.jsx';
 
-function Home() {
+function Home(props) {
     const { Header } = Layout;
     const { Search } = Input;
     const history = useHistory();
@@ -35,6 +37,7 @@ function Home() {
     const key = history.location.key;
     const [listChatMini, setListChatMini] = useState([]);
     const parentChatRef = useRef();
+    const currentUser = JSON.parse(localStorage.getItem('ustk')).info;
 
     useEffect(() => {
       if(listChatMini.length === 0){
@@ -79,7 +82,7 @@ function Home() {
                 <Header className="nav-home">
                     <div className="wrapper d-flex header-home " >
                         <div className="logo " >
-                            <img src={PUBLIC_URL + "logo.png"} alt="Mohi.vn" title="Mohi.vn" />
+                            <Link to="/"><img src={PUBLIC_URL + "logo.png"} alt="Mohi.vn" title="Mohi.vn" /></Link>
                         </div>
                         <Search
                             className="search-all"
@@ -90,31 +93,30 @@ function Home() {
                         <Menu className="menu-home" mode="horizontal" >
                             <Menu.Item className="after-li">
                                 <Link className="avatar-home" to="/profile" >
-                                    <img src="images/gaixinh.jpg" alt="" />
-                                    <span>Phước</span>
-                                    {/*  */}
+                                    <img src={currentUser.user_avatar} alt={currentUser.user_first_name + ' ' + currentUser.user_last_name} />
+                                    <span>{currentUser.user_last_name}</span>
                                 </Link>
                             </Menu.Item>
                             <Menu.Item className="after-li">
                                 <Link className="home" to="/"  > Trang chủ</Link>
                             </Menu.Item>
                             <Menu.Item >
-                                <Dropdown className="dropdown-setting" trigger={['click']} overlay={menufriendrequests} placement="bottomCenter" arrow>
+                                <Dropdown className="dropdown-setting" trigger={['click']} overlay={<MenuFriendRequests />} placement="bottomCenter" arrow>
                                     <FaUserFriends title="Bạn bè" />
                                 </Dropdown>
                             </Menu.Item>
                             <Menu.Item >
-                                <Dropdown className="dropdown-setting" trigger={['click']} overlay={menumessenger} placement="bottomCenter" arrow>
+                                <Dropdown className="dropdown-setting" trigger={['click']} overlay={<MenuMessenger />} placement="bottomCenter" arrow>
                                     <FaFacebookMessenger title="Tin nhắn" />
                                 </Dropdown>
                             </Menu.Item>
                             <Menu.Item >
-                                <Dropdown className="dropdown-setting" trigger={['click']} overlay={menunoti} placement="bottomCenter" arrow>
+                                <Dropdown className="dropdown-setting" trigger={['click']} overlay={<MenuNoti />} placement="bottomCenter" arrow>
                                     <FaBell title="Thông báo" />
                                 </Dropdown>
                             </Menu.Item>
                             <Menu.Item className="menu-item-last-child">
-                                <Dropdown className="dropdown-setting" trigger={['click']} overlay={menusetting} placement="bottomCenter" arrow>
+                                <Dropdown className="dropdown-setting" trigger={['click']} overlay={<MenuSetting />} placement="bottomCenter" arrow>
                                     <AiFillCaretDown title="Cài đặt" />
                                 </Dropdown>
                             </Menu.Item>
@@ -129,12 +131,15 @@ function Home() {
                       <Route path={`/search/:value`} component={SearchNavigation} />
                       <Route path="/friend-sent" component={FriendSent} />
                       <Route path="/watch" component={Watch} />
-                      <Route path="/page" component={Page} />
-                      <Route path="/group" component={Group} />
+                      <Route path="/pages/:idPage" component={Page} />
+                      <Route path="/groups/:idGroup" component={Group} />
+                      <Route exact path="/pages" component={PageAllContainer} />
+                      <Route exact path="/groups" component={GroupAllContainer} />
                       <Route path="/photo/:index" component={ModalPost} />
                       <Route path="/setting" component={Setting} />
                       <Route path="/notifications" component={Notifications} />
                       <Route path="/rules-mohi" component={Rules} />
+                    <Route path="/help" component={Help} />
                     </Switch>
                 {history.location.pathname !== '/messenger' ?
                   <>

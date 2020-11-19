@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Home from './Home.jsx';
+import AppContainer from './../Containers/AppContainer.jsx';
 import LoginContainer from './../Containers/LoginContainer.jsx';
 import Spin from './../Components/Spin/index.jsx';
 import {PresentialModal} from './../Components/PresentialModal/index.jsx';
@@ -19,10 +19,8 @@ function App({ spin, presentialModal }) {
     }
     return true;
   }
-
   let ustk = IsJsonString(localStorage.getItem('ustk')) ? JSON.parse(localStorage.getItem('ustk')) : '';
   let token = ustk ? ustk.access_token : '';
-
   if(!token){
     localStorage.removeItem('ustk');
   }
@@ -33,7 +31,7 @@ function App({ spin, presentialModal }) {
 
   return (<div className="App">
     <Router>
-        { token ? <Home /> : <LoginContainer setLoginFunc={setLoginFunc}/>}
+        { token ? <AppContainer /> : <LoginContainer setLoginFunc={setLoginFunc}/>}
         {statusSpin.status && <Spin />}
         {statusPresentialModal.status && <PresentialModal />}
     </Router>

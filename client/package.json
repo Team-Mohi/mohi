@@ -37,11 +37,14 @@
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.2",
+    "react-slick": "^0.27.13",
     "react-sticky": "^6.0.3",
     "redux": "^4.0.5",
     "simple-react-video-thumbnail": "0.0.7",
+    "slick-carousel": "^1.8.1",
     "styled-components": "^5.2.0",
-    "use-sound": "^1.0.2"
+    "use-sound": "^1.0.2",
+    "video.js": "^7.0.3"
   },
   "scripts": {
     "start": "react-scripts start",

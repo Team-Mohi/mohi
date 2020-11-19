@@ -1,1 +1,1 @@
-export const PUBLIC_URL="https://www.mohi.vn/";
+export const PUBLIC_URL="http://localhost:3000/";

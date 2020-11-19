@@ -1,179 +1,75 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {FaDotCircle} from 'react-icons/fa';
 import {MdDone} from 'react-icons/md';
+import {FaDotCircle} from 'react-icons/fa';
 import './MessengerMenu.css';
+import { useSelector } from 'react-redux';
+import moment from 'moment';
 
-function MenuMessenger() {
+function MenuMessenger({ message }) {
+  const messages = useSelector(state => state.message);
+  moment.updateLocale('en', {
+    relativeTime : {
+        future: "%s",
+        past:   "%s",
+        s  : 'vài giây',
+        ss : '%d phút',
+        m:  "1 phút",
+        mm: "%d phút",
+        h:  "%d giờ",
+        hh: "%d giờ",
+        d:  "một ngày",
+        dd: "%d ngày",
+        w:  "một tuần",
+        ww: "%d tuần",
+        M:  "một tháng",
+        MM: "%d tháng",
+        y:  "một năm",
+        yy: "%d năm"
+    }
+  });
 
-  return (<> < div className = "menu-noti-container" > <div className="menu-noti-main">
+  if(!messages.length){
+      return(
+        <div className = "menu-noti-container">
+          <div className="menu-noti-main">
+            <div className="menu-noti-title">
+              <h5>Tin nhắn</h5>
+            </div>
+            <div className="no-data">Không có dữ liệu hiển thị</div>
+          </div>
+        </div>
+      )
+  }
+
+  return (<div className = "menu-noti-container"> <div className="menu-noti-main">
     <div className="menu-noti-title">
       <h5>Tin nhắn</h5>
     </div>
     <div className="menu-dropdown-scroll">
       <div className="menu-dropdown-scroll-thumb">
-        <Link to="/">
-          <div className="menu-messenger-content">
-            <div className="menu-noti-content-avatar">
-              <img src="https://i.pinimg.com/564x/90/e9/fc/90e9fce92c5bd12860b07b1cd1af41cb.jpg"/>
-            </div>
-            <div className="menu-messenger-content-title">
-              <h6>Nguyễn Văn Phước</h6>
-              <div className="menu-noti-content-button">
-                <MdDone/>
-                <p>Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?</p>
+        {messages.map((message, index) => {
+          return(
+            <Link to="/" key={index}>
+              <div className={`menu-messenger-content ` + `${!message.pivot.messages_ReadAt && `menu-messenger-content-active`}`}>
+                <div className="menu-noti-content-avatar">
+                  <img src={message.user_avatar} alt={message.user_first_name + ' ' + message.user_last_name}/>
+                </div>
+                <div className="menu-messenger-content-title">
+                  <h6>{message.user_first_name + ' ' + message.user_last_name}</h6>
+                  <div className="menu-noti-content-button">
+                    {message.pivot.messages_ReadAt && <MdDone/>}
+                    <p>{message.pivot.messages_Message}</p>
+                  </div>
+                </div>
+                <div className="menu-messenger-content-right">
+                  <p>{moment(message.pivot.created_at, "YYYYMMDD\h:m:s").fromNow()}</p>
+                    {!message.pivot.messages_ReadAt && <FaDotCircle/>}
+                </div>
               </div>
-            </div>
-            <div className="menu-messenger-content-right">
-              <p>7:20 PM</p>
-              <FaDotCircle/>
-            </div>
-          </div>
-        </Link>
-        <Link to="/">
-          <div className="menu-messenger-content">
-            <div className="menu-noti-content-avatar">
-              <img src="https://i.pinimg.com/564x/90/e9/fc/90e9fce92c5bd12860b07b1cd1af41cb.jpg"/>
-            </div>
-            <div className="menu-messenger-content-title">
-              <h6>Nguyễn Văn Phước</h6>
-              <div className="menu-noti-content-button">
-                <MdDone/>
-                <p>Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?</p>
-              </div>
-            </div>
-            <div className="menu-messenger-content-right">
-              <p>7:20 PM</p>
-              <FaDotCircle/>
-            </div>
-          </div>
-        </Link>
-        <Link to="/">
-          <div className="menu-messenger-content">
-            <div className="menu-noti-content-avatar">
-              <img src="https://i.pinimg.com/564x/90/e9/fc/90e9fce92c5bd12860b07b1cd1af41cb.jpg"/>
-            </div>
-            <div className="menu-messenger-content-title">
-              <h6>Nguyễn Văn Phước</h6>
-              <div className="menu-noti-content-button">
-                <MdDone/>
-                <p>Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?</p>
-              </div>
-            </div>
-            <div className="menu-messenger-content-right">
-              <p>7:20 PM</p>
-              <FaDotCircle/>
-            </div>
-          </div>
-        </Link>
-        <Link to="/">
-          <div className="menu-messenger-content">
-            <div className="menu-noti-content-avatar">
-              <img src="https://i.pinimg.com/564x/90/e9/fc/90e9fce92c5bd12860b07b1cd1af41cb.jpg"/>
-            </div>
-            <div className="menu-messenger-content-title">
-              <h6>Nguyễn Văn Phước</h6>
-              <div className="menu-noti-content-button">
-                <MdDone/>
-                <p>Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?</p>
-              </div>
-            </div>
-            <div className="menu-messenger-content-right">
-              <p>7:20 PM</p>
-              <FaDotCircle/>
-            </div>
-          </div>
-        </Link>
-        <Link to="/">
-          <div className="menu-messenger-content">
-            <div className="menu-noti-content-avatar">
-              <img src="https://i.pinimg.com/564x/90/e9/fc/90e9fce92c5bd12860b07b1cd1af41cb.jpg"/>
-            </div>
-            <div className="menu-messenger-content-title">
-              <h6>Nguyễn Văn Phước</h6>
-              <div className="menu-noti-content-button">
-                <MdDone/>
-                <p>Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?</p>
-              </div>
-            </div>
-            <div className="menu-messenger-content-right">
-              <p>7:20 PM</p>
-              <FaDotCircle/>
-            </div>
-          </div>
-        </Link>
-        <Link to="/">
-          <div className="menu-messenger-content">
-            <div className="menu-noti-content-avatar">
-              <img src="https://i.pinimg.com/564x/90/e9/fc/90e9fce92c5bd12860b07b1cd1af41cb.jpg"/>
-            </div>
-            <div className="menu-messenger-content-title">
-              <h6>Nguyễn Văn Phước</h6>
-              <div className="menu-noti-content-button">
-                <MdDone/>
-                <p>Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?</p>
-              </div>
-            </div>
-            <div className="menu-messenger-content-right">
-              <p>7:20 PM</p>
-              <FaDotCircle/>
-            </div>
-          </div>
-        </Link>
-        <Link to="/">
-          <div className="menu-messenger-content">
-            <div className="menu-noti-content-avatar">
-              <img src="https://i.pinimg.com/564x/90/e9/fc/90e9fce92c5bd12860b07b1cd1af41cb.jpg"/>
-            </div>
-            <div className="menu-messenger-content-title">
-              <h6>Nguyễn Văn Phước</h6>
-              <div className="menu-noti-content-button">
-                <MdDone/>
-                <p>Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?</p>
-              </div>
-            </div>
-            <div className="menu-messenger-content-right">
-              <p>7:20 PM</p>
-              <FaDotCircle/>
-            </div>
-          </div>
-        </Link>
-        <Link to="/">
-          <div className="menu-messenger-content">
-            <div className="menu-noti-content-avatar">
-              <img src="https://i.pinimg.com/564x/90/e9/fc/90e9fce92c5bd12860b07b1cd1af41cb.jpg"/>
-            </div>
-            <div className="menu-messenger-content-title">
-              <h6>Nguyễn Văn Phước</h6>
-              <div className="menu-noti-content-button">
-                <MdDone/>
-                <p>Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?</p>
-              </div>
-            </div>
-            <div className="menu-messenger-content-right">
-              <p>7:20 PM</p>
-              <FaDotCircle/>
-            </div>
-          </div>
-        </Link>
-        <Link to="/">
-          <div className="menu-messenger-content">
-            <div className="menu-noti-content-avatar">
-              <img src="https://i.pinimg.com/564x/90/e9/fc/90e9fce92c5bd12860b07b1cd1af41cb.jpg"/>
-            </div>
-            <div className="menu-messenger-content-title">
-              <h6>Nguyễn Văn Phước</h6>
-              <div className="menu-noti-content-button">
-                <MdDone/>
-                <p>Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?Đang làm gì đó ?</p>
-              </div>
-            </div>
-            <div className="menu-messenger-content-right">
-              <p>7:20 PM</p>
-              <FaDotCircle/>
-            </div>
-          </div>
-        </Link>
+            </Link>
+          )
+        })}
       </div>
     </div>
 
@@ -181,7 +77,6 @@ function MenuMessenger() {
       <Link to="/messenger">Xem tất cả tin nhắn</Link>
     </div>
   </div>
-</div>
-</>);
+</div>);
 }
 export default MenuMessenger;

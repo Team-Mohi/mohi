@@ -19,7 +19,7 @@ function ChangePassContainer(){
     .then((res) => {
       console.log(res);
       localStorage.setItem('ustk', JSON.stringify(res.data));
-      window.location = '/';
+      history.push('/')
     })
     .catch((err) => {
       setError(Math.random())

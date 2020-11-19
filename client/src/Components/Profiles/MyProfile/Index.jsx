@@ -6,6 +6,7 @@ import TimeLine from './TimeLine.jsx';
 import Gallery from './Gallery.jsx';
 import About from './About.jsx';
 import Friends from './Friends.jsx';
+import ActivityLog from './ActivityLog.jsx';
 
 function MyProfile(){
   return (
@@ -18,6 +19,7 @@ function MyProfile(){
           <Route path="/profile/friends" component={Friends}/>
           <Route path="/profile/about" component={About}/>
           <Route path="/profile/gallery" component={Gallery}/>
+        <Route path="/profile/activity-log" component={ActivityLog}/>
         </div>
       </div>
     </>

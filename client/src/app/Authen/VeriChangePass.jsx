@@ -12,7 +12,7 @@ function VeriChangePass(props){
   if(!history.location.state){
     history.push('/')
   }
-  const [cookies, setCookie] = useCookies(["vrct"]);
+  const [cookies, setCookie, removeCookie] = useCookies(["vrct"]);
   const dispatch = useDispatch();
   const avatar = history.location.state ? history.location.state.user_avatar : '';
   const name = history.location.state ? history.location.state.user_name : '';
@@ -38,7 +38,7 @@ function VeriChangePass(props){
 
     if(code === Number(data.code_change_pass)){
       if(cookies.vrct - new Date().getTime() > 0){
-        cookies.remove("vrct");
+        removeCookie();
         history.push('/change-password',{idUser: idUser, user_email: email})
       }else {
         setError("code_change_pass", {

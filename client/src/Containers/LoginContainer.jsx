@@ -23,7 +23,7 @@ export default function LoginContainer(props){
       history.push('/')
     }).catch((err) => {
         //if unveri send otp to email or phone when register
-        if(err.response.status === 301){
+        if(err && err.response.status === 301){
 
           let user_email = JSON.parse(err.response.config.data).user_email;
           let user_password = JSON.parse(err.response.config.data).user_password;

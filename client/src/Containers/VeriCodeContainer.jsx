@@ -4,9 +4,11 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { toggleStatusSpin } from './../Actions/index.jsx';
 import {API_VERI_CODE} from './../Constants/Api.jsx';
+import {useHistory} from 'react-router-dom';
 
 function VeriCodeContainer(){
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const submitVeriCode = async (data) => {
     console.log(data);
@@ -16,7 +18,7 @@ function VeriCodeContainer(){
     await axios.post('/api/very-regiser', data)
     .then((res) => {
       localStorage.setItem('ustk', JSON.stringify(res.data));
-      window.location = '/';
+      history.push('/');
     })
 
     //close Spin

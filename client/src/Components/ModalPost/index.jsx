@@ -1,18 +1,43 @@
 import React, {useEffect, useState} from 'react';
 import './index.css';
-import { useHistory, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { AiFillCloseCircle, AiFillLike, AiFillCaretLeft, AiFillCaretRight } from "react-icons/ai";
 import { BsThreeDots } from "react-icons/bs";
-import { FaRegCommentAlt } from "react-icons/fa";
+import { FaRegCommentAlt, FaUserLock, FaUserAlt } from "react-icons/fa";
+import { MdPublic } from "react-icons/md";
+import moment from 'moment';
 
 function ModalPost(){
   const history = useHistory();
   const { index } = useParams();
   const postData = history.location.state;
-  const images = postData.imagesPost;
+  console.log(postData);
+
+  const images = postData.images_post;
   const [indexCurrent, setIndexCurrent] = useState(index);
   const lastIndex = images.length - 1;
-  const [currentPhoto, setCurrentPhoto] = useState(images[index].url);
+  const [currentPhoto, setCurrentPhoto] = useState(images[index].post_images_Url);
+
+  moment.updateLocale('en', {
+    relativeTime : {
+        future: "%s",
+        past:   "%s trước",
+        s  : 'vài giây',
+        ss : '%d phút',
+        m:  "1 phút trước",
+        mm: "%d phút",
+        h:  "an giờ",
+        hh: "%d giờ",
+        d:  "một ngày",
+        dd: "%d ngày",
+        w:  "một tuần",
+        ww: "%d tuần",
+        M:  "một tháng",
+        MM: "%d tháng",
+        y:  "một năm",
+        yy: "%d năm"
+    }
+  });
 
   useEffect(() => {
     document.addEventListener("keydown", handleKeyUp, false);
@@ -32,10 +57,10 @@ function ModalPost(){
   const prePostImage = () => {
     if(Number(indexCurrent) === 0){
       setIndexCurrent(lastIndex)
-      setCurrentPhoto(images[lastIndex].url)
+      setCurrentPhoto(images[lastIndex].post_images_Url)
     }else {
       let _preImage = Number(indexCurrent) - 1;
-      setCurrentPhoto(images[_preImage].url)
+      setCurrentPhoto(images[_preImage].post_images_Url)
       setIndexCurrent(_preImage)
     }
   }
@@ -43,11 +68,27 @@ function ModalPost(){
   const nextPostImage = () => {
     if(Number(indexCurrent) === images.length - 1){
       setIndexCurrent(0)
-      setCurrentPhoto(images[0].url)
+      setCurrentPhoto(images[0].post_images_Url)
     }else {
       let _nextImage = Number(indexCurrent) + 1;
-      setCurrentPhoto(images[_nextImage].url)
+      setCurrentPhoto(images[_nextImage].post_images_Url)
       setIndexCurrent(_nextImage)
+    }
+  }
+
+  const PrivacyPost = () => {
+    switch (postData.post_Privacy) {
+      case "public":
+          return <MdPublic />
+        break;
+      case "onlyme":
+          return <FaUserLock />
+        break;
+      case "friend":
+          return <FaUserAlt />
+        break;
+      default: return null
+
     }
   }
 
@@ -63,7 +104,7 @@ function ModalPost(){
               <button onClick={prePostImage}><AiFillCaretLeft /></button>
             </div> : null}
             <div className="modal-post-curent-image">
-              {images[indexCurrent].type === 'image' ?
+              {images[indexCurrent].post_images_Type === 'image' ?
                 <img src={currentPhoto} alt="" />
                 :
                 <video src={currentPhoto} autoPlay preload="metadata" controls></video>
@@ -78,22 +119,22 @@ function ModalPost(){
         <div className="modal-post-info">
           <div className="modal-post-info-user">
             <div className="modal-post-info-user-avatar">
-              <img src={postData.avatar} alt={postData.postUser}/>
+              <img src={postData.user_admin_post.user_avatar} alt={postData.user_admin_post.user_first_name + ' ' + postData.user_admin_post.user_last_name}/>
             </div>
             <div className="modal-post-info-user-name">
-              <p>{postData.postUser}</p>
-              <span>{postData.created} <span>chế độ</span></span>
+              <p><Link to={'/' + postData.user_admin_post.user_username}>{postData.user_admin_post.user_first_name + ' ' + postData.user_admin_post.user_last_name}</Link></p>
+              <span>{moment(postData.created_at, "YYYYMMDD\h:m:s").fromNow()} <PrivacyPost /></span>
             </div>
             <div className="modal-post-info-user-option">
               <BsThreeDots />
             </div>
           </div>
           <div className="modal-post-content">
-            {postData.contentPost}aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+            {postData.post_Content}
           </div>
           <div className="modal-post-reaction">
-            <span>100</span>
-            <span>Bình luận</span>
+            {postData.actions_post.length ? <span>{postData.actions_post.length} cảm xúc</span> : null}
+            {postData.comment_post.length ? <span>{postData.comment_post.length} cảm xúc</span> : null}
             <span>Chia sẻ</span>
           </div>
           <div className="modal-post-action">

@@ -9,7 +9,6 @@
 .input-comment-newfeed:focus {
   border-color: rgba(0, 128, 128, 1) !important;
 }
-
 .ant-card-actions>li {
   margin: 0 !important;
   cursor: pointer;
@@ -30,6 +29,7 @@
   align-items: center;
   justify-content: flex-start !important;
 }
+
 
 .setting-post div div li:hover {
   background: rgba(0, 128, 128, 1);
