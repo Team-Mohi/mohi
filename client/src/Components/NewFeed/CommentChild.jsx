@@ -1,6 +1,5 @@
 import React, {useRef} from 'react';
 import {Link} from 'react-router-dom';
-import {BsThreeDots} from "react-icons/bs";
 import moment from 'moment';
 
 function CommentParent(props) {
@@ -45,7 +44,6 @@ function CommentParent(props) {
       </div>
       <div className="post-comment-item-parent-content">
         <p>{commentChild.pivot.comment_Content}</p>
-        <span><BsThreeDots/></span>
       </div>
       <div className="post-comment-item-parent-action">
         <span onClick={() => appendInputChildReply(commentChild.id, commentChild.user_first_name + ' ' + commentChild.user_last_name)}>Trả lời</span>

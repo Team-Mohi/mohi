@@ -18,6 +18,14 @@ export const notifycations = (state = initialState, action) => {
         list: [...action.notifycation]
       }
       break;
+    case Types.DELETE_ONE_NOTI:
+      console.log(state);
+      const newList = state.list.filter(no => no.id !== action.payload)
+      return {
+        loading: false,
+        list: newList
+      }
+      break;
     default: return state
   }
 }

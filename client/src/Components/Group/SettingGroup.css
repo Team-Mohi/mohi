@@ -1,0 +1,76 @@
+.setting-page-container{
+  padding: 10px 15px;
+  background-color: white;
+  margin: 10px 0;
+}
+.setting-page-title{
+  width: 100%;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  margin-bottom: 5px;
+}
+.setting-page-title h5{
+  font-weight: 600;
+  font-size: 17px;
+}
+.setting-page-main{
+  display: flex;
+  width: 900px;
+  padding: 5px 10px;
+}
+.setting-page-edit-button{
+  margin-left: auto;
+}
+.setting-page-edit-button button{
+  border: 1px solid rgba(0,0,0,0.1);
+  padding: 5px 15px;
+  background-color: rgba(0,128,128);
+  color: white;
+  border-radius: 5px;
+  font-weight: 500;
+}
+.setting-page-edit-button:hover button{
+  background-color: rgba(0,128,128,0.8);
+
+}
+.setting-page-content{
+  max-width: 90%;
+}
+.setting-page-content-item{
+  float: left;
+  display: grid;
+  min-width: 350px;
+  padding: 10px 5px;
+  translate: all 2s ease;
+}
+.setting-page-content-item input, .setting-page-content-item textarea{
+  float: left;
+  display: grid;
+  min-width: 330px;
+  padding: 5px 10px;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 5px;
+}
+.setting-page-content-item h6{
+  width: 100%;
+  font-weight: 500;
+  font-size: 15px;
+}
+.setting-page-content-item p{
+  width: 350px;
+  align-items: center;
+  display: flex;
+}
+.setting-page-content-item p{
+  padding: 5px 0;
+}
+.setting-page-content-item p>svg{
+  margin: 0 5px;
+}
+.setting-page-content-item a{
+  color: black;
+
+}
+.setting-page-content-item a:hover{
+  color: black;
+  cursor: pointer;
+}

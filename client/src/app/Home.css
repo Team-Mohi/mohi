@@ -2,6 +2,9 @@ body {
   overflow-y: scroll;
   font-size: 14px !important;
 }
+.noti-container a:hover{
+  text-decoration: none;
+}
 ul{
   margin-bottom: 0 !important;
 }
@@ -10,6 +13,9 @@ ul{
 }
 .ant-spin-dot-item{
   background-color: rgba(0,128,128) !important;
+}
+.ant-layout-header{
+  padding: 0 !important;
 }
 button:focus {
   outline: none !important;

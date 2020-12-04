@@ -65,3 +65,9 @@
   transition: opacity .3s, bottom 0s .3s;
   z-index: 100;
 }
+.is-user-like{
+  fill:rgba(0,128,128);
+  stroke:rgba(0,128,128);
+  stroke-width:3;
+  font-size: 16px;
+}

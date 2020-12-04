@@ -2,7 +2,8 @@ import * as Types from './../Constants/ActionTypes.jsx';
 
 const initialState = {
   loading: true,
-  listStory: []
+  listStory: [],
+  loadingNewStory: false
 };
 
 export const stories = (state = initialState, action) => {
@@ -17,6 +18,21 @@ export const stories = (state = initialState, action) => {
       return {
         loading: false,
         listStory: action.stories
+      }
+      break;
+    case Types.REQUEST_ADD_NEW_STORY:
+      return {
+        ...state,
+        loading: false,
+        loadingNewStory: true
+      }
+      break;
+    case Types.ADD_NEW_STORY:
+    state.listStory = action.payload
+      return {
+        ...state,
+        loading: false,
+        loadingNewStory: false
       }
       break;
     default: return state

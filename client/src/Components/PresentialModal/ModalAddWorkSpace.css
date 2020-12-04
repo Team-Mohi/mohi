@@ -1,0 +1,58 @@
+.modal-add-work-space{
+    padding: 5px;
+}
+.modal-add-work-space-header{
+    width: 100%;
+    padding: 5px;
+    font-weight: 600;
+    font-size: 16px;
+    color: rgba(0,128,128);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.modal-add-work-space-main{
+    padding: 10px 15px;
+    width: 100%;
+}
+.modal-add-work-space-main-input{
+    width: 100%;
+}
+.modal-add-work-space-main-input label{
+    width: 100%;
+    font-weight: 500;
+    padding: 5px;
+    font-size: 15px;
+}
+.modal-add-work-space-main-input input{
+    width: 100%;
+    padding: 5px 10px;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 5px;
+
+}
+.modal-add-work-space-footer{
+    width: 100%;
+    text-align: center;
+
+}
+.modal-add-work-space-footer button{
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid rgba(0,0,0,0.1);
+    margin: 5px;
+    color: white;
+}
+.modal-add-work-space-footer button:first-child{
+    background-color: rgba(0,128,128);
+    color: white;
+    padding:5px 10px;
+}
+.modal-add-work-space-footer button:last-child{
+    background-color: rgba(0,0,0,0.5);
+    padding:5px 10px;
+}
+.modal-add-work-space-footer button:first-child:hover{
+    background-color: rgba(0,128,128,0.8);
+}
+.modal-add-work-space-footer:hover button:last-child{
+    background-color: rgba(0,0,0,0.6);
+}

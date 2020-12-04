@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect} from 'react';
 import './UploadMuti.css';
 import { FiPlus } from "react-icons/fi";
 import { AiOutlineClose } from "react-icons/ai";
@@ -9,6 +9,12 @@ function UploadMuti(props){
   const [files, setFiles] = useState([]);
   const [listLoading, setListLoading] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if(props.statusCreatePost && props.statusCreatePost !== 'loading'){
+      setFiles([])
+    }
+  }, [props.statusCreatePost])
 
   const onChange = (e) => {
     let arrLoading = [];
@@ -27,12 +33,13 @@ function UploadMuti(props){
   }
 
   const upload = async (formData) => {
-    await axios.post('https://api.cloudinary.com/v1_1/mohi-vn/image/upload', formData)
+    await axios.post('/v1_1/mohi-vn/upload', formData)
     .then((res) => {
       files.push(res.data)
     }).then(() =>{
       setListLoading([])
       setLoading(false);
+      props.uploadMuti(files)
     })
   }
 
@@ -40,18 +47,31 @@ function UploadMuti(props){
     const newFile = [...files]
     newFile.splice(index, 1)
     setFiles(newFile)
+    props.uploadMuti(newFile)
   }
 
   const renderFile = source => {
     return(
     <React.Fragment>
       {source.map((photo, index) => {
-        return (
-            <div className="list-preview-item" key={index}>
-              <img src={photo.secure_url} />
-              <div className={"list-preview-item-presential "+index}><AiOutlineClose onClick={() => deleteFile(index)}/></div>
-            </div>
-        )
+        if(photo.resource_type === 'image'){
+          return (
+              <div className="list-preview-item" key={index}>
+                <img src={photo.secure_url} />
+                <div className={"list-preview-item-presential "+index}><AiOutlineClose onClick={() => deleteFile(index)}/></div>
+              </div>
+          )
+          }else {
+            return (
+              <div className="list-preview-item video-item" key={index}>
+                <video>
+                     <source src={photo.secure_url} />
+                     Your browser does not support HTML5 video.
+                </video>
+                <div className={"list-preview-item-presential "+index}><AiOutlineClose onClick={() => deleteFile(index)}/></div>
+              </div>
+            )
+          }
       })}
       {loading ? <>
         {listLoading.map((load, index) => {
@@ -78,7 +98,7 @@ function UploadMuti(props){
         </div>
       </div>
       : null}
-        <input id="create_post_upload_image" type="file" multiple onChange={onChange} />
+        <input id="create_post_upload_image" type="file" multiple onChange={onChange} accept="image/*,video/*"/>
     </div>
   )
 }

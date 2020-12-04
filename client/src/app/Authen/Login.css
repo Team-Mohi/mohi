@@ -100,6 +100,7 @@ input {
   display: flex;
   width: 80%;
   margin: 0 auto;
+  position: relative;
 }
 
 .site-layout-register {
@@ -108,6 +109,7 @@ input {
   margin-top: 50px;
   display: flex;
   justify-content: center;
+  z-index: 10;
 }
 
 .site-layout-register-container {
@@ -117,9 +119,10 @@ input {
 
 .site-layout-viet-nam {
   width: 700px;
-  min-width: 700px;
   margin-top: 20px;
   margin-left: 50px;
+  display: flex;
+  align-items: center;
 }
 
 .site-layout-register-group {

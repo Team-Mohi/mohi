@@ -4,6 +4,7 @@ import createEmojiPlugin from "draft-js-emoji-plugin";
 import "draft-js-emoji-plugin/lib/plugin.css";
 import style from 'styled-components';
 import './EditorEmoji.css';
+import {convertToRaw, EditorState, ContentState} from "draft-js";
 
 const emojiPlugin = createEmojiPlugin({
   useNativeArt: true
@@ -29,6 +30,16 @@ export default class CustomEmojiEditor extends Component {
       this.editor.focus();
     }
   }
+
+  componentWillReceiveProps(nextProps){
+    if(nextProps.statusCreatePost !== this.props.statusCreatePost){
+      if(nextProps.statusCreatePost === 'success' || nextProps.statusCreatePost === 'error'){
+        const editorState = EditorState.push(this.state.editorState, ContentState.createFromText(''));
+        this.setState({ editorState });
+      }
+    }
+  }
+
   onChange = (editorState) => {
     this.setState({
       editorState

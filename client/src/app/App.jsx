@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import AppContainer from './../Containers/AppContainer.jsx';
 import LoginContainer from './../Containers/LoginContainer.jsx';
@@ -6,10 +6,27 @@ import Spin from './../Components/Spin/index.jsx';
 import {PresentialModal} from './../Components/PresentialModal/index.jsx';
 import { useSelector } from 'react-redux';
 import {toggleStatusPresentialModal} from './../Actions/index.jsx';
+var socketIOClient = require('socket.io-client');
 
 function App({ spin, presentialModal }) {
   const statusSpin = useSelector(state => state.spin);
   const statusPresentialModal = useSelector(state => state.presentialModal);
+
+  // const io = socketIOClient('/', {
+  //       transports: ['websocket'],
+  //       path: '/socket', // added this line of code
+  //   });
+  //
+  //   useEffect(() => {
+  //     io.on('server mesage', (isOnline) => {
+  //       console.log(isOnline);
+  //     })
+  //
+  //     io.on('event', (data) => {
+  //       console.log(data);
+  //     });
+  //
+  //   }, []);
 
   function IsJsonString(str) {
     try {

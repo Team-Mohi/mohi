@@ -1,0 +1,13 @@
+.modal-delete-from-group{
+    margin-left: auto;
+}
+.modal-delete-from-group button{
+    padding: 3px 10px;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 5px;
+    background-color: rgba(177, 39, 39, 0.8);
+    color: white;
+}
+.modal-delete-from-group:hover button{
+    background-color: rgba(177, 39, 39, 0.6);
+}

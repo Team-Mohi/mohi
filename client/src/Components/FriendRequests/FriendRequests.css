@@ -3,9 +3,10 @@
   }
   .friend-requests-container{
     margin: 0 auto;
-    width: 50%;
+    width: 1140px;
     background-color: white;
     border: rgba(0, 0, 0, 0.1) 1px solid;
+    min-height: 100vh;
   }
   .friend-requests-title{
     margin-top:10px ;
@@ -71,6 +72,7 @@
     justify-content: center;
     align-items: center;
     border: 1px solid rgba(0, 0, 0, 0.1);
+    background: #ddd;
   }
 
   .friend-requests-item-name a {
@@ -122,3 +124,12 @@
     color:  rgba(0, 0, 0, 0.8);
     text-decoration: none;
   }
+  .friend-requests-item-right .ant-spin-dot-item{
+    width: 5px !important;
+    height: 5px !important;
+  }
+.friend-requests-item-right .ant-spin-dot{
+  width: 0.5em !important;
+  height: 0.5em !important;
+  margin-left: 5px;
+}

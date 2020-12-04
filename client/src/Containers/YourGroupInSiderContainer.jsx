@@ -15,7 +15,7 @@ function YourGroupInSiderContainer({ myGroups }){
   }, [])
 
   const getApiYourGroup = async () => {
-      await axios.get('/api/auth/my-groups').then((res) => {
+      await axios.get('https://www.api.mohi.vn/api/auth/all-groups').then((res) => {
         dispatch(fetchMyGroups(res.data))
       })
       setLoading(false)

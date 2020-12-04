@@ -6,15 +6,15 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import {  useSelector} from 'react-redux';
 import {skeleTonStory} from './../Skeleton/index.jsx';
+import {Spin} from 'antd';
+import {Image,Transformation} from 'cloudinary-react';
 
 function Story({stories}){
-  return null
-  
+
   const stateStore = useSelector(state => state.stories);
   const listStory = stateStore.listStory;
   const loading = stateStore.loading;
-  // const loading = true;
-
+  const loadingNewStory = stateStore.loadingNewStory;
   var settings = {
       dots: false,
       infinite: true,
@@ -22,8 +22,6 @@ function Story({stories}){
       slidesToShow: listStory.length < 4 ? listStory.length : 4,
       slidesToScroll: 1
   };
-
-
 
   if(loading){
     return(
@@ -53,16 +51,25 @@ function Story({stories}){
         <div className="story-title">Tin</div>
             <Slider {...settings}>
             {listStory.map((story, index) => {
+              let story_image = story.list_story;
               return(
                 <div className="story-item" key={index}>
                   <div className="story-item-image">
-                    <img src={story.images_post[0].post_images_Url} alt={story.user_admin_post.user_first_name + ' ' + story.user_admin_post.user_last_name}/>
+                    {story_image[0].story_ImageUrl && <img src={story_image[0].story_ImageUrl} alt={story.user_first_name + ' ' + story.user_last_name}/>}
+                    {!story_image[0].story_ImageUrl && <div className="story-content-no-image"> <p>{story_image[0].story_Content}</p></div>}
+                    {loadingNewStory && story.id ===  JSON.parse(localStorage.getItem('ustk')).info.id && <div className="story-content-loading-image"> <Spin /></div>}
                   </div>
                   <div className="story-item-name">
-                    <p>{story.user_admin_post.user_first_name + ' ' + story.user_admin_post.user_last_name}</p>
+                    <p>{story.id === JSON.parse(localStorage.getItem('ustk')).info.id ? 'Tin của bạn': story.user_first_name + ' ' + story.user_last_name}</p>
                   </div>
                   <div className="story-item-avatar">
-                    <img src={story.user_admin_post.user_avatar} alt={story.user_admin_post.user_first_name + ' ' + story.user_admin_post.user_last_name}/>
+                    {story.user_avatar_cropX === null ?
+                      <img src={story.user_avatar} alt={story.user_first_name + ' ' + story.user_last_name} />
+                      :
+                      <Image cloudName="mohi-vn" publicId={story.user_avatar+ ".jpg"} version="1607061343">
+                        <Transformation height={story.user_avatar_cropH}  width={story.user_avatar_cropW} x={story.user_avatar_cropX} y={story.user_avatar_cropY} crop="crop" />
+                      </Image>
+                    }
                   </div>
                 </div>
               )

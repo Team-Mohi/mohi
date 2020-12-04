@@ -18,7 +18,7 @@
   padding: 5px 10px;
 }
 .setting-page-edit-button{
-  margin-left: auto;
+  text-align: center;
 }
 .setting-page-edit-button button{
   border: 1px solid rgba(0,0,0,0.1);
@@ -33,12 +33,12 @@
 
 }
 .setting-page-content{
-  max-width: 90%;
+  max-width: 95%;
 }
 .setting-page-content-item{
   float: left;
   display: grid;
-  min-width: 350px;
+  width: 50%;
   padding: 10px 5px;
   translate: all 2s ease;
 }
@@ -46,9 +46,31 @@
   float: left;
   display: grid;
   min-width: 340px;
-  padding: 5px 10px;
+  padding: 5px 0px;
   border: 1px solid rgba(0,0,0,0.2);
   border-radius: 5px;
+  width: 100%;
+}
+.setting-page-content-item-input{
+  position: relative;
+  display: flex;
+}
+
+.error_page {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 25px;
+  cursor: pointer;
+  fill: red;
+}
+.error_page_validate{
+  background: white;
+  margin-bottom: 0;
+  padding: 3px 10px;
+  color: red;
+  border-radius: 5px;
+  font-weight: 600;
 }
 .setting-page-content-item h6{
   width: 100%;
@@ -70,4 +92,8 @@
 .setting-page-content-item a:hover{
   color: black;
   cursor: pointer;
+}
+.ant-select-dropdown-placement-bottomLeft {
+    z-index: 10 !important;
+    position: fixed;
 }

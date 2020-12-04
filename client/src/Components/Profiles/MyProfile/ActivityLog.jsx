@@ -1,88 +1,73 @@
 import React, { useState } from 'react';
 import './ActivityLog.css';
 import { Link } from 'react-router-dom';
-import { FaRegSmile, FaUserFriends } from 'react-icons/fa';
+import { FaRegSmile, FaUserFriends, FaUserLock, FaUserAlt } from 'react-icons/fa';
 import { MdPublic, MdEdit } from 'react-icons/md';
+import {useSelector} from 'react-redux';
+import { WaveLoading } from 'react-loadingg';
+import moment from 'moment';
 
+function ActivityLog({ activities }) {
+    const {list, loading} = useSelector(state => state.activities);
+    const activity = [];
 
-function ActivityLog() {
+    if(loading){
+      return(
+        <WaveLoading />
+      )
+    }
 
-    const ActionActivityLog = () => {
+    const contentActivity = (type) => {
+        if(type === 'haha' || type === 'love' || type === 'wow' || type === 'like' || type === 'angry' || type === 'sad'){
+
+        }
+
+        if(type === 'comment'){
+        }
+
+        if(type === 'share'){
+        }
+
+        if(type === 'push_post'){
+        }
+
+        if(type === 'push_story'){
+        }
+
+        if(type === 'send_request_add_friend'){
+        }
+
+        if(type === 'received_request_add_friend'){
+        }
+    }
+
+    const ActionActivityLog = (props) => {
         return (
             <React.Fragment>
                 <div className="activity-card-main">
                     <div className="activity-left">
                         <div className="activity-action">
                             <FaRegSmile style={{ width: '70px' }} />
-                            <p><b>Lập vũ</b> đã bày tỏ cảm xúc về bài viếtđã bày tỏ cảm xúc về bài viết iếtđã bày tỏ cảm xúc về bài </p>
-                        </div>
-                        <div className="activity-time">
-                            <Link to="">07:33, 14 tháng 11, 2020</Link>
+                            <p>Bạn đã bày tỏ cảm xúc về bài viếtđã bày tỏ cảm xúc về bài viết iếtđã bày tỏ cảm xúc về bài </p>
                         </div>
                     </div>
                     <div className="activity-main">
+                      {props.ac.images_post.filter(img => img.post_images_Type === 'image').length ?
                         <div className="activity-main-img">
-                            <img src="https://i.pinimg.com/564x/15/ee/0d/15ee0d1a3492507fa161ab582dc663b9.jpg" alt="" />
-                            <img src="https://i.pinimg.com/564x/15/ee/0d/15ee0d1a3492507fa161ab582dc663b9.jpg" alt="" />
+                          {props.ac.images_post.filter(img => img.post_images_Type === 'image').map((img, index) => {
+                            return(
+                              <img src={img.post_images_Url} alt="" />
+                            )
+                          })}
                         </div>
+
+                        : null}
                         <div className="activity-main-content">
-                            <p>	Heloo,anh tên gì đây khong phải thính đâu ..🤷‍♀️</p>
+                            <p>{props.ac.post_Content}‍</p>
                         </div>
                     </div>
                     <div className="activity-right">
                         <div className="activity-right-private">
-                            <button title="Công khai"><MdPublic style={{ width: '30px' }} /></button>
-                            <button title="Bỏ hoạt động này" ><MdEdit style={{ width: '30px' }} /></button>
-                        </div>
-                    </div>
-                </div>
-                <div className="activity-card-main">
-                    <div className="activity-left">
-                        <div className="activity-action">
-                            <FaRegSmile style={{ width: '70px' }} />
-                            <p><b>Lập vũ</b> đã bày tỏ cảm xúc về bài viết </p>
-                        </div>
-                        <div className="activity-time">
-                            <Link to="">07:33, 14 tháng 11, 2020</Link>
-                        </div>
-                    </div>
-                    <div className="activity-main">
-                        <div className="activity-main-content">
-                            <p>	Heloo,anh tên gì đây khong phải thính đâu ..🤷‍♀️</p>
-                        </div>
-                    </div>
-                    <div className="activity-right">
-                        <div className="activity-right-private">
-                            <button title="Bạn bè"><FaUserFriends style={{ width: '30px' }} /></button>
-                            <button title="Bỏ hoạt động này" ><MdEdit style={{ width: '30px' }} /></button>
-                        </div>
-                    </div>
-                </div>
-                <div className="activity-card-main">
-                    <div className="activity-left">
-                        <div className="activity-action">
-                            <FaRegSmile style={{ width: '70px' }} />
-                            <p><b>Lập vũ</b> đã bày tỏ cảm xúc về bài viếtđã bày tỏ cảm xúc về bài viết iếtđã bày tỏ cảm xúc về bài </p>
-                        </div>
-                        <div className="activity-time">
-                            <Link to="">07:33, 14 tháng 11, 2020</Link>
-                        </div>
-                    </div>
-                    <div className="activity-main">
-                        <div className="activity-main-img">
-                            <img src="https://i.pinimg.com/564x/15/ee/0d/15ee0d1a3492507fa161ab582dc663b9.jpg" alt="" />
-                            <img src="https://i.pinimg.com/564x/15/ee/0d/15ee0d1a3492507fa161ab582dc663b9.jpg" alt="" />
-                            <img src="https://i.pinimg.com/564x/15/ee/0d/15ee0d1a3492507fa161ab582dc663b9.jpg" alt="" /> 
-                        </div>
-                        
-                        <div className="activity-main-content">
-                            <p>	Heloo,anh tên gì đây khong phải thính đâu ..🤷‍♀️</p>
-                        </div>
-                    </div>
-                    <div className="activity-right">
-                        <div className="activity-right-private">
-                            <button title="Công khai"><MdPublic style={{ width: '30px' }} /></button>
-                            <button title="Bỏ hoạt động này" ><MdEdit style={{ width: '30px' }} /></button>
                         </div>
                     </div>
                 </div>
@@ -97,18 +82,16 @@ function ActivityLog() {
                     <div className="activity-title">
                         <h5>Nhật ký hoạt động</h5>
                     </div>
-                    <div className="activity-card">
-                        <div className="activity-card-header">
-                            <h5>Hôm nay</h5>
+                    {list.map((ac, index) => {
+                      return(
+                        <div className="activity-card" key={index}>
+                            <div className="activity-card-header">
+                                <h5>{moment(moment.utc(ac.created_at).toDate()).locale('vi-vn').format('LLLL')}</h5>
+                            </div>
+                            <ActionActivityLog ac={ac}/>
                         </div>
-                        <ActionActivityLog />
-                    </div>
-                    <div className="activity-card">
-                        <div className="activity-card-header">
-                            <h5>Hôm qua</h5>
-                        </div>
-                        <ActionActivityLog />
-                    </div>
+                      )
+                    })}
                 </div>
             </div>
 

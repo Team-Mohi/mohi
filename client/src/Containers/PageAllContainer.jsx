@@ -15,7 +15,7 @@ function PageAllContainer({ myPages }){
   }, [])
 
   const getApiYourPage = async () => {
-      await axios.get('/api/auth/all-mypages').then((res) => {
+      await axios.get('https://www.api.mohi.vn/api/auth/all-mypages').then((res) => {
         setLoading(false)
         dispatch(fetchMyPages(res.data))
       })

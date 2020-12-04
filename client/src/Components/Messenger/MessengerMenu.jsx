@@ -5,9 +5,12 @@ import {FaDotCircle} from 'react-icons/fa';
 import './MessengerMenu.css';
 import { useSelector } from 'react-redux';
 import moment from 'moment';
+import {Spin} from 'antd';
+import {Image,Transformation} from 'cloudinary-react';
 
 function MenuMessenger({ message }) {
-  const messages = useSelector(state => state.message);
+  const {list, loading} = useSelector(state => state.message);
+
   moment.updateLocale('en', {
     relativeTime : {
         future: "%s",
@@ -29,17 +32,52 @@ function MenuMessenger({ message }) {
     }
   });
 
-  if(!messages.length){
-      return(
-        <div className = "menu-noti-container">
-          <div className="menu-noti-main">
-            <div className="menu-noti-title">
-              <h5>Tin nhắn</h5>
+  if(loading && !list.length){
+    return(
+      <div className = "menu-noti-container">
+        <div className="menu-noti-main">
+          <div className="menu-noti-title">
+            <h5>Tin nhắn</h5>
+            <div className="menu-noti-title-control">
             </div>
-            <div className="no-data">Không có dữ liệu hiển thị</div>
+          </div>
+          <div className="friend-may-know-container"
+            style={{
+              minHeight: '80px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
+            <Spin />
           </div>
         </div>
-      )
+      </div>
+    )
+  }
+
+  if(!loading && !list.length){
+    return(
+      <div className = "menu-noti-container">
+        <div className="menu-noti-main">
+          <div className="menu-noti-title">
+            <h5>Tin nhắn</h5>
+            <div className="menu-noti-title-control">
+            </div>
+          </div>
+          <div className="friend-may-know-container"
+            style={{
+              minHeight: '80px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
+            Bạn chưa có tin nhắn
+          </div>
+        </div>
+      </div>
+    )
   }
 
   return (<div className = "menu-noti-container"> <div className="menu-noti-main">
@@ -48,17 +86,23 @@ function MenuMessenger({ message }) {
     </div>
     <div className="menu-dropdown-scroll">
       <div className="menu-dropdown-scroll-thumb">
-        {messages.map((message, index) => {
+        {list.map((message, index) => {
           return(
-            <Link to="/" key={index}>
-              <div className={`menu-messenger-content ` + `${!message.pivot.messages_ReadAt && `menu-messenger-content-active`}`}>
+            <Link to={"/messenger/" + message.id} key={index}>
+              <div className={`menu-messenger-content `}>
                 <div className="menu-noti-content-avatar">
                   <img src={message.user_avatar} alt={message.user_first_name + ' ' + message.user_last_name}/>
+                  {message.user_avatar_cropX === null ?
+                    <img src={message.user_avatar} alt={message.user_last_name} />
+                    :
+                    <Image cloudName="mohi-vn" publicId={message.user_avatar+ ".jpg"} version="1607061343">
+                      <Transformation height={message.user_avatar_cropH}  width={message.user_avatar_cropW} x={message.user_avatar_cropX} y={message.user_avatar_cropY} crop="crop" />
+                    </Image>
+                  }
                 </div>
                 <div className="menu-messenger-content-title">
                   <h6>{message.user_first_name + ' ' + message.user_last_name}</h6>
                   <div className="menu-noti-content-button">
-                    {message.pivot.messages_ReadAt && <MdDone/>}
                     <p>{message.pivot.messages_Message}</p>
                   </div>
                 </div>

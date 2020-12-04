@@ -13,8 +13,12 @@ import {GoPrimitiveDot} from "react-icons/go";
 import {AiFillCamera} from "react-icons/ai";
 import VideoGroup from './VideoGroup.jsx';
 import ImageGroup from './ImageGroup.jsx';
+import SettingGroup from './SettingGroup.jsx';
+import { useDispatch} from 'react-redux';
+import { toggleStatusPresentialModal } from './../../Actions/index.jsx';
 
 function Group(){
+  const dispatch = useDispatch()
   const history = useHistory();
   const location = useLocation().pathname.split('/');
   const {idGroup} = useParams();
@@ -70,6 +74,10 @@ function Group(){
     )
   }
 
+  function requestJoinGroupFunc(){
+    dispatch(toggleStatusPresentialModal('modal_request_join_group'));
+  }
+
   return(
     <React.Fragment>
       <div className="wrapper">
@@ -93,7 +101,7 @@ function Group(){
                 </div>
               </div>
               <div className="group-name">
-                <Link>ReactJs Việt Nam</Link>
+                <Link to="">ReactJs Việt Nam</Link>
               </div>
               <div className="group-one-menu-sider">
                 <ul>
@@ -137,8 +145,8 @@ function Group(){
                     <span>Đã tham gia <FaCheck /></span>
                     <span>Mời thành viên <AiOutlinePlus/></span>
                   </div>
-                  <div className="group-menu-button-group">
-                    <span>Quản lí yêu cầu</span>
+                  <div className="group-menu-button-group" onClick={requestJoinGroupFunc}>
+                    <span >Quản lí yêu cầu</span>
                   </div>
                 </div>
               </div>
@@ -357,6 +365,9 @@ function Group(){
                 </Route>
                 <Route path="/groups/:idGroup/videos">
                   <VideoGroup />
+                </Route>
+                <Route path="/groups/:idGroup/settings">
+                  <SettingGroup />
                 </Route>
               </Switch>
             </div>

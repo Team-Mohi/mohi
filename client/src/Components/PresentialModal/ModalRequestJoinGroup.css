@@ -1,0 +1,23 @@
+.modal-request-from-group{
+    margin-left: auto;
+    
+}
+.modal-request-from-group button{
+    padding: 3px 10px;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 5px;
+    color: white;
+    margin: 0 5px;
+}
+.modal-request-from-group button:first-child{
+    background-color: rgba(0,128,128,0.9);
+}
+.modal-request-from-group button:last-child{
+    background-color: rgba(177, 39, 39, 0.8);
+}
+.modal-request-from-group button:first-child:hover{
+    background-color: rgba(0,128,128,0.6);
+}
+.modal-request-from-group button:last-child:hover{
+    background-color: rgba(177, 39, 39, 0.6);
+}

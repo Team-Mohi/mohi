@@ -15,7 +15,7 @@ function ChangePassContainer(){
     //load Spin
     dispatch(toggleStatusSpin())
 
-    await axios.post('/api/change-password', data)
+    await axios.post('https://www.api.mohi.vn/api/change-password', data)
     .then((res) => {
       console.log(res);
       localStorage.setItem('ustk', JSON.stringify(res.data));

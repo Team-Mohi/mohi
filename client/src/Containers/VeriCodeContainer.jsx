@@ -15,7 +15,7 @@ function VeriCodeContainer(){
     //load Spin
     dispatch(toggleStatusSpin())
 
-    await axios.post('/api/very-regiser', data)
+    await axios.post('https://www.api.mohi.vn/api/very-regiser', data)
     .then((res) => {
       localStorage.setItem('ustk', JSON.stringify(res.data));
       history.push('/');

@@ -34,7 +34,7 @@ function YourGroupInSider(props){
             </Link>
           </List.Item>
         )
-      })} </> : <div>Bạn chưa tạo trang</div>}
+      })} <Link to="/pages">Xem thêm</Link></> : <div>Bạn chưa tạo trang</div>}
     </React.Fragment>
   )
 }

@@ -81,3 +81,11 @@
   opacity: 0;
   visibility: hidden;
 }
+.video-item video{
+  width: 100%;
+}
+.video-item{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

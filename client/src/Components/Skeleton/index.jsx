@@ -40,6 +40,21 @@ export const skeletonPostNewFeed = (<React.Fragment>
       <div className="skeleton-block skeleton-block-60cent"/>
     </div>
   </li>
+  <li className="skeleton-post-item">
+    <div className="skeleton-post-item-head">
+      <div className="skeleton-img-circle-50"/>
+      <div>
+        <div className="skeleton-block skeleton-block-200"/>
+        <div className="skeleton-block skeleton-block-150"/>
+      </div>
+    </div>
+    <div className="skeleton-post-content">
+      <div className="skeleton-block skeleton-block-90cent"/>
+      <div className="skeleton-block skeleton-block-80cent"/>
+      <div className="skeleton-block skeleton-block-70cent"/>
+      <div className="skeleton-block skeleton-block-60cent"/>
+    </div>
+  </li>
 </React.Fragment>)
 
 export const skeleTonStory = (<React.Fragment>

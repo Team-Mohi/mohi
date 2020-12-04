@@ -15,7 +15,7 @@ function RegisterContainer(){
     //load Spin
     dispatch(toggleStatusSpin())
 
-    await axios.post('/api/register', data)
+    await axios.post('https://www.api.mohi.vn/api/register', data)
     .then((response) => {
       console.log(response);
       let code = CryptoJS.AES.encrypt(JSON.stringify(response.data.veriCode), 'code_veri').toString();

@@ -13,8 +13,8 @@ import Group from './../Components/Group/Group.jsx';
 import GroupAllContainer from './../Containers/GroupAllContainer.jsx';
 import ModalPost from './../Components/ModalPost/index.jsx';
 import  Main from './../Components/NewFeed/Index.jsx';
-import  MyProfile from './../Components/Profiles/MyProfile/Index.jsx';
-import  Messenger from './../Components/Messenger/index.jsx';
+import  ProfileContainer from './../Containers/ProfileContainer.jsx';
+import  MessengerContainer from './../Containers/MessengerContainer.jsx';
 import  SearchNavigation from './../Components/Search/index.jsx';
 import  FriendRequests from './../Components/FriendRequests/FriendRequests.jsx';
 import  FriendSent from './../Components/FriendRequests/FriendSent.jsx';
@@ -28,6 +28,13 @@ import Rules from './../Components/Footer/Rules.jsx';
 import Setting from '../Components/Setting/Setting.jsx';
 import Help from '../Components/Footer/Help.jsx';
 import {PUBLIC_URL} from './../Constants/public.jsx';
+import NotFound from './../Components/NotFound/index.jsx';
+import {Image,Transformation} from 'cloudinary-react';
+const socketIOClient = require('socket.io-client');
+
+const socket = socketIOClient('http://localhost:8080', {
+  transports: ['websocket'],
+});
 
 function Home(props) {
     const { Header } = Layout;
@@ -40,11 +47,19 @@ function Home(props) {
     const currentUser = JSON.parse(localStorage.getItem('ustk')).info;
 
     useEffect(() => {
+
       if(listChatMini.length === 0){
         if(localStorage.getItem('listChatMini')){
           setListChatMini(localStorage.getItem('listChatMini').split(','))
         }
       }
+
+      // socket.on('connect', () => {
+      //       console.log('connected');
+      // });
+      // socket.on('server mesage', (data) => {
+      //   console.log(data);
+      // });
     },[]);
 
     useEffect(() => {
@@ -92,8 +107,14 @@ function Home(props) {
                         />
                         <Menu className="menu-home" mode="horizontal" >
                             <Menu.Item className="after-li">
-                                <Link className="avatar-home" to="/profile" >
-                                    <img src={currentUser.user_avatar} alt={currentUser.user_first_name + ' ' + currentUser.user_last_name} />
+                                <Link className="avatar-home" to={"/profile/" + currentUser.user_username} >
+                                    {currentUser.user_avatar_cropX === null ?
+                                      <img src={currentUser.user_avatar} alt={currentUser.user_first_name + ' ' + currentUser.user_last_name} />
+                                      :
+                                      <Image cloudName="mohi-vn" publicId={currentUser.user_avatar+ ".jpg"} version="1607061343">
+                                        <Transformation height={currentUser.user_avatar_cropH}  width={currentUser.user_avatar_cropW} x={currentUser.user_avatar_cropX} y={currentUser.user_avatar_cropY} crop="crop" />
+                                      </Image>
+                                    }
                                     <span>{currentUser.user_last_name}</span>
                                 </Link>
                             </Menu.Item>
@@ -125,37 +146,19 @@ function Home(props) {
                 </Header>
                     <Switch>
                       <Route exact path="/" component={Main} />
-                      <Route path="/profile" component={MyProfile} />
-                      <Route path="/messenger" component={Messenger} />
+                      <Route path="/messenger" component={MessengerContainer} />
                       <Route path="/friendrequests" component={FriendRequests} />
                       <Route path={`/search/:value`} component={SearchNavigation} />
                       <Route path="/friend-sent" component={FriendSent} />
                       <Route path="/watch" component={Watch} />
-                      <Route path="/pages/:idPage" component={Page} />
-                      <Route path="/groups/:idGroup" component={Group} />
-                      <Route exact path="/pages" component={PageAllContainer} />
-                      <Route exact path="/groups" component={GroupAllContainer} />
                       <Route path="/photo/:index" component={ModalPost} />
                       <Route path="/setting" component={Setting} />
                       <Route path="/notifications" component={Notifications} />
                       <Route path="/rules-mohi" component={Rules} />
-                    <Route path="/help" component={Help} />
+                      <Route path="/help" component={Help} />
+                      <Route path="/profile/:idProfile" component={ProfileContainer} />
+                      <Route path="/404" component={NotFound} />
                     </Switch>
-                {history.location.pathname !== '/messenger' ?
-                  <>
-                    {listChatMini.length === 0 ? null :
-                      <div className="list-chatmini-container">
-                      {listChatMini.map((chatmini, index) => {
-                        return(
-                          <ChatMini key={index} iduser={chatmini} closeChatMini={closeChatMini} ref={parentChatRef}/>
-                        )
-                      })
-                      }
-                      </div>
-                    }
-                    <ChatSider increaseChatMini={increaseChatMini}/>
-                  </>
-                : null}
             </Layout>
         </>
     )

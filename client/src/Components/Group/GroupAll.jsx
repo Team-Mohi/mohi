@@ -35,10 +35,10 @@ function Group(props) {
                             <ul className="group-list-ul">
                               {props.loading ? skeletonMyGroupInSider :
                                 <>
-                                {groups.filter(groupfill => groupfill.pivot.group_users_Role === "adminstrators" || groupfill.pivot.group_users_Role === "censor").map((group,index) => {
+                                {groups.filter(groupfill => groupfill.pivot.group_users_Role === "adminstrators" || groupfill.pivot.group_users_Role === "censor").map((group, index) => {
                                   return(
-                                    <Link to={"groups/" + group.group_FakeId}>
-                                      <li className="group-list-li" key={index}>
+                                    <Link to={"groups/" + group.group_FakeId} key={index}>
+                                      <li className="group-list-li">
                                           <div className="group-list-li-avt">
                                             {group.group_Avatar && <img src={group.group_Avatar} alt={group.group_Name} />}
                                           </div>
@@ -60,8 +60,8 @@ function Group(props) {
                                 <>
                                 {groups.filter(groupfill => groupfill.pivot.group_users_Role === "member").map((group,index) => {
                                   return(
-                                    <Link to={"groups/" + group.group_FakeId}>
-                                    <li className="group-list-li" key={index}>
+                                    <Link to={"groups/" + group.group_FakeId} key={index}>
+                                    <li className="group-list-li" >
                                         <div className="group-list-li-avt">
                                             {group.group_Avatar && <img src={group.group_Avatar} alt={group.group_Name} />}
                                         </div>

@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import EditorEmoji from './EditorEmoji.jsx';
 import EditorMention from './EditorMention.jsx';
+import {Image,Transformation} from 'cloudinary-react';
 import UploadMuti from './../Upload/UploadMuti.jsx';
 import {Select, Switch, Button, Tooltip, Row, Col} from 'antd';
 import {Link} from 'react-router-dom';
@@ -11,15 +12,58 @@ import { FiBarChart } from "react-icons/fi";
 import { GiPhone } from "react-icons/gi";
 import { MdEmail } from "react-icons/md";;
 
-function CreatePost() {
+function CreatePost(props) {
   const {Option} = Select;
-  const [isLoadingSubmit, setIsLoadingSubmit] = useState(false);
-  const [valueEditor, setValueEditor] = useState();
   const [isShowInputTag, setIsShowInputTag] = useState(false);
   const [listMention, setListMention] = useState([]);
-  const [firstMention, setFirstMention] = useState();
   const [showModalCreatePost, setShowModalCreatePost] = useState(false);
   const currentUser = JSON.parse(localStorage.getItem('ustk')).info;
+  // data send api create post
+  const [valueEditor, setValueEditor] = useState();
+  const [fileList, setFileList] = useState([]);
+  const [privacyNewFeed, setPrivacyNewFeed] = useState('public');
+  const [privacyStory, setPrivacyStory] = useState('public');
+  const [placeNewFeed, setPlaceNewFeed] = useState(1);
+  const [placeStory, setPlaceStory] = useState(0);
+
+  useEffect(() => {
+    if(props.statusCreatePost === 'success' || props.statusCreatePost === 'error'){
+      setFileList([])
+      setValueEditor(null)
+      setShowModalCreatePost(false)
+      setPlaceNewFeed(1)
+      setPlaceStory(0)
+    }
+  }, [props.statusCreatePost])
+
+  const uploadMuti = (files) => {
+    setFileList(files)
+  }
+
+  const onChangePrivacyStory = (value) => {
+    setPrivacyStory(value)
+  }
+
+  const onChangePrivacyNewFeed = (value) => {
+    setPrivacyNewFeed(value)
+  }
+
+  const onChangePlaceNewFeed = (checked, event) => {
+
+    if(checked){
+      setPlaceNewFeed(1)
+    }else {
+      setPlaceNewFeed(0)
+    }
+  }
+
+  const onChangePlaceStory= (checked, event) => {
+    if(checked){
+      setPlaceStory(1)
+    }else {
+      setPlaceStory(0)
+    }
+  }
 
   function showModalCreatePostFunc(){
     setShowModalCreatePost(true)
@@ -30,7 +74,7 @@ function CreatePost() {
   }
 // func create post when submit
   function submitCreatePost(){
-    setIsLoadingSubmit(true)
+    props.submitCreatePost(valueEditor, fileList, privacyNewFeed, privacyStory, placeNewFeed, placeStory, listMention)
   }
 
   const changeStatusButtonSubmit = (value) => {
@@ -42,8 +86,13 @@ function CreatePost() {
   }
 
   function showMentionList(mention){
-    if(!firstMention) setFirstMention(mention)
-    if(firstMention) setListMention([...listMention, mention])
+    let arr = [];
+
+    for(let key in mention){
+      const ent = mention[key];
+        arr.push(ent);
+    }
+    setListMention(arr)
   }
 
   const moreMention = () => {
@@ -51,7 +100,7 @@ function CreatePost() {
       <ul className="create-post-more-mention">
         {listMention.map((mention, index) => {
           return(
-            <li key={index}><Link to={mention.link}>{mention.name}</Link></li>
+            <li key={index}><Link to={mention.data.mention.link}>{mention.data.mention.name}</Link></li>
           )
         })}
       </ul>
@@ -63,30 +112,34 @@ function CreatePost() {
         <div className="create-post" onClick={() => showModalCreatePostFunc()} style={showModalCreatePost ? {zIndex: '10'} : null}>
           <div className="create-post-input">
             <div className="create-post-avatar">
-              <img src={currentUser.user_avatar} alt={currentUser.user_first_name + ' ' + currentUser.user_last_name} />
+              {currentUser.user_avatar_cropX === null ?
+                <img src={currentUser.user_avatar} alt={currentUser.user_first_name + ' ' + currentUser.user_last_name} />
+                :
+                <Image cloudName="mohi-vn" publicId={currentUser.user_avatar+ ".jpg"} version="1607061343">
+                  <Transformation height={currentUser.user_avatar_cropH}  width={currentUser.user_avatar_cropW} x={currentUser.user_avatar_cropX} y={currentUser.user_avatar_cropY} crop="crop" />
+                </Image>
+              }
             </div>
             <div className="create-post-editor">
-            <EditorEmoji showModalCreatePost={showModalCreatePost} changeStatusButtonSubmit={changeStatusButtonSubmit}/>
+            <EditorEmoji showModalCreatePost={showModalCreatePost} changeStatusButtonSubmit={changeStatusButtonSubmit} statusCreatePost={props.statusCreatePost}/>
             </div>
           </div>
-          <UploadMuti showModalCreatePost={showModalCreatePost}/>
+          <UploadMuti statusCreatePost={props.statusCreatePost} showModalCreatePost={showModalCreatePost} uploadMuti={uploadMuti}/>
           {isShowInputTag && showModalCreatePost ?
             <>
               <div className="create-post-input-tag">
               {showModalCreatePost && <EditorMention showMentionList={showMentionList}/>}
               </div>
-              {firstMention ?
+              {listMention.length ?
               <div className="creat-post-tag-list">
-                <span>Cùng với</span>
                 <span>
-                  <Link to={firstMention.link}> {firstMention.name} </Link> {/*mention đầu tiên*/}
                   {listMention.length <= 2 ?
                     <>
                       {listMention.map((mention, index) => {
                         return(
                           <span  key={index}>
-                            và
-                            <Link to={mention.link}> {mention.name} </Link> {/*mention kế trừ mention đầu*/}
+                            {index === 0 ? 'Cùng với' : 'và'}
+                            <Link to={mention.data.mention.link}> {mention.data.mention.name} </Link> {/*mention kế trừ mention đầu*/}
                           </span>
                         )
                       })}
@@ -94,7 +147,7 @@ function CreatePost() {
                   :
                     <span className="create-post-mention">
                       <Tooltip title={moreMention} color={`black`}>
-                          và {listMention.length} người khác
+                          cùng với {listMention.length} người khác
                       </Tooltip>
                     </span>
                   }
@@ -120,10 +173,10 @@ function CreatePost() {
               <div className="create-post-choose-place-post">
                 <div className="create-post-newfeed-place">
                   <div>
-                      <Switch></Switch>
+                      <Switch onChange={(checked, event) => onChangePlaceStory(checked, event)} ></Switch>
                       <span className="place-post">Tin của bạn</span>
                   </div>
-                  <Select className="select-privacy" defaultValue="public" style={{ width: 140 }} loading>
+                  <Select className="select-privacy" defaultValue={privacyNewFeed} style={{ width: 140 }} onSelect={(value) => onChangePrivacyStory(value)}>
                       <Option value="public"><MdPublic /> Công khai</Option>
                       <Option value="friend"><FaUserFriends /> Bạn bè</Option>
                       <Option value="onlyme"><FaLock /> Chỉ mình tôi</Option>
@@ -131,10 +184,10 @@ function CreatePost() {
                 </div>
                 <div className="create-post-story-place">
                   <div>
-                      <Switch defaultChecked></Switch>
+                      <Switch  onChange={(checked, event) => onChangePlaceNewFeed(checked, event)} defaultChecked></Switch>
                       <span className="place-post">Bảng tin</span>
                   </div>
-                  <Select className="select-privacy" defaultValue="public" style={{ width: 140 }} loading>
+                  <Select className="select-privacy" defaultValue={privacyStory} style={{ width: 140 }} onSelect={(value) => onChangePrivacyNewFeed(value)}>
                       <Option value="public"><MdPublic /> Công khai</Option>
                       <Option value="friend"><FaUserFriends /> Bạn bè</Option>
                       <Option value="onlyme"><FaLock /> Chỉ mình tôi</Option>
@@ -142,11 +195,11 @@ function CreatePost() {
                 </div>
               </div>
               <div className="create-post-submit">
-                {isLoadingSubmit ?
+                {props.statusCreatePost === 'loading' ?
                   <Button loading>Đăng</Button>
                 :
                 <>
-                {valueEditor ?
+                {valueEditor || fileList.length ?
 
                   <Button onClick={() => submitCreatePost()} >Đăng</Button>
                   :

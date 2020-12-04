@@ -1,41 +1,60 @@
 import React, { useEffect } from 'react';
 import Home from './../app/Home.jsx';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import { fetchMessagePopup } from './../Actions/index.jsx';
-import { fetchFriendRequestPopup } from './../Actions/index.jsx';
+import { useSelector, useDispatch } from 'react-redux';
+import { requestMessagePopup } from './../Actions/index.jsx';
+import { responseMessagePopup } from './../Actions/index.jsx';
+import { responseFriendRequestPopup } from './../Actions/index.jsx';
+import { requestFriendRequestPopup } from './../Actions/index.jsx';
+import { responseFriend } from './../Actions/index.jsx';
+import { requestFriend } from './../Actions/index.jsx';
 import { fetchListUserSuggestion } from './../Actions/index.jsx';
 import { fetchListStory } from './../Actions/index.jsx';
 import { responseListStory } from './../Actions/index.jsx';
 import { responseListUserSuggestion } from './../Actions/index.jsx';
 import { fetchListNotification } from './../Actions/index.jsx';
 import { responseListNotification } from './../Actions/index.jsx';
+import { responseListMyRequestAddFriend } from './../Actions/index.jsx';
 
 function AppContainer(){
   require('./../axios/inceptor.jsx');
-
   const dispatch = useDispatch();
 
   const getListMessagePopup = async () => {
-    await axios.get('/api/auth/list-message')
+    dispatch(requestMessagePopup())
+
+    await axios.get('https://www.api.mohi.vn/api/auth/list-message')
     .then((res) => {
-        dispatch(fetchMessagePopup(res.data))
+        dispatch(responseMessagePopup(res.data))
+    }).catch((e) => {
+      console.log(e);
+    })
+  }
+
+  const getListMyRequestAddFriend = async () => {
+    // dispatch(requestFriendRequestPopup())
+
+    await axios.get('https://www.api.mohi.vn/api/auth/my-request-friend')
+    .then((res) => {
+      dispatch(responseListMyRequestAddFriend(res.data))
     }).catch((e) => {
       console.log(e);
     })
   }
 
   const getListFriendRequest = async () => {
-    await axios.get('/api/auth/users-request')
+    dispatch(requestFriendRequestPopup())
+
+    await axios.get('https://www.api.mohi.vn/api/auth/users-request')
     .then((res) => {
-      dispatch(fetchFriendRequestPopup(res.data))
+      dispatch(responseFriendRequestPopup(res.data))
     }).catch((e) => {
       console.log(e);
     })
   }
 
   const getListUserSuggestion = async () => {
-    await axios.get('/api/auth/users-suggestion')
+    await axios.get('https://www.api.mohi.vn/api/auth/users-suggestion')
     .then((res) => {
         dispatch(responseListUserSuggestion(res.data))
     }).catch((e) => {
@@ -44,7 +63,7 @@ function AppContainer(){
   }
 
   const getListStory = async () => {
-    await axios.get('/api/auth/get-story-home')
+    await axios.get('https://www.api.mohi.vn/api/auth/get-story-home')
     .then((res) => {
         dispatch(responseListStory(res.data))
     }).catch((e) => {
@@ -53,7 +72,7 @@ function AppContainer(){
   }
 
   const getNotification = async () => {
-    await axios.get('/api/auth/notification')
+    await axios.get('https://www.api.mohi.vn/api/auth/notification')
     .then((res) => {
         dispatch(responseListNotification(res.data))
     }).catch((e) => {
@@ -61,7 +80,23 @@ function AppContainer(){
     })
   }
 
+  const getListFriend =  async () => {
+      dispatch(requestFriend())
+
+      await axios.get('https://www.api.mohi.vn/api/auth/list-friends')
+      .then((res) => {
+        dispatch(responseFriend(res.data))
+      })
+      .catch((e) => {
+        console.log(e);
+      })
+  }
+
   useEffect(() => {
+    getListMyRequestAddFriend()
+
+    getListFriend()
+
     dispatch(fetchListUserSuggestion());
     getListUserSuggestion();
 

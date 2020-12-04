@@ -58,10 +58,15 @@
 .three_image_item_0, .three_image_item_1, .three_image_item_2, .four_image_item_1, .four_image_item_2, .four_image_item_3, .four_image_item_0 {
   float: left;
 }
-
+.three_image_item_profile_0{
+  width: 298px !important;
+}
 .three_image_item_0 {
   width: 340px;
   height: 500px;
+}
+.four_image_proflie_0{
+  width: 348px !important;
 }
 
 .four_image_item_0 {

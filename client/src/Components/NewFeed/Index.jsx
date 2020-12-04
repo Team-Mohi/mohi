@@ -5,21 +5,18 @@ import {FiYoutube} from "react-icons/fi";
 import {GrGroup} from "react-icons/gr";
 import {GoPrimitiveDot} from "react-icons/go";
 import {AiFillFlag} from "react-icons/ai";
-import {FaUserFriends, FaFacebookMessenger} from 'react-icons/fa';
+import {FaUserFriends, FaFacebookMessenger, FaBell} from 'react-icons/fa';
 import {Link, useHistory} from 'react-router-dom';
-import NewFeed from './Newfeed.jsx';
-import useSound from 'use-sound';
+import NewFeedContainer from './../../Containers/NewFeedContainer.jsx';
 import {PUBLIC_URL} from './../../Constants/public.jsx';
 import FriendMayKnow from '../Footer/FriendMayKnow.jsx';
 import YourPageInSiderContainer from './../../Containers/YourPageInSiderContainer.jsx';
 import YourGroupInSiderContainer from './../../Containers/YourGroupInSiderContainer.jsx';
+import {Image,Transformation} from 'cloudinary-react';
 
 function Main() {
   const history = useHistory();
   const {Content, Sider} = Layout;
-  const [play1] = useSound(PUBLIC_URL + '/sounds/2.mp3');
-  const [play2] = useSound(PUBLIC_URL + '/sounds/1.flac');
-  const [play3] = useSound(PUBLIC_URL + '/sounds/3.wav');
   const yearNow = new Date().getFullYear();
   const currentUser = JSON.parse(localStorage.getItem('ustk')).info;
 
@@ -36,18 +33,18 @@ function Main() {
           }}>
           <List>
             <List.Item className="box-info-sider-left">
-              <img src={currentUser.user_avatar} alt={currentUser.user_first_name + ' ' + currentUser.user_last_name} style={{
-                  width: '30px',
-                  height: '30px'
-                }}/>
+              <div style={{width: '30px', height: '30px', overflow: 'hidden', borderRadius: '50%', border: '2px solid rgba(0,0,0,0.1)', marginRight: '10px'}}>
+                {currentUser.user_avatar_cropX === null ?
+                  <img src={currentUser.user_avatar} alt={currentUser.user_first_name + ' ' + currentUser.user_last_name}/>
+                  :
+                  <Image cloudName="mohi-vn" publicId={currentUser.user_avatar+ ".jpg"} version="1607061343">
+                    <Transformation height={currentUser.user_avatar_cropH}  width={currentUser.user_avatar_cropW} x={currentUser.user_avatar_cropX} y={currentUser.user_avatar_cropY} crop="crop" />
+                  </Image>
+                }
+              </div>
               <span>{currentUser.user_first_name + ' ' + currentUser.user_last_name}</span>
             </List.Item>
             <List className="box-option-sider-left">
-              <List.Item className="active">
-                <div onClick={() => play1()}>sound1</div>
-                <div onClick={() => play2()}>sound2</div>
-                <div onClick={() => play3()}>sound3</div>
-              </List.Item>
               <Link to="/">
                 <List.Item className="menu-sider-link active">
                   <GrArticle/>
@@ -60,43 +57,23 @@ function Main() {
                   Messenger
                 </List.Item>
               </Link>
-              <Link to="watch" className="menu-sider-link">
+              <Link to="notifications" className="menu-sider-link">
                 <List.Item>
-                  <FiYoutube className="watch-icon"/>
-                  Watch
+                  <FaBell title="Thông báo" style={{fill: 'blue'}}/>
+                Thông báo
+                </List.Item>
+              </Link>
+              <Link to="friendrequests" className="menu-sider-link">
+                <List.Item>
+                  <FaUserFriends title="Bạn bè" style={{fill: 'purple'}}/>
+                  Lời mời kết bạn
                 </List.Item>
               </Link>
             </List>
           </List>
-          <Divider orientation="middle">Lối tắt</Divider>
-          <List className="box-option-sider-left">
-            <YourPageInSiderContainer />
-            <YourGroupInSiderContainer />
-          </List>
-          <Divider orientation="middle">Khám phá</Divider>
-          <List className="box-option-sider-left">
-            <Link to="/pages" className="menu-sider-link">
-              <List.Item >
-                <AiFillFlag className="flag-icon"/>
-                Trang
-              </List.Item>
-            </Link>
-            <Link to="/groups" className="menu-sider-link">
-              <List.Item>
-                <GrGroup className="group-icon"/>
-                Nhóm
-              </List.Item>
-            </Link>
-            <Link to="/profile/friends" className="menu-sider-link">
-              <List.Item>
-                <FaUserFriends className="friend-icon"/>
-                Danh sách bạn bè
-              </List.Item>
-            </Link>
-          </List>
         </div>
       </Sider>
-      <NewFeed/>
+      <NewFeedContainer/>
       <Sider width="350">
         <div style={{
             position: "fixed",

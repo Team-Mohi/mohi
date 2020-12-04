@@ -14,7 +14,7 @@ function ForgotPasswordContainer(){
     //load Spin
     dispatch(toggleStatusSpin())
 
-    await axios.post('/api/forgot-password', {action: 'forget_password', user_email: data.user_email})
+    await axios.post('https://www.api.mohi.vn/api/forgot-password', {action: 'forget_password', user_email: data.user_email})
     .then((res) => {
       console.log(res);
       history.push('/forgot-password/step-2', {

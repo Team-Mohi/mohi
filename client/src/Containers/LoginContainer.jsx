@@ -18,7 +18,7 @@ export default function LoginContainer(props){
     dispatch(toggleStatusSpin())
 
     //check credentials
-    await axios.post('api/auth/login', data).then((res) => {
+    await axios.post('https://www.api.mohi.vn/api/auth/login', data).then((res) => {
       props.setLoginFunc(res)
       history.push('/')
     }).catch((err) => {
@@ -28,7 +28,7 @@ export default function LoginContainer(props){
           let user_email = JSON.parse(err.response.config.data).user_email;
           let user_password = JSON.parse(err.response.config.data).user_password;
 
-          axios.post('/api/resend-otp', {
+          axios.post('https://www.api.mohi.vn/api/resend-otp', {
             action: 'register',
             user_email: user_email
           }).then((response) => {

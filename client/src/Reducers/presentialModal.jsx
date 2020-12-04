@@ -2,7 +2,8 @@ import * as Types from './../Constants/ActionTypes.jsx';
 
 const initialState = {
   status: false,
-  action: ''
+  action: '',
+  data: ''
 };
 
 export const presentialModal = (state = initialState, action) => {
@@ -13,6 +14,7 @@ export const presentialModal = (state = initialState, action) => {
     case Types.TOGGLE_STATUS_PRESENTIAL_MODAL:
       state.status = !state.status
       state.action = action.action
+      state.data = action.data
       return {...state}
       break;
     default: return state

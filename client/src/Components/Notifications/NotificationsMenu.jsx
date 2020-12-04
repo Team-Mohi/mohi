@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {Image,Transformation} from 'cloudinary-react';
 import {FaShare, FaSmileWink, FaCommentAlt} from 'react-icons/fa';
 import {BsThreeDotsVertical} from 'react-icons/bs';
 import './NotificationsMenu.css';
@@ -79,7 +80,7 @@ function MenuNoti({notifycations}) {
       </div>
     )
   }
-  console.log(listNotifications);
+
   return (
     <div className = "menu-noti-container">
     <div className="menu-noti-main">
@@ -95,12 +96,18 @@ function MenuNoti({notifycations}) {
             <Link to={"/post/" + noti.notification_PostIdFake} key={index}>
               <div className="menu-noti-content">
                 <div className="menu-noti-content-avatar">
-                  <img src={noti.notifications_send.user_avatar} alt={noti.notifications_send.user_first_name + ' ' + noti.notifications_send.user_last_name}/>
+                  {noti.notifications_send.user_avatar_cropX === null ?
+                    <img src={noti.notifications_send.user_avatar} alt={noti.notifications_send.user_last_name} />
+                    :
+                    <Image cloudName="mohi-vn" publicId={noti.notifications_send.user_avatar+ ".jpg"} version="1607061343">
+                      <Transformation height={noti.notifications_send.user_avatar_cropH}  width={noti.notifications_send.user_avatar_cropW} x={noti.notifications_send.user_avatar_cropX} y={noti.notifications_send.user_avatar_cropY} crop="crop" />
+                    </Image>
+                  }
                 </div>
-                <div className="menu-noti-content-title">
+                <div className="menu-noti-content-title menu-noti-custom">
                   <p>
                     <b>{noti.notifications_send.user_first_name + ' ' + noti.notifications_send.user_last_name} </b>
-                  đã bình luận ảnh của {JSON.parse(localStorage.getItem('ustk')).id === noti.notification_AdminPostId ? 'bạn' : noti.notifications_admin_post.user_first_name + ' ' + noti.notifications_admin_post.user_last_name}
+                  {noti.notification_Content} {JSON.parse(localStorage.getItem('ustk')).id === noti.notification_AdminPostId ? 'bạn' : noti.notifications_admin_post.user_first_name + ' ' + noti.notifications_admin_post.user_last_name}
                   </p>
                   <div className="menu-noti-content-button">
                     <FaCommentAlt/>
@@ -108,9 +115,6 @@ function MenuNoti({notifycations}) {
                   </div>
                 </div>
                 <div className="menu-noti-content-right">
-                  <div className="menu-noti-content-right-img">
-                    <img src="https://i.pinimg.com/564x/b0/da/ac/b0daac950c00bf2fefe8e923b7b64c40.jpg"/>
-                  </div>
                   <div className="menu-noti-content-right-button">
                     <BsThreeDotsVertical/>
                   </div>

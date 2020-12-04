@@ -164,3 +164,112 @@
   background: white;
   border-radius: 2px;
 }
+.post-avatar{
+  min-width: 50px;
+  min-height: 50px;
+}
+
+.tag-more-user:hover{
+  text-decoration: underline;
+}
+.tag-more-user{
+  cursor: pointer;
+}
+.post-time-created{
+  font-size: 12px !important;
+}
+.tag-more-user-list li a{
+  color: white;
+}
+.tag-more-user-list{
+  background-color: rgba(0,0,0,0.8);
+  border-radius: 2px;
+  padding: 5px;
+}
+
+.ant-spin-blur div{
+  min-height: 0 !important;
+  max-height: 0;
+}
+.post-content div{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre-line;
+  width: 100%;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  transition: all 0.2s ease;
+  -webkit-box-orient: vertical;
+  line-height: 25px;
+}
+.more-content-post{
+  color: rgba(0,128,128);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.more-content-post:hover{
+  text-decoration: underline;
+}
+.post-new-comment .ant-spin-dot{
+  width: 0.7em !important;
+  height: 0.7em !important;
+}
+.post-new-comment .ant-spin-dot-item{
+  width: 5px!important;
+  height: 5px!important;
+}
+.post-new-comment .ant-spin{
+  margin-right: 10px;
+}
+
+.post-new-comment{
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.post-new-comment-waiting{
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(255,255,255,0.5);
+}
+.new-feed-empty p:first-child{
+  margin-top: 10px !important;
+}
+.new-feed-empty{
+  background: white;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 2px;
+  padding: 10px;
+}
+.count-new-post svg{
+  fill: green;
+  font-size: 20px;
+  margin-right: 10px;
+}
+.count-new-post{
+  background: white;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 2px;
+  padding: 10px;
+  margin-top: 10px;
+  display: flex;
+}
+.err-new-post svg{
+  fill: red;
+  font-size: 20px;
+  margin-right: 10px;
+}
+.err-new-post{
+  background: white;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 2px;
+  padding: 10px;
+  margin-top: 10px;
+  display: flex;
+}

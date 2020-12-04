@@ -3,6 +3,8 @@ import { Link  } from 'react-router-dom';
 import './FriendMayKnow.css';
 import { useSelector } from 'react-redux';
 import { Spin } from 'antd';
+import ButtonContainer from './../../Containers/AddFriendContainer.jsx';
+import {Image,Transformation} from 'cloudinary-react';
 
 function FriendMayKnow({friendsMayKnow}) {
   const listFriendMayKnow = useSelector(state => state.friendsMayKnow);
@@ -36,11 +38,20 @@ function FriendMayKnow({friendsMayKnow}) {
               return(
                 <div className="friend-may-know-content" key={index}>
                     <div className="friend-may-know-avatar">
-                        <Link to={"/" + friend.user_username}><img src={friend.user_avatar} alt={friend.user_first_name + ' ' + friend.user_last_name}/></Link>
+                      <Link to={"/profile/" + friend.user_username}>
+                        <img src={friend.user_avatar} alt={friend.user_first_name + ' ' + friend.user_last_name}/>
+                        {friend.user_avatar_cropX === null ?
+                          <img src={friend.user_avatar} alt={friend.user_first_name + ' ' + friend.user_last_name} />
+                          :
+                          <Image cloudName="mohi-vn" publicId={friend.user_avatar+ ".jpg"} version="1607061343">
+                            <Transformation height={friend.user_avatar_cropH}  width={friend.user_avatar_cropW} x={friend.user_avatar_cropX} y={friend.user_avatar_cropY} crop="crop" />
+                          </Image>
+                        }
+                      </Link>
                     </div>
-                    <Link to={"/" + friend.user_username}>{friend.user_first_name + ' ' + friend.user_last_name}</Link>
+                    <Link to={"/profile/" + friend.user_username}>{friend.user_first_name + ' ' + friend.user_last_name}</Link>
                     <div className="footer-friend-button">
-                        <button>Thêm bạn bè</button>
+                        <ButtonContainer id={friend.id}/>
                     </div>
                 </div>
               )

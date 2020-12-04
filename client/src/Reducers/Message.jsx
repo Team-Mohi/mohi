@@ -1,13 +1,23 @@
 import * as Types from './../Constants/ActionTypes.jsx';
 
-const initialState = [];
+const initialState = {
+  loading:true,
+  list : []
+};
 
 export const message = (state = initialState, action) => {
   switch (action.type) {
-    case Types.MESSAGE_POPUP:
-      state = action.messages
-      return [...state]
+    case Types.REQUEST_MESSAGE_POPUP:
+      return {
+        ...state
+      }
       break;
-    default: return [...state]
+    case Types.RESPONSE_MESSAGE_POPUP:
+      return {
+        loading: !state.loading,
+        list: action.payload
+      }
+      break;
+    default: return {...state}
   }
 }

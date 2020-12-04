@@ -15,7 +15,7 @@ function YourPageInSiderContainer({ myPages }){
   }, [])
 
   const getApiYourPage = async () => {
-      await axios.get('/api/auth/my-pages').then((res) => {
+      await axios.get('https://www.api.mohi.vn/api/auth/all-mypages').then((res) => {
         dispatch(fetchMyPages(res.data))
       }).catch((err) => {
         console.log(err);

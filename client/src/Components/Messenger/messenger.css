@@ -39,6 +39,8 @@
   align-items: center;
   padding: 10px;
   box-shadow: 2px 0.1px 4px rgba(0, 0, 0, 0.5);
+  z-index: 5;
+  position: relative;
 }
 
 .sider-messenger-title-left {
@@ -106,7 +108,7 @@
 
 .sider-messenger-list-user {
   transition: all 0.5s ease;
-  overflow-y: scroll;
+  overflow-y: auto;
   border-right: 5px solid transparent;
 }
 
@@ -131,22 +133,18 @@
   background: rgba(0, 128, 128);
 }
 
-.sider-messenger-list-user ul a li {
+.sider-messenger-list-user ul li {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px 10px;
+  cursor: pointer;
   border-radius: 5px;
 }
 
-.sider-messenger-list-user ul a li.messenger_active {
+.sider-messenger-list-user ul li.messenger_active {
   background: #f5f6f7;
   border: 1px solid rgba(0, 0, 0, 0.01);
-}
-
-.sider-messenger-list-user ul a {
-  text-decoration: none;
-  color: rgba(0, 0, 0, 0.8);
 }
 
 .sider-messenger-user-item-avatar {
@@ -178,6 +176,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: pre;
+  width: 95%;
 }
 
 .sider-messenger-username {
@@ -187,6 +186,7 @@
 
 .sider-messenger-time-send {
   margin-left: auto;
+  width: max-content;
 }
 
 .sider-messenger-status {
@@ -332,11 +332,10 @@
 }
 
 .content-messenger-room {
-  height: 100%;
   display: flex;
   flex-direction: column;
   padding: 20px;
-  overflow: auto;
+  overflow-y: auto;
   scroll-behavior: auto;
 }
 
@@ -562,4 +561,35 @@
   color: white;
   font-weight: 600;
   font-size: 14px;
+}
+.content-hello p:nth-child(2){
+  font-size: 25px;
+  animation-name: brand_name2;
+  animation-duration: 1s;
+}
+.content-hello p:first-child{
+  font-size: 100px;
+  margin-top: -300px;
+  color: rgba(0,128,128);
+  font-weight: 700;
+  animation-name: brand_name;
+  animation-duration: 1s;
+  position: relative;
+  text-shadow: 2px 2px black;
+  animation-duration: 1s;
+}
+
+@keyframes brand_name {
+  from {margin-top: -400px;}
+  to {margin-top: -300px;}
+}
+@keyframes brand_name2 {
+  from {margin-top: 2000px;}
+  to {margin-top: 0;}
+}
+.content-hello{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

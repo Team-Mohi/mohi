@@ -1,43 +1,13 @@
 import 'draft-js-mention-plugin/lib/plugin.css';
 import style from 'styled-components';
 import React, { Component } from 'react';
-import { EditorState } from 'draft-js';
+import { EditorState, convertToRaw } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
 import createMentionPlugin, { defaultSuggestionsFilter } from 'draft-js-mention-plugin';
 import editorStyles from './editorStyles.css';
+import { connect } from 'react-redux';
 
-const mentions = [
-  {
-    name: 'Matthew Russell',
-    link: 'https://twitter.com/mrussell247',
-    avatar: 'https://pbs.twimg.com/profile_images/517863945/mattsailing_400x400.jpg',
-  },
-  {
-    name: 'Julian Krispel-Samsel',
-    link: 'https://twitter.com/juliandoesstuff',
-    avatar: 'https://avatars2.githubusercontent.com/u/1188186?v=3&s=400',
-  },
-  {
-    name: 'Jyoti Puri',
-    link: 'https://twitter.com/jyopur',
-    avatar: 'https://avatars0.githubusercontent.com/u/2182307?v=3&s=400',
-  },
-  {
-    name: 'Max Stoiber',
-    link: 'https://twitter.com/mxstbr',
-    avatar: 'https://pbs.twimg.com/profile_images/763033229993574400/6frGyDyA_400x400.jpg',
-  },
-  {
-    name: 'Nik Graf',
-    link: 'https://twitter.com/nikgraf',
-    avatar: 'https://avatars0.githubusercontent.com/u/223045?v=3&s=400',
-  },
-  {
-    name: 'Pascal Brandt',
-    link: 'https://twitter.com/psbrandt',
-    avatar: 'https://pbs.twimg.com/profile_images/688487813025640448/E6O6I011_400x400.png',
-  },
-];
+const mentions = [];
 
 const StyleEditorMention = style.div`
   width: 100%;
@@ -50,7 +20,7 @@ const StyleEditorMention = style.div`
   border-radius:30px;
 `;
 
-export default class SimpleMentionEditor extends Component {
+ class SimpleMentionEditor extends Component {
 
   constructor(props) {
     super(props);
@@ -60,6 +30,17 @@ export default class SimpleMentionEditor extends Component {
       entityMutability: 'IMMUTABLE',
       supportWhitespace: true
     });
+  }
+
+  componentDidMount(){
+    this.props.friends.map((mention) => {
+      mentions.push({
+        name: mention.user_last_name + ' ' + mention.user_first_name,
+        link: '/profile/' + mention.user_username,
+        avatar: mention.user_avatar,
+        id: mention.id
+      });
+    })
   }
 
   state = {
@@ -72,15 +53,10 @@ export default class SimpleMentionEditor extends Component {
     this.setState({
       editorState,
     });
-    //
-    // let currentContent = editorState .getCurrentContent();
-    // let raw = convertToRaw(currentContent);
-    // for(let key in raw.entityMap){
-    //   const ent = raw.entityMap[key];
-    //   if(ent.type === 'mention'){
-    //       this.props.showMentionList(ent.data.mention);
-    //   }
-    // }
+
+    let currentContent = editorState .getCurrentContent();
+    let raw = convertToRaw(currentContent);
+    this.props.showMentionList(raw.entityMap);
   };
 
   onSearchChange = ({ value }) => {
@@ -88,10 +64,10 @@ export default class SimpleMentionEditor extends Component {
       suggestions: defaultSuggestionsFilter(value, mentions),
     });
   };
-
-  onAddMention = (mention) => {
-    this.props.showMentionList(mention);
-  }
+  //
+  // onAddMention = (mention) => {
+  //   this.props.showMentionList(mention);
+  // }
 
   render() {
     const { MentionSuggestions } = this.mentionPlugin;
@@ -111,9 +87,14 @@ export default class SimpleMentionEditor extends Component {
         <MentionSuggestions
           onSearchChange={this.onSearchChange}
           suggestions={this.state.suggestions}
-          onAddMention={this.onAddMention}
         />
       </div>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  friends: state.friends.list,
+});
+
+export default connect(mapStateToProps, null)(SimpleMentionEditor)
