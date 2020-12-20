@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from  'react';
 import {Link, useParams} from 'react-router-dom';
 import { AiFillCamera } from "react-icons/ai";
-import { FaUserPlus, FaUserCheck, FaCheck, FaUserClock } from "react-icons/fa";
+import { FaUserPlus, FaUserCheck, FaCheck, FaUserClock, FaFacebookMessenger } from "react-icons/fa";
 import { BsThreeDots, BsPencil } from "react-icons/bs";
 import {PUBLIC_URL} from "./../../../Constants/public.jsx";
 import { useSelector, useDispatch } from 'react-redux';
@@ -9,6 +9,10 @@ import {Tooltip, Spin} from 'antd';
 import axios from 'axios';
 import {toggleStatusPresentialModal} from './../../../Actions/index.jsx';
 import {Image,Transformation} from 'cloudinary-react';
+import { WaveLoading } from 'react-loadingg';
+import {responseUpdateCover} from './../../../Actions/index.jsx';
+import {requestUpdateCover} from './../../../Actions/index.jsx';
+import {responseAddPostsProfile} from './../../../Actions/index.jsx';
 
 function HeaderProfile({ profile, friends, friendsRequest }){
   const refHeader = useRef();
@@ -21,7 +25,7 @@ function HeaderProfile({ profile, friends, friendsRequest }){
   const [toggleTopLeft, setToggleTopLeft] = useState();
   const [styleHeader, setStyleHeader] = useState(false);
   const currentUser = JSON.parse(localStorage.getItem('ustk')).info;
-  const { loading, info } = useSelector(state => state.profile);
+  const { loading, info, loadingUpdateCover } = useSelector(state => state.profile);
   const {idProfile} = useParams();
   const mutialFriend = [];
   const [statusFollow, setStatusFollow] = useState();
@@ -35,16 +39,17 @@ function HeaderProfile({ profile, friends, friendsRequest }){
   const [clientX, setClientX] = useState(0);
   const [clientY, setClientY] = useState(0);
   const [widthNewCover, setWidthNewCover] = useState(0);
-  const [widthParentNewCover, setParentWidthNewCover] = useState(0);
+  const [userCoverY, setUserCoverY] = useState(0);
+  const [userCoverX, setUserCoverX] = useState(0);
 
-  useEffect(() => {
-    if(isChangeCover){
-      let refCurrent = refCoverImg.current
-      console.log(refCoverImg, refCoverImg.current.offsetParent.firstChild.naturalWidth, refCurrent.offsetParent.clientWidth);
-      setWidthNewCover(refCurrent.naturalWidth)
-      setParentWidthNewCover(refCurrent.offsetParent.clientWidth)
+  const handleImageLoad = (e) => {
+    if(e.target.naturalHeight < 400){
+      alert('Vui lòng chọn ảnh có chiều cao lớn hơn 400px để ảnh bìa được đẹp nhất')
+      setIsChangeCover(false)
+      return
     }
-  }, [isChangeCover])
+    setWidthNewCover(e.target.naturalWidth)
+  }
 
   friendOfProfile.map(fr => {
     list.map(f => {
@@ -57,8 +62,43 @@ function HeaderProfile({ profile, friends, friendsRequest }){
     setIsChangeCover(true)
   }
 
-  const saveCoverProfile = () => {
+  const saveCoverProfile = async () => {
+    dispatch(requestUpdateCover())
 
+    const formData = new FormData();
+    formData.append('upload_preset', 'mohi_video');
+    formData.append('file', newCover);
+
+    await axios.post('https://api.cloudinary.com/v1_1/mohi-vn/upload', formData)
+    .then((res) => {
+      saveCoverProfileBe(res.data.public_id)
+    })
+
+  }
+
+  const saveCoverProfileBe = async (cover) => {
+
+      let data = {
+        user_cover: cover,
+        user_cover_cropX: userCoverX,
+        user_cover_cropY: userCoverY
+      }
+
+      await axios.post("https://www.api.mohi.vn/api/auth/update-info-profile", data)
+      .then((res) => {
+        dispatch(responseUpdateCover({
+          user_cover: cover,
+          user_cover_cropX: Math.round(userCoverX),
+          user_cover_cropY: Math.round(userCoverY),
+        }))
+        dispatch(responseAddPostsProfile(res.data.new_cover))
+        let ustk = JSON.parse(localStorage.getItem('ustk'));
+        ustk.info.user_cover = cover;
+        ustk.info.user_cover_cropX = Math.round(userCoverX);
+        ustk.info.user_cover_cropY = Math.round(userCoverY);
+        localStorage.setItem('ustk', JSON.stringify(ustk))
+        setIsChangeCover(false)
+      })
   }
 
   const onMouseDownCover = (e) => {
@@ -85,7 +125,8 @@ function HeaderProfile({ profile, friends, friendsRequest }){
 
     scrollCover.scrollLeft = scrollLeft + clientX - e.clientX;
     scrollCover.scrollTop = scrollTop + clientY - e.clientY;
-
+    setUserCoverX(scrollCover.scrollLeft)
+    setUserCoverY(scrollCover.scrollTop)
   }
 
   const uploadAvatar= (e) => {
@@ -212,15 +253,25 @@ function HeaderProfile({ profile, friends, friendsRequest }){
                       onMouseLeave={onMouseUpCover}
                       >
                       <img
-                        style={widthNewCover > widthParentNewCover ?  {width: 'auto', height: '100%'} : {width: '100%', height: 'auto'}}
+                        style={{width: '100%', height: 'auto'}}
                         src={URL.createObjectURL(newCover)}
                         alt={info.user_first_name + ' ' + info.user_last_name}
                         ref={refCoverImg}
+                        onLoad={handleImageLoad}
                       />
+                    {loadingUpdateCover && <div style={{marginTop: userCoverY, background: 'rgba(255,255,255,0.7)', position: 'absolute', width: '100%', height: '100%', top: 0, left: 0}}><WaveLoading /></div>}
                     </div>
                   </React.Fragment>
                   :
-                  <img src={info.user_cover} alt={info.user_first_name + ' ' + info.user_last_name} />
+                  <React.Fragment>
+                    {info.user_cover_cropX === null ?
+                      <img src={info.user_cover} alt={info.user_first_name + ' ' + info.user_last_name} />
+                      :
+                      <Image cloudName="mohi-vn" publicId={info.user_cover+ ".jpg"} version="1607061343">
+                        <Transformation height={400} width={1136} x={info.user_cover_cropX} y={info.user_cover_cropY} crop="crop" />
+                      </Image>
+                    }
+                  </React.Fragment>
                 }
               </div>
             </div>
@@ -379,6 +430,7 @@ function HeaderProfile({ profile, friends, friendsRequest }){
                     {statusFollow && statusFollow === 'remove_request' &&
                       <button onClick={() => addFriendFunc(info.id)}><FaUserPlus /> Thêm bạn bè {loadingRequest && <Spin />}</button>
                     }
+                    <button style={{background: 'white', color: 'rgba(0,128,128)'}}><Link to={"/messenger/" + info.id} style={{background: 'white', color: 'rgba(0,128,128)'}}><FaFacebookMessenger /> Nhắn tin </Link></button>
                   </div>
                 }
               </div>

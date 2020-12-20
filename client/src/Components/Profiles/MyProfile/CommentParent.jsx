@@ -4,6 +4,11 @@ import CommentChild from './CommentChild.jsx';
 import CommentReplyEditor from './CommentReplyEditor.jsx';
 import moment from 'moment';
 import {Image,Transformation} from 'cloudinary-react';
+import {Tooltip} from 'antd';
+import {BsThreeDots} from 'react-icons/bs';
+import axios from 'axios';
+import { toggleStatusPresentialModal } from './../../../Actions/index.jsx';
+import { useDispatch } from 'react-redux';
 
 function CommentParent(props) {
   let comment = props.comment;
@@ -11,6 +16,8 @@ function CommentParent(props) {
   const [userReceivedReply, setUserReceivedReply] = useState();
   const [idUserReceivedReply, setIdUserReceivedReply] = useState();
   let listChildComment = props.listChildComment;
+  const dispatch = useDispatch();
+  const [isDelete, setIsDelete] = useState(false);
 
   moment.updateLocale('vi', {
     relativeTime : {
@@ -39,6 +46,18 @@ function CommentParent(props) {
     setIdUserReceivedReply(commentUserId)
   }
 
+
+  const updateComment = (idPost, id, value) => {
+    dispatch(toggleStatusPresentialModal('edit_comment_profile', {idPost: idPost, id: id, value: value}))
+  }
+
+  const deleteComment = async (id) => {
+    await axios.post("https://www.api.mohi.vn/api/auth/delete-comment", {id: id})
+    setIsDelete(true)
+  }
+
+  if(isDelete) return null
+
   return (<div className="post-comment-item">
     <div className="post-comment-item-parent">
       <div className="post-comment-item-parent-avatar">
@@ -63,6 +82,25 @@ function CommentParent(props) {
           <span>{moment(moment.utc(comment.pivot.created_at).toDate()).fromNow()}</span>
         </div>
       </div>
+      {comment.id === JSON.parse(localStorage.getItem('ustk')).info.id && <div className="setting-comment-post">
+        <Tooltip
+          trigger="click"
+          placement="bottom"
+          title={
+            <div className="setting-comment-post-tooltip">
+              <div onClick={() => updateComment(props.idPost, comment.pivot.id, comment.pivot.comment_Content)}>
+                Sửa bình luận
+              </div>
+              <div onClick={() => deleteComment(comment.pivot.id)}>
+                Xóa bình luận
+              </div>
+            </div>
+          }
+        >
+          <BsThreeDots />
+        </Tooltip>
+      </div>
+      }
     </div>
     <div className="post-comment-item-parent-reply" ref={inputCommentParentReplyRef}>
       <div className="post-comment-item-parent-reply-input-container">

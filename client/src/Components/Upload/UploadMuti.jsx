@@ -33,7 +33,7 @@ function UploadMuti(props){
   }
 
   const upload = async (formData) => {
-    await axios.post('/v1_1/mohi-vn/upload', formData)
+    await axios.post('https://api.cloudinary.com/v1_1/mohi-vn/upload', formData)
     .then((res) => {
       files.push(res.data)
     }).then(() =>{

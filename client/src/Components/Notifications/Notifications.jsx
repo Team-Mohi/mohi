@@ -2,7 +2,7 @@ import React from 'react';
 import {AiFillPicture} from 'react-icons/ai';
 import {Link, Route, Switch} from 'react-router-dom';
 import {Image,Transformation} from 'cloudinary-react';
-import {FaCommentAlt} from 'react-icons/fa';
+import {FaCommentAlt, FaRegSmile} from 'react-icons/fa';
 import {BsThreeDotsVertical} from 'react-icons/bs';
 import './Notifications.css';
 import moment from 'moment';
@@ -96,10 +96,10 @@ function Notifications({notifycations}) {
               <div className="noti-notification">
                 <b style={{color: 'rgba(0,128,128'}} >{noti.notifications_send.user_first_name + ' ' + noti.notifications_send.user_last_name} </b>
                 {noti.notification_Content}
-                <b style={{color: 'rgba(0,128,128'}} > {noti.notifications_admin_post.user_first_name + ' ' + noti.notifications_admin_post.user_last_name}</b>
+                {JSON.parse(localStorage.getItem('ustk')).info.id === noti.notification_AdminPostId ? ' bạn'  : <b style={{color: 'rgba(0,128,128'}} >  {noti.notifications_admin_post.user_first_name + ' ' + noti.notifications_admin_post.user_last_name}</b>}
               </div>
               <div className="noti-status">
-                  <FaCommentAlt/> {moment(noti.created_at, "YYYYMMDD\h:m:s").fromNow()}
+                  {noti.notification_Action === 'comment' ? <FaCommentAlt/> : <FaRegSmile />} {moment(moment.utc(noti.created_at).toDate()).fromNow()}
               </div>
             </Link>
             </div>

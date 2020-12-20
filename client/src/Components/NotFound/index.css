@@ -1,0 +1,57 @@
+.main-section{
+  background: white;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 2px;
+    padding: 50px;
+}
+.main-section-data{
+  text-align: center;
+}
+.main404 p {
+  font-size: 30px;
+}
+.main404 h1 {
+    font-size: 150px;
+    font-weight: 600;
+    font-family: cursive;
+    color: rgba(0,128,128);
+    text-shadow: 2px 2px 2px black;
+}
+.main404 button a:hover{
+  text-decoration: none;
+}
+.main404 button a{
+  color: rgba(0,128,128);
+  font-size: 20px;
+  font-weight: 500;
+}
+.main404 button:hover{
+  background: #ddd;
+}
+.main404 button{
+  border: 1px solid rgba(0,0,0,0.1);
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: all 0.2s ease;
+}
+.footer-not-found ul li span a{
+  color: rgba(0,128,128);
+}
+.footer-not-found ul li span:hover{
+  text-decoration: underline;
+}
+.footer-not-found ul li span{
+  cursor: pointer;
+  color: rgba(0,128,128);
+}
+.footer-not-found ul li{
+  padding: 3px 10px;
+}
+.footer-not-found ul{
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+.mohi{
+  margin-top: 20px;
+}

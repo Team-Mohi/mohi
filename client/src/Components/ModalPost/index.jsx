@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './index.css';
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Link, useHistory, useParams, withRouter } from "react-router-dom";
 import { AiFillCloseCircle, AiFillLike, AiFillCaretLeft, AiFillCaretRight } from "react-icons/ai";
 import { BsThreeDots } from "react-icons/bs";
 import { FaRegCommentAlt, FaUserLock, FaUserAlt } from "react-icons/fa";
@@ -46,6 +46,7 @@ function ModalPost(){
   })
 
   const backToHistory = () => {
+    console.log(history);
     history.goBack()
   }
   const handleKeyUp = (e) => {
@@ -147,4 +148,4 @@ function ModalPost(){
   )
 }
 
-export default ModalPost;
+export default withRouter(ModalPost);

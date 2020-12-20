@@ -77,6 +77,18 @@ function TimeLine(props, { myPosts, profile }) {
       )
   }
 
+  const NoPostProfile = () => {
+      return(
+        <React.Fragment>
+          <div className="new-feed-empty content-hello">
+            <p>Mohi</p>
+            <img src={PUBLIC_URL + `images/nopost.jpg`} alt="Bảng tin không có bài viết" />
+          <div style={{color: 'rgba(0,128,128)', fontSize: '15px', fontWeight: '600'}}>{info.user_first_name + ' ' + info.user_last_name} chưa có bài viết nào</div>
+          </div>
+        </React.Fragment>
+      )
+  }
+
   const sendReactionPost = (reaction, postId) => {
     props.sendReactionPost(reaction, postId)
   }
@@ -97,7 +109,8 @@ function TimeLine(props, { myPosts, profile }) {
           <CreatePost submitCreatePost={submitCreatePost} statusCreatePost={statusCreatePost}/>
           {listPosts.map((post, index) => <Post key={index} post={post} ref={lastNewFeed} sendReactionPost={sendReactionPost} onSubmitComment={onSubmitComment} loadingAddComment={loadingAddComment} loadingSendRequestSetting={loadingSendRequestSetting} loadingSetting={props.loadingSetting}/>)}
           {loading && skeletonPostNewFeed}
-          {!loading && !listPosts.length  && <NoPost/>}
+          {!loading && !listPosts.length && info.id === JSON.parse(localStorage.getItem('ustk')).info.id && <NoPost/>}
+          {!loading && !listPosts.length && info.id !== JSON.parse(localStorage.getItem('ustk')).info.id && <NoPostProfile/>}
           {error && <div>Đã xảy ra lỗi không mong muốn vui lòng tải lại trang</div>}
         </Col>
         <SiderRightProfile />

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import Home from './../app/Home.jsx';
+import SocketContext from './../Components/Socket/index.jsx';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { requestMessagePopup } from './../Actions/index.jsx';
@@ -15,10 +16,21 @@ import { responseListUserSuggestion } from './../Actions/index.jsx';
 import { fetchListNotification } from './../Actions/index.jsx';
 import { responseListNotification } from './../Actions/index.jsx';
 import { responseListMyRequestAddFriend } from './../Actions/index.jsx';
+import { readMessageOfList } from './../Actions/index.jsx';
+import { addNewMessageOflist } from './../Actions/index.jsx';
+import useSound from 'use-sound';
+import {PUBLIC_URL} from './../Constants/public.jsx';
+var socketIOClient = require('socket.io-client');
+
+const socket = socketIOClient('https://mohi-backend.herokuapp.com/', {
+  transports: ['websocket'],
+});
 
 function AppContainer(){
   require('./../axios/inceptor.jsx');
   const dispatch = useDispatch();
+  const [play] = useSound(PUBLIC_URL + 'sounds/2.mp3', {volume: 0.5});
+  const currentUser = JSON.parse(localStorage.getItem('ustk')).info;
 
   const getListMessagePopup = async () => {
     dispatch(requestMessagePopup())
@@ -27,7 +39,6 @@ function AppContainer(){
     .then((res) => {
         dispatch(responseMessagePopup(res.data))
     }).catch((e) => {
-      console.log(e);
     })
   }
 
@@ -38,7 +49,6 @@ function AppContainer(){
     .then((res) => {
       dispatch(responseListMyRequestAddFriend(res.data))
     }).catch((e) => {
-      console.log(e);
     })
   }
 
@@ -49,7 +59,6 @@ function AppContainer(){
     .then((res) => {
       dispatch(responseFriendRequestPopup(res.data))
     }).catch((e) => {
-      console.log(e);
     })
   }
 
@@ -58,7 +67,6 @@ function AppContainer(){
     .then((res) => {
         dispatch(responseListUserSuggestion(res.data))
     }).catch((e) => {
-      console.log(e);
     })
   }
 
@@ -67,7 +75,6 @@ function AppContainer(){
     .then((res) => {
         dispatch(responseListStory(res.data))
     }).catch((e) => {
-      console.log(e);
     })
   }
 
@@ -76,7 +83,6 @@ function AppContainer(){
     .then((res) => {
         dispatch(responseListNotification(res.data))
     }).catch((e) => {
-      console.log(e);
     })
   }
 
@@ -88,11 +94,19 @@ function AppContainer(){
         dispatch(responseFriend(res.data))
       })
       .catch((e) => {
-        console.log(e);
       })
   }
 
+  socket.on('private-chat', function(data){
+    play()
+  });
+
   useEffect(() => {
+
+    socket.on('private-chat', function(data){
+        dispatch(addNewMessageOflist({type: 'received', from : data.from, message: data.message}))
+    });
+
     getListMyRequestAddFriend()
 
     getListFriend()
@@ -112,7 +126,9 @@ function AppContainer(){
   },[])
 
   return(
-    <Home />
+    <SocketContext.Provider value={socket}>
+      <Home />
+    </SocketContext.Provider>
   )
 }
 

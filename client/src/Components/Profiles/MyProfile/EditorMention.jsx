@@ -37,7 +37,7 @@ const StyleEditorMention = style.div`
       mentions.push({
         name: mention.user_last_name + ' ' + mention.user_first_name,
         link: '/profile/' + mention.user_username,
-        avatar: mention.user_avatar,
+        avatar: mention.user_avatar.toLowerCase().indexOf('data') >= 0 ? mention.user_avatar : "https://res.cloudinary.com/mohi-vn/image/upload/v1607061343/" + mention.user_avatar + ".jpg",
         id: mention.id
       });
     })

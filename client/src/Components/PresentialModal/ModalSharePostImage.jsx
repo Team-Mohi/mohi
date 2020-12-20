@@ -4,6 +4,7 @@ import VideoPlayer from "simple-react-video-thumbnail";
 import { FaRegPlayCircle } from "react-icons/fa";
 import { useSelector } from 'react-redux';
 import './ModalSharePost.css';
+import {Image,Transformation} from 'cloudinary-react';
 
 function ModalSharePostImage(presentialModal){
   const { data } = useSelector(state => state.presentialModal);
@@ -20,11 +21,22 @@ function ModalSharePostImage(presentialModal){
             return(
                 <div key={index} className={'post_image_item only_image_item_' + index}>
                   {image.post_images_Type === 'image' ?
-                  <img src={image.post_images_Url} alt=""/>
+                    <React.Fragment>
+                      {image.post_images_Url.toLowerCase().indexOf('https://') !== -1 ?
+                        <img src={image.post_images_Url} alt=""/>
+                        :
+                        <Image cloudName="mohi-vn" publicId={image.post_images_Url+ ".jpg"} version="1607061343">
+                          <Transformation />
+                        </Image>
+                      }
+                    </React.Fragment>
                   :
                   <div className="video-background">
                     <div className="video-background-play"><FaRegPlayCircle /></div>
-                    <VideoPlayer videoUrl={image.post_images_Url} />
+                      <video >
+                           <source src={image.post_images_Url} />
+                           Your browser does not support HTML5 video.
+                      </video>
                   </div>
                   }
                 </div>

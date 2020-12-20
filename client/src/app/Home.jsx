@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useEffect, useState, useRef } from 'react';
+import React, { Suspense, lazy, useEffect, useState, useRef, useContext } from 'react';
 import './Home.css';
 import { Link, Route, Switch, useHistory, useLocation } from 'react-router-dom';
 import { Layout, Menu, Input, Dropdown } from 'antd';
@@ -21,6 +21,7 @@ import  FriendSent from './../Components/FriendRequests/FriendSent.jsx';
 import PageAllContainer from './../Containers/PageAllContainer.jsx';
 import MenuNoti from '../Components/Notifications/NotificationsMenu.jsx';
 import MenuMessenger from './../Components/Messenger/MessengerMenu.jsx';
+import SinglePost from './../Components/SinglePost/SinglePost.jsx';
 import MenuFriendRequests from './../Components/FriendRequests/FriendRequestMenu.jsx';
 import MenuSetting from './../Components/Setting/SettingMenu.jsx';
 import Notifications from './../Components/Notifications/Notifications.jsx';
@@ -29,14 +30,18 @@ import Setting from '../Components/Setting/Setting.jsx';
 import Help from '../Components/Footer/Help.jsx';
 import {PUBLIC_URL} from './../Constants/public.jsx';
 import NotFound from './../Components/NotFound/index.jsx';
+import CommingSoon from './../Components/CommingSoon/index.jsx';
 import {Image,Transformation} from 'cloudinary-react';
-const socketIOClient = require('socket.io-client');
+import {useSelector} from 'react-redux';
+import SocketContext from './../Components/Socket/index.jsx';
 
-const socket = socketIOClient('http://localhost:8080', {
-  transports: ['websocket'],
-});
-
-function Home(props) {
+function Home(props, {message, friendsRequest, notifycations}) {
+    const {list} = useSelector(state => state.message);
+    const listFriendsRequest = useSelector(state => state.friendsRequest.list);
+    const listNoti = useSelector(state => state.notifycations.list);
+    var countFriendRequest = listFriendsRequest.length;
+    var countMess = 0;
+    var countNoti = 0;
     const { Header } = Layout;
     const { Search } = Input;
     const history = useHistory();
@@ -45,21 +50,16 @@ function Home(props) {
     const [listChatMini, setListChatMini] = useState([]);
     const parentChatRef = useRef();
     const currentUser = JSON.parse(localStorage.getItem('ustk')).info;
+    const socket = useContext(SocketContext);
 
     useEffect(() => {
+      socket.emit('register', currentUser.user_username);
 
       if(listChatMini.length === 0){
         if(localStorage.getItem('listChatMini')){
           setListChatMini(localStorage.getItem('listChatMini').split(','))
         }
       }
-
-      // socket.on('connect', () => {
-      //       console.log('connected');
-      // });
-      // socket.on('server mesage', (data) => {
-      //   console.log(data);
-      // });
     },[]);
 
     useEffect(() => {
@@ -69,8 +69,14 @@ function Home(props) {
     },[key]);
 
     function onSearch(value) {
-        history.push('/search/' + value)
+      var filter = /^[\s]*$/;
+      if (filter.test(value)) {
+        return
+      }
+
+      history.push('/search/' + value)
     }
+
     const increaseChatMini = (iduser) =>{
       if(!listChatMini.includes(iduser)){
         if(listChatMini.length > 2){
@@ -89,6 +95,18 @@ function Home(props) {
         localStorage.setItem('listChatMini', newListChatMini)
       }
     }
+
+    list.forEach((mess, i) => {
+      if(!mess.pivot.messages_ReadAt && mess.pivot.messages_From !== currentUser.id){
+        countMess++
+      }
+    });
+
+    listNoti.forEach((noti, i) => {
+      if(!noti.notification_IsRead){
+        countNoti++
+      }
+    });
 
     return (
         <>
@@ -123,17 +141,32 @@ function Home(props) {
                             </Menu.Item>
                             <Menu.Item >
                                 <Dropdown className="dropdown-setting" trigger={['click']} overlay={<MenuFriendRequests />} placement="bottomCenter" arrow>
-                                    <FaUserFriends title="Bạn bè" />
+                                  <div>
+                                    <div className="icon-friend-request">
+                                      <FaUserFriends title="Bạn bè" />
+                                      {countFriendRequest ? <p className="count-friend-request">{countFriendRequest}</p> : null}
+                                    </div>
+                                  </div>
                                 </Dropdown>
                             </Menu.Item>
                             <Menu.Item >
                                 <Dropdown className="dropdown-setting" trigger={['click']} overlay={<MenuMessenger />} placement="bottomCenter" arrow>
-                                    <FaFacebookMessenger title="Tin nhắn" />
+                                    <div>
+                                      <div className="icon-friend-request">
+                                        <FaFacebookMessenger title="Tin nhắn" />
+                                        {countMess ? <p className="count-friend-request">{countMess}</p> : null}
+                                      </div>
+                                    </div>
                                 </Dropdown>
                             </Menu.Item>
                             <Menu.Item >
                                 <Dropdown className="dropdown-setting" trigger={['click']} overlay={<MenuNoti />} placement="bottomCenter" arrow>
-                                    <FaBell title="Thông báo" />
+                                    <div>
+                                      <div className="icon-friend-request">
+                                        <FaBell title="Thông báo" />
+                                        {countNoti ? <p className="count-friend-request">{countNoti}</p> : null}
+                                      </div>
+                                    </div>
                                 </Dropdown>
                             </Menu.Item>
                             <Menu.Item className="menu-item-last-child">
@@ -157,7 +190,10 @@ function Home(props) {
                       <Route path="/rules-mohi" component={Rules} />
                       <Route path="/help" component={Help} />
                       <Route path="/profile/:idProfile" component={ProfileContainer} />
+                      <Route path="/post/:idPost" component={SinglePost} />
+                      <Route path="/comming-soon" component={CommingSoon} />
                       <Route path="/404" component={NotFound} />
+                      <Route component={NotFound} />
                     </Switch>
             </Layout>
         </>

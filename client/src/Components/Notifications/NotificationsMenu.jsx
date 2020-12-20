@@ -107,11 +107,11 @@ function MenuNoti({notifycations}) {
                 <div className="menu-noti-content-title menu-noti-custom">
                   <p>
                     <b>{noti.notifications_send.user_first_name + ' ' + noti.notifications_send.user_last_name} </b>
-                  {noti.notification_Content} {JSON.parse(localStorage.getItem('ustk')).id === noti.notification_AdminPostId ? 'bạn' : noti.notifications_admin_post.user_first_name + ' ' + noti.notifications_admin_post.user_last_name}
+                  {noti.notification_Content} {JSON.parse(localStorage.getItem('ustk')).info.id === noti.notification_AdminPostId ? 'bạn' : noti.notifications_admin_post.user_first_name + ' ' + noti.notifications_admin_post.user_last_name}
                   </p>
                   <div className="menu-noti-content-button">
                     <FaCommentAlt/>
-                    <p>{moment(noti.created_at, "YYYYMMDD\h:m:s").fromNow()}</p>
+                    <p>{moment(moment.utc(noti.created_at).toDate()).fromNow()}</p>
                   </div>
                 </div>
                 <div className="menu-noti-content-right">

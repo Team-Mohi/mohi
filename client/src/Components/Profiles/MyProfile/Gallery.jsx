@@ -9,6 +9,8 @@ import {useSelector, useDispatch} from 'react-redux';
 import {loadMoreImageProfile} from './../../../Actions/index.jsx';
 import {loadMoreVideoProfile} from './../../../Actions/index.jsx';
 import {setLoadMoreDefault} from './../../../Actions/index.jsx';
+import {Image,Transformation} from 'cloudinary-react';
+import { toggleStatusPresentialModal } from './../../../Actions/index.jsx';
 
 function Gallery({ profile }){
 
@@ -85,16 +87,18 @@ const convertUrlToImageData = async (myImageUrl) => {
             return(
               <Col span={6} key={index}>
                 <div className="galerry-overview-item-container">
-                  <Link to="">
                     <div className="galerry-overview-item">
                       <div className="galerry-overview-item-image">
-                        <i style={{backgroundImage:"url(" + image.post_images_Url + ")"}}></i>
+                        {image.post_images_Url.toLowerCase().indexOf('https://') !== -1 ?
+                          <i style={{backgroundImage:"url(" + image.post_images_Url + ")"}}></i>
+                          :
+                          <i style={{backgroundImage:"url(https://res.cloudinary.com/mohi-vn/image/upload/v1607061343/" + image.post_images_Url + ".jpg)"}}></i>
+                        }
                       </div>
-                      <div className="galerry-overview-item-info">
+                      <div className="galerry-overview-item-info" onClick={() => dispatch(toggleStatusPresentialModal('view_image', {list: listImage, index: index}))}>
                         <MdZoomOutMap />
                       </div>
                     </div>
-                  </Link>
                 </div>
               </Col>
             )
@@ -119,7 +123,7 @@ const convertUrlToImageData = async (myImageUrl) => {
             {listVideo.slice(0, lastVideoOfList).map((image, index) => {
               return(
                 <Col span={12} key={index}>
-                  <div className="album-item-container" >
+                  <div className="album-item-container" onClick={() => dispatch(toggleStatusPresentialModal('view_image', {list: listVideo, index: index}))}>
                     <div className="album-item" >
                         <div className="album-image">
                             <video >

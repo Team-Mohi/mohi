@@ -5,11 +5,13 @@ import {FaDotCircle} from 'react-icons/fa';
 import './MessengerMenu.css';
 import { useSelector } from 'react-redux';
 import moment from 'moment';
+import 'moment/locale/vi';
 import {Spin} from 'antd';
 import {Image,Transformation} from 'cloudinary-react';
 
 function MenuMessenger({ message }) {
   const {list, loading} = useSelector(state => state.message);
+  const currentUser = JSON.parse(localStorage.getItem('ustk')).info;
 
   moment.updateLocale('en', {
     relativeTime : {
@@ -88,10 +90,15 @@ function MenuMessenger({ message }) {
       <div className="menu-dropdown-scroll-thumb">
         {list.map((message, index) => {
           return(
-            <Link to={"/messenger/" + message.id} key={index}>
+            <Link
+              to={{
+                pathname: "/messenger/" + message.id,
+                state: { id: message.id }
+                }} 
+              key={index}
+            >
               <div className={`menu-messenger-content `}>
                 <div className="menu-noti-content-avatar">
-                  <img src={message.user_avatar} alt={message.user_first_name + ' ' + message.user_last_name}/>
                   {message.user_avatar_cropX === null ?
                     <img src={message.user_avatar} alt={message.user_last_name} />
                     :
@@ -107,8 +114,8 @@ function MenuMessenger({ message }) {
                   </div>
                 </div>
                 <div className="menu-messenger-content-right">
-                  <p>{moment(message.pivot.created_at, "YYYYMMDD\h:m:s").fromNow()}</p>
-                    {!message.pivot.messages_ReadAt && <FaDotCircle/>}
+                  <p>{moment(moment.utc(message.pivot.created_at).toDate()).locale('vi').fromNow()}</p>
+                    {!message.pivot.messages_ReadAt && message.pivot.messages_From !== currentUser.id && <FaDotCircle/>}
                 </div>
               </div>
             </Link>

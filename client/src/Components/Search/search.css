@@ -85,14 +85,19 @@ p {
   margin-bottom: 10px;
 }
 
+.filter-list-user-item-container:not(:last-child) {
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
 .filter-list-user-item-container {
   position: relative;
   margin-top: 10px;
+  padding: 5px 0;
 }
 
 .filter-list-user-item {
   padding-bottom: 10px;
   display: flex;
+  align-items: center;
 }
 
 .filter-list-user-item:last-child {
@@ -122,11 +127,13 @@ p {
   font-size: 16px;
   text-decoration: none;
   font-weight: 600;
-  color: rgba(0, 128, 128);
+  color: rgba(0, 128, 128) !important;
 }
 
 .filter-list-user-item-name a:hover {
   border-bottom: 1px solid rgba(0, 128, 128, 0.3);
+  color: rgba(0, 128, 128) !important;
+  text-decoration: none;
 }
 
 .filter-list-user-item-action {
@@ -185,7 +192,12 @@ p {
   display: flex;
   align-items: center;
 }
-
+.filter-list-post-item:not(:last-child){
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.filter-list-post-item{
+  padding: 10px 0 20px 0;
+}
 .filter-list-post-item-head-right p a {
   margin-bottom: 0;
   font-size: 16px;
@@ -356,4 +368,17 @@ p {
   width: 100%;
   height: 160px;
   display: block;
+}
+.load-more-search-user a:hover{
+  color: rgba(0,128,128);
+}
+.load-more-search-user a{
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(0,128,128);
+  transition: all 0.2s ease;
+}
+.load-more-search-user{
+  text-align: center;
+  padding: 10px 0;
 }

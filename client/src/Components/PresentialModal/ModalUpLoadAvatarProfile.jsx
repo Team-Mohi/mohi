@@ -5,6 +5,7 @@ import 'cropperjs/dist/cropper.css';
 import {toggleStatusPresentialModal} from './../../Actions/index.jsx';
 import {responseUpdateAvatar} from './../../Actions/index.jsx';
 import {requestUpdateAvatar} from './../../Actions/index.jsx';
+import {responseAddPostsProfile} from './../../Actions/index.jsx';
 import axios from 'axios';
 import { WaveLoading } from 'react-loadingg';
 
@@ -43,7 +44,7 @@ function ModalUpLoadAvatarProfile({presentialModal, profile}){
   }
 
   const upload = async (formData) => {
-    await axios.post('/v1_1/mohi-vn/upload', formData)
+    await axios.post('https://api.cloudinary.com/v1_1/mohi-vn/upload', formData)
     .then((res) => {
       updateDtb(res.data.public_id)
     })
@@ -56,7 +57,7 @@ function ModalUpLoadAvatarProfile({presentialModal, profile}){
       user_avatar_cropY: imageY,
       user_avatar_cropW: imageW,
       user_avatar_cropH: imageH,
-    }).then(() => {
+    }).then((res) => {
       dispatch(responseUpdateAvatar({
         user_avatar: img,
         user_avatar_cropX: Math.round(imageX),
@@ -64,6 +65,7 @@ function ModalUpLoadAvatarProfile({presentialModal, profile}){
         user_avatar_cropW: Math.round(imageW),
         user_avatar_cropH: Math.round(imageH),
       }))
+      dispatch(responseAddPostsProfile(res.data.new_avatar))
       let ustk = JSON.parse(localStorage.getItem('ustk'));
       ustk.info.user_avatar = img;
       ustk.info.user_avatar_cropX = Math.round(imageX);

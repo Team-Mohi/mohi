@@ -42,12 +42,14 @@ function CheckOtp(props, { profile }){
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="modal-add-work-space-main">
                     <div className="modal-add-work-space-main-input">
-                        <label htmlFor="">Nhập mã xác nhận bạn nhận được</label>
+                      <label htmlFor="">Nhập mã xác nhận bạn nhận được</label>
+                      <div className="modal-add-email-main-input">
                         <input type="text" name="otp" ref={register({required: true})} />
                         {errors.otp && <Tooltip placement="bottom" trigger="click" title={<p className = "error_sex_tooltip" >
                             {errorOtp}
                             </p>}><RiErrorWarningLine className="error_sex"/></Tooltip>
                         }
+                      </div>
                     </div>
 
                 </div>

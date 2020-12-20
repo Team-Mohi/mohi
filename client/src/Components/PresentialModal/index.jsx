@@ -29,6 +29,14 @@ import ModalEditNickName from './ModalEditNickName.jsx';
 import ModalEditLiveSpace from './ModalEditLiveSpace.jsx';
 import ModalUpLoadAvatarProfile from './ModalUpLoadAvatarProfile.jsx';
 import ModalSharePost from './ModalSharePost.jsx';
+import ModalViewImage from './ModalViewImage.jsx';
+import ModalEditComment from './ModalEditComment.jsx';
+import ModalEditCommentProfile from './ModalEditCommentProfile.jsx';
+import ModalUpdatePostProfile from './ModalUpdatePostProfile.jsx';
+import ModalViewStory from './ModalViewStory.jsx';
+import ModalForgotPassVerification from './ModalForgotPassVerification.jsx';
+import ModalForgotPass from './ModalForgotPass.jsx';
+import ModalNewPass from './ModalNewPass.jsx';
 
 export const PresentialModal = ({ presentialModal }) => {
   useEffect(() => {
@@ -47,6 +55,30 @@ export const PresentialModal = ({ presentialModal }) => {
 
   const CurrentModal = () => {
     switch (statusPresentialModal.action) {
+      case 'modal_forgot_pass_verification':
+        return <ModalForgotPassVerification />;
+        break;
+      case 'modal_forgot_pass':
+        return <ModalForgotPass />;
+        break;
+      case 'modal_new_pass':
+        return <ModalNewPass />;
+        break;
+      case 'view_story':
+        return <ModalViewStory />;
+        break;
+      case 'update_post_profile':
+        return <ModalUpdatePostProfile />;
+        break;
+      case 'edit_comment_profile':
+        return <ModalEditCommentProfile />;
+        break;
+      case 'edit_comment':
+        return <ModalEditComment />;
+        break;
+      case 'view_image':
+        return <ModalViewImage />;
+        break;
       case 'modal_share_post':
         return <ModalSharePost />;
         break;

@@ -346,3 +346,23 @@ img {
 .icon-like-48{
   width: 48px;
 }
+.icon-friend-request{
+  position: relative;
+}
+.count-friend-request{
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: red;
+  color:white;
+  font-size: 12px;
+  font-weight: 700;
+  position: absolute;
+  top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: -10px;
+  padding: 9px;
+  border: 1px solid rgba(255,255,255,0.5);
+}

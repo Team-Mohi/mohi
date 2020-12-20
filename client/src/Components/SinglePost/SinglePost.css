@@ -1,0 +1,207 @@
+.single-post-container{
+    width: 100%;
+    margin-top: 64px;
+    padding: 10px;
+    display: flex;
+    background-color: white;
+    min-height: calc(100vh - 64px);
+}
+.single-post-header{
+    display: flex;
+    align-items: center;
+}
+.single-post-title{
+    line-height: normal;
+    padding: 0 5px;
+}
+.single-post-avatar{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 5px;
+}
+.single-post-avatar img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    align-items: center;
+}
+.single-post-comment-avatar{
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.single-post-comment-avatar img{
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    align-items: center;
+}
+.single-post-comment-title{
+    display: flex;
+    align-items: center;
+}
+.single-post-comment-name{
+    color: rgba(0,128,128);
+    font-weight: 500;
+    font-size: 15px;
+    cursor: pointer;
+}
+.single-post-comment{
+    padding: 10px;
+}
+.single-post-comment-items{
+    overflow-y: auto;
+    max-height: calc(100vh - 135px);
+    margin-top: 30px;
+    padding: 11px;
+}
+.single-post-comment-item{
+    padding: 5px 0;
+}
+.single-post-comment-detail{
+    max-width: 70%;
+    margin-left: 5px;
+    background-color: rgba(0,0,0,0.1);
+    padding: 5px 10px;
+    border-radius: 15px;
+}
+.single-post-name a:hover{
+  color: rgba(0,128,128);
+}
+.single-post-name a{
+    color: rgba(0,128,128);
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+}
+.single-post-time{
+    color: rgba(0,0,0,0.9);
+    cursor: pointer;
+}
+.single-post-content{
+    cursor: pointer;
+    padding: 5px;
+}
+.single-post-left{
+    width: 60%;
+    margin-right: 5px;
+}
+.single-post-right{
+    width: 40%;
+    position: relative;
+}
+.single-post-media{
+    width: 100%;
+    height: 70vh;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.single-post-media img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    align-items: center;
+}
+.single-post-react{
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.single-post-react button svg{
+  font-size: 20px;
+}
+.single-post-react button:focus{
+  outline: none !important;
+  border: 0 !important;
+}
+.single-post-react button{
+    width: 100%;
+    border: 0;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: white;
+}
+.single-post-react button:hover{
+    background-color:rgba(0,0,0,0.08);
+}
+.single-post-button{
+    margin: 5px;
+
+}
+.single-post-comment-input{
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    max-height: 200px;
+    overflow-y:auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+}
+.single-post-comment-time{
+    margin-left: auto;
+    font-size: 13px;
+}
+
+.single-post-comment-items:hover .single-post-comment-item::-webkit-scrollbar {
+    width: 6px;
+    margin-left: 5px;
+  }
+  .single-post-right:hover .single-post-comment-items::-webkit-scrollbar-thumb {
+    background: rgba(0, 128, 128, 0.7);
+    border-radius: 10px;
+  }
+  .single-post-comment-items::-webkit-scrollbar {
+    width: 6px;
+    border-radius: 10px;
+  }
+  .single-post-right:hover .single-post-comment-items::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+  }
+  /* Handle */
+  .single-post-comment-items::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 10px;
+  }
+  /* Handle on hover */
+  .single-post-comment-items::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 128, 128);
+  }
+
+
+  /* Scroll input */
+  .single-post-comment:hover .single-post-comment-input::-webkit-scrollbar {
+    width: 6px;
+    margin-left: 5px;
+  }
+  .single-post-comment:hover .single-post-comment-input::-webkit-scrollbar-thumb {
+    background: rgba(0, 128, 128, 0.7);
+    border-radius: 10px;
+  }
+  .single-post-comment-input::-webkit-scrollbar {
+    width: 6px;
+    border-radius: 10px;
+  }
+  .single-post-right .single-post-comment::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+  }
+  /* Handle */
+  .single-post-comment::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 10px;
+  }
+  /* Handle on hover */
+  .single-post-comment::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 128, 128);
+  }

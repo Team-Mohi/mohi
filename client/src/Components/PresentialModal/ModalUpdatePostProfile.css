@@ -1,0 +1,36 @@
+.modal_update_post{
+  overflow-x: hidden;
+}
+#update_post_upload_image{
+  opacity: 0;
+  visibility: hidden;
+  height: 0;
+  width: 0;
+}
+.button-update-post button:hover{
+  background: rgba(0,128,128);
+}
+.button-update-post button{
+  width: 100%;
+  background: rgba(0,128,128,0.7);
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 2px;
+  padding: 3px;
+  transition: all 0.2s ease;
+}
+.update-post-content .DraftEditor-editorContainer{
+  overflow: auto;
+  max-height: 300px;
+}
+.button-update-post{
+  padding-top: 20px;
+  position: absolute;
+    bottom: 10px;
+    width: 96%;
+}
+.select-privacy-update{
+  margin-bottom: 50px;
+}

@@ -107,7 +107,7 @@ function CreatePost(props) {
 
     return (
         <>
-        <div className="create-post" onClick={() => showModalCreatePostFunc()} style={showModalCreatePost ? {zIndex: '10'} : null}>
+        <div className="create-post" onClick={() => showModalCreatePostFunc()} style={showModalCreatePost ? {zIndex: '10', marginBottom: '10px'} : {marginBottom: '10px'}} >
           <div className="create-post-input">
             <div className="create-post-avatar">
               {currentUser.user_avatar_cropX === null ?

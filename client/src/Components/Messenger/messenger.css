@@ -4,10 +4,10 @@
 
 .messenger-container {
   margin-top: 64px;
-  position: fixed;
   display: flex;
   box-sizing: border-box;
-  width: 100%;
+  min-width: 720px;
+  height: calc(100vh - 64px);
 }
 
 .sider-messenger-head {
@@ -16,14 +16,13 @@
 
 .sider-messenger-container {
   background: white;
-  min-height: 100vh;
   width: 25%;
+  min-width: 350px;
 }
 
 .content-messenger-container {
   width: 75%;
   background: white;
-  min-height: 100vh;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
@@ -174,9 +173,14 @@
 
 .sider-messenger-content-nearest {
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: pre;
   width: 95%;
+  text-overflow: ellipsis;
+  white-space: pre-line;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  transition: all 0.2s ease;
+  -webkit-box-orient: vertical;
+  line-height: 25px;
 }
 
 .sider-messenger-username {
@@ -275,6 +279,7 @@
   width: 66.66666667%;
   height: 100%;
   border-right: 1px solid rgba(0, 0, 0, 0.1);
+  min-width: 500px;
 }
 
 .content-messenger-body-right {
@@ -292,6 +297,7 @@
   background: white;
   padding: 10px 20px;
   border-right: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid rgba(0,0,0,0.1);
 }
 
 .content-messenger-input svg {
@@ -309,8 +315,21 @@
 .content-messenger-input-text svg {
   position: absolute;
   right: 10px;
-}
 
+}
+.draftJsEmojiPlugin__emojiSelect__34S1B button:focus{
+  outline: none;
+  border: 0 !important;
+}
+.emoij-mess .draftJsEmojiPlugin__emojiSelectPopoverNav__1Nzd7{
+  display: none;
+}
+.emoij-mess .draftJsEmojiPlugin__emojiSelect__34S1B{
+  position: relative;
+}
+.emoij-mess .draftJsEmojiPlugin__emojiSelectPopover__1J1s0{
+  top: -920%;
+}
 .content-messenger-input-text input {
   width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -318,7 +337,9 @@
   padding: 5px 10px;
   background: #f5f6f7;
 }
-
+.content-messenger-input-file label{
+  cursor: pointer;
+}
 .content-messenger-input-file svg:not(:first-child) {
   margin-left: 15px;
 }
@@ -431,7 +452,12 @@
 .content-messenger-room::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 128, 128);
 }
-
+.content-messenger-body-right-head-name a:hover{
+  color: rgba(0, 128, 128);
+}
+.content-messenger-body-right-head-name a{
+  color: rgba(0, 128, 128);
+}
 .content-messenger-body-right-title {
   text-align: center;
   font-size: 26px;
@@ -592,4 +618,31 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.preview-image-send{
+  position: absolute;
+  opacity: 0;
+  top: -210px;
+}
+.preview-image-send-img img, .preview-image-send-img video{
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+}
+.preview-image-send-img svg{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.preview-image-send-img{
+  position: relative;
+  background: white;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow:  0px 2px 2px black;
 }

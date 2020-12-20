@@ -83,8 +83,9 @@
 
 }
 .setting-general-name{
-    width: 40%;
+    width: 50%;
     margin: 0 auto;
+    position: relative;
 }
 .setting-password h6{
     font-weight: 700;
@@ -97,6 +98,7 @@
     background: white;
     border: 1px solid rgba(0,0,0,0.1);
     border-radius: 2px;
+    position: relative;
 }
 .setting-general-email{
     width: 50%;
@@ -114,6 +116,16 @@
     width: 100%;
     margin-top: 5px;
     align-items: center ;
+    display: flex;
+}
+.setting-form-input{
+  position: relative;
+  align-items: center ;
+  display: flex;
+}
+.err_setting{
+  position: absolute;
+  right: 5px;
 }
 .setting-form-edit-name a{
     color:rgba(0, 128, 128,0.7);
@@ -136,6 +148,7 @@
     width: 100%;
     margin-top: 5px;
     align-items: center ;
+    display: flex;
     padding: 15px 0;
 }
 .setting-form-edit-password a{
@@ -143,7 +156,7 @@
     padding: 5px;
 }
 .setting-form-change-password label{
-    
+
     width: 100%;
     font-weight: 700;
     text-align: center;
@@ -170,13 +183,10 @@
 .setting-form-edit-name-button button:first-child, .setting-form-change-password-button button{
     background-color: rgba(0, 128, 128, 0.8);
 }
-.setting-form-edit-name-button button:last-child{
-    background-color: rgba(0, 0, 0, 0.8);
-}
 .setting-form-edit-name-button button:first-child:hover, .setting-form-change-password-button button:hover{
     background-color: rgba(0, 128, 128);
 }
-.setting-form-change-password-button{
+.setting-form-change-password-button, .setting-form-edit-name-button{
     text-align: center;
 }
 .setting-form-edit-name-button button, .setting-form-change-password-button button{
@@ -260,9 +270,10 @@
     margin-bottom: 10px;
 }
 .setting-form-edit-name input{
-    padding: 2px 10px;
-    border: 1px solid rgba(0,0,0,0.3) !important;
+    padding: 4px 10px;
+    border: 1px solid rgba(0,0,0,0.3) ;
     border-radius: 2px !important;
+    width: 250px;
 }
 .popup-change-password{
     position: fixed;

@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { GoPrimitiveDot } from "react-icons/go";
 import { useSelector } from 'react-redux';
 import {useParams} from 'react-router-dom';
+import {Image,Transformation} from 'cloudinary-react';
 
 function SiderRightProfile({ profile }){
   const {loadingListImage, listImage} = useSelector(state => state.profile);
@@ -60,7 +61,13 @@ function SiderRightProfile({ profile }){
                   return(
                     <Col span={12} key={index}>
                       <div className="profile-galerry-img">
-                        <img src={image.post_images_Url} alt=""/>
+                          {image.post_images_Url.toLowerCase().indexOf('https://') !== -1 ?
+                            <img src={image.post_images_Url} alt=""/>
+                            :
+                            <Image cloudName="mohi-vn" publicId={image.post_images_Url+ ".jpg"} version="1607061343">
+                              <Transformation />
+                            </Image>
+                          }
                       </div>
                     </Col>
                   )

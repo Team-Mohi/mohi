@@ -51,6 +51,9 @@ export default function editInfo(payload){
     case "user_nick_name":
       initialData.user_nick_name = payload.value;
       break;
+    case "user_username":
+      initialData.user_username = payload.value;
+      break;
     case "user_introduce":
       initialData.user_introduce = payload.value;
       break;
@@ -69,7 +72,4 @@ export default function editInfo(payload){
   }
 
   return axios.post("https://www.api.mohi.vn/api/auth/update-info-profile", initialData)
-  .catch((e) => {
-    console.log(e);
-  })
 }

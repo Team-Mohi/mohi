@@ -19,8 +19,10 @@ if(!currentToken){
   axios.interceptors.request.use(
      config => {
         const token = localStorage.getItem('ustk') ? JSON.parse(localStorage.getItem('ustk')).access_token: '';
-         if (token) {
+         if (token && config.url !== 'https://api.cloudinary.com/v1_1/mohi-vn/upload') {
              config.headers['Authorization'] = 'Bearer ' + token;
+             config.headers['Content-Type'] = 'application/json';
+             config.headers['Access-Control-Allow-Origin'] = '*';
          }
          return config;
      },
@@ -55,6 +57,8 @@ if(!currentToken){
             failedQueue.push({resolve, reject})
           }).then(token => {
             originalRequest.headers['Authorization'] = 'Bearer ' + token;
+            originalRequest.headers['Content-Type'] = 'application/json';
+            originalRequest.headers['Access-Control-Allow-Origin'] = '*';
             return axios(originalRequest);
           }).catch(err => {
             return Promise.reject(err);

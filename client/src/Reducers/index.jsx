@@ -14,6 +14,8 @@ import { notifycations } from './Notification.jsx';
 import { oneMessage } from './OneMessage.jsx';
 import { profile } from './Profile.jsx';
 import { activities } from './ActivityLog.jsx';
+import { search } from './Search.jsx';
+import { onePost } from './OnePost.jsx';
 
 const reducers = combineReducers({
   posts,
@@ -30,6 +32,8 @@ const reducers = combineReducers({
   oneMessage,
   myPosts,
   profile,
-  activities
+  activities,
+  search,
+  onePost
 });
 export default reducers;

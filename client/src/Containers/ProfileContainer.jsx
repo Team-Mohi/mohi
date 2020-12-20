@@ -96,7 +96,7 @@ function ProfileContainer({ myPosts, profile }){
 
   const sendReactionPost = async (reaction, postId) => {
     if(reaction === 'unlike'){
-      console.log(reaction, postId);
+      await axios.post('https://www.api.mohi.vn/api/auth/delete-action', {actions_PostId: postId})
     }else {
       await axios.post('https://www.api.mohi.vn/api/auth/create-action', {actions_PostId: postId, actions_action: reaction}).then((res) => {
       })

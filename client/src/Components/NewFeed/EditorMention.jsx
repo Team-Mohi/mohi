@@ -6,6 +6,7 @@ import Editor from 'draft-js-plugins-editor';
 import createMentionPlugin, { defaultSuggestionsFilter } from 'draft-js-mention-plugin';
 import editorStyles from './editorStyles.css';
 import { connect } from 'react-redux';
+import {Image,Transformation} from 'cloudinary-react';
 
 const mentions = [];
 
@@ -34,10 +35,11 @@ const StyleEditorMention = style.div`
 
   componentDidMount(){
     this.props.friends.map((mention) => {
+
       mentions.push({
         name: mention.user_last_name + ' ' + mention.user_first_name,
         link: '/profile/' + mention.user_username,
-        avatar: mention.user_avatar,
+        avatar: mention.user_avatar.toLowerCase().indexOf('data') >= 0 ? mention.user_avatar : "https://res.cloudinary.com/mohi-vn/image/upload/v1607061343/" + mention.user_avatar + ".jpg",
         id: mention.id
       });
     })
@@ -48,7 +50,6 @@ const StyleEditorMention = style.div`
     suggestions: mentions,
     listMention: []
   };
-
   onChange = (editorState) => {
     this.setState({
       editorState,

@@ -1,0 +1,30 @@
+.modal-forgot-pass-header{
+    padding: 5px 10px;
+    font-size: 13px;
+    font-weight: 500;
+}
+.modal-forgot-pass-footer{
+    padding-top:10px;
+}
+.modal-forgot-pass-main {
+    padding: 5px 5px;
+}
+.modal-forgot-pass-main input{
+    padding: 5px 10px;
+
+}
+.modal-forgot-pass-controller{
+    padding: 5px 5px;
+}
+.modal-forgot-pass-footer button{
+    padding: 5px 10px;
+    width: 100%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 5px;
+    font-weight: 500;
+    color: white;
+    background-color: rgba(0,128,128);
+}
+.modal-forgot-pass-footer:hover button{
+    background-color: rgba(0,128,128,0.9);
+}

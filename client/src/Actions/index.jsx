@@ -1,5 +1,107 @@
 import * as Types from './../Constants/ActionTypes.jsx';
 
+export const requestOnePost = () => {
+  return {
+    type: Types.REQUEST_ONE_POST
+  }
+}
+
+export const responseOnePost = (payload) => {
+  return {
+    type: Types.RESPONSE_ONE_POST,
+    payload
+  }
+}
+
+export const typingMess = (payload) => {
+  return {
+    type: Types.TYPING_MESS,
+    payload
+  }
+}
+
+export const readMessageOfList = (payload) => {
+  return {
+    type: Types.READ_MESSAGE_OF_LIST,
+    payload
+  }
+}
+
+export const readMyMessage = (payload) => {
+  return {
+    type: Types.READ_MY_MESSAGE,
+    payload
+  }
+}
+
+export const readMessage = (payload) => {
+  return {
+    type: Types.READ_MESSAGE,
+    payload
+  }
+}
+
+export const addNewMessageOflist = (payload) => {
+  return {
+    type: Types.ADD_NEW_MESSAGE_OF_LIST,
+    payload
+  }
+}
+
+export const addNewMessage = (payload) => {
+  return {
+    type: Types.ADD_NEW_MESSAGE,
+    payload
+  }
+}
+
+export const requestSearchMohi = () => {
+  return {
+    type: Types.REQUEST_SEARCH_MOHI
+  }
+}
+
+export const responseSearchMohi = (payload) => {
+  return {
+    type: Types.RESPONSE_SEARCH_MOHI,
+    payload
+  }
+}
+
+export const updatePostProfile = (payload) => {
+  return {
+    type: Types.UPDATE_POST_PROFILE,
+    payload
+  }
+}
+
+export const updateCommentPostProfile = (payload) => {
+  return {
+    type: Types.UPDATE_COMMENT_POST_PROFILE,
+    payload
+  }
+}
+
+export const updateCommentPost= (payload) => {
+  return {
+    type: Types.UPDATE_COMMENT_POST,
+    payload
+  }
+}
+
+export const responseUpdateCover= (payload) => {
+  return {
+    type: Types.RESPONSE_UPDATE_COVER,
+    payload
+  }
+}
+
+export const requestUpdateCover = () => {
+  return {
+    type: Types.REQUEST_UPDATE_COVER
+  }
+}
+
 export const responseUpdateAvatar= (payload) => {
   return {
     type: Types.RESPONSE_UPDATE_AVATAR,

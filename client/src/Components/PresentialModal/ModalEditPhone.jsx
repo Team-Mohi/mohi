@@ -39,6 +39,13 @@ function ModalEditPhone({ presentialModal}) {
                 });
             setErrorEmail('Số điện thoại đã được đăng kí')
           }
+          if(e.response.data.message === "[HTTP 400] Unable to create record: The 'To' number +84"+ data.user_phone +" is not a valid phone number."){
+            setError("user_phone", {
+                  type: "manual",
+                  message: "Số điện thoại không tồn tại"
+                });
+            setErrorEmail('Số điện thoại không tồn tại')
+          }
         })
       }else {
         dispatch(toggleStatusPresentialModal())
@@ -71,13 +78,15 @@ function ModalEditPhone({ presentialModal}) {
                     <div className="modal-add-work-space-main">
                         <div className="modal-add-work-space-main-input">
                             <label htmlFor="">Số điện thoại của bạn</label>
-                            <input type="text" name="user_phone" id="" defaultValue={`0` + statusPresentialModal.data} ref={register({
-                                validate: value => validateInputPhone(value)
-                              })} />
-                            {errors.user_phone && <Tooltip placement="bottom" trigger="click" title={<p className = "error_sex_tooltip" >
-                                {errorEmail}
-                                </p>}><RiErrorWarningLine className="error_sex"/></Tooltip>
-                            }
+                              <div className="modal-add-email-main-input">
+                                <input type="text" name="user_phone" id="" defaultValue={`0` + statusPresentialModal.data} ref={register({
+                                  validate: value => validateInputPhone(value)
+                                })} />
+                                {errors.user_phone && <Tooltip placement="bottom" trigger="click" title={<p className="error_sex_tooltip" >
+                                  {errorEmail}
+                                </p>}><RiErrorWarningLine className="error_sex" /></Tooltip>
+                                }
+                              </div>
                         </div>
 
                     </div>

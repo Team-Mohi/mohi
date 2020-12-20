@@ -16,6 +16,9 @@ import { AiOutlineCaretRight } from "react-icons/ai";
 import {Image,Transformation} from 'cloudinary-react';
 import { useDispatch } from 'react-redux';
 import { toggleStatusPresentialModal } from './../../Actions/index.jsx';
+import { responseAddComment } from './../../Actions/index.jsx';
+import { requestAddComment } from './../../Actions/index.jsx';
+import axios from 'axios';
 
 export const PostNewFeed = React.forwardRef((props, ref ) =>  {
 
@@ -42,14 +45,18 @@ export const PostNewFeed = React.forwardRef((props, ref ) =>  {
     const dispatch = useDispatch();
     const inputCommentRef = useRef();
     const refContentPost = useRef();
+    const refContentPostShare = useRef();
     const [listParentComment, setListParentComment] = useState([]);
     const [listChildComment, setListChildComment] = useState([]);
     const [iconReaction, setIconReaction] = useState();
     const [styleListSendReaction, setStyleListSendReaction] = useState();
-    const [isUnlike, setIsUnlike] = useState(false);
+    const [isLike, setIsLike] = useState('default');
     const [contentPostStyle, setContentPostStyle] = useState();
+    const [contentPostShareStyle, setContentPostShareStyle] = useState();
     const [moreContent, setMoreContent] = useState(false);
+    const [moreContentShare, setMoreContentShare] = useState(false);
     const [lineContent, setLineContent] = useState(false);
+    const [lineContentShare, setLineContentShare] = useState(false);
     const totalReactionPost = props.post.actions_post;
     const currentUser = JSON.parse(localStorage.getItem('ustk')).info;
     const [delayHandler, setDelayHandler] = useState(null)
@@ -58,6 +65,8 @@ export const PostNewFeed = React.forwardRef((props, ref ) =>  {
     const [noti, setNoti] = useState()
     const [typeNoti, setTypeNoti] = useState()
     const [isHide, setIsHide] = useState(false)
+    const [newOneCmt, setNewOneCmt] = useState()
+    const [isNewComment, setIsNewComment] = useState(false)
 
     useEffect(() => {
       if(!props.loadingSetting && typeNoti){
@@ -69,10 +78,28 @@ export const PostNewFeed = React.forwardRef((props, ref ) =>  {
       }
     }, [props.loadingSetting])
 
-    const onSubmitComment = (value) => {
-      setNewComment([...newComment, value])
-      props.onSubmitComment(value, props.post.id)
+    const onSubmitComment = async (value) => {
+      dispatch(requestAddComment())
+      setNewOneCmt(value)
+      setIsNewComment(true)
+      await axios.post('https://www.api.mohi.vn/api/auth/create-comment', {comment_PostId: props.post.id, comment_Content: value, comment_Type: 'parent'})
+      .then((res) => {
+        setNewComment([res.data[0], ...newComment])
+        setIsNewComment(false)
+        dispatch(responseAddComment({idPost: props.post.id, comment: res.data}))
+      })
     }
+
+    const updateComment = (idPost, id, value) => {
+      dispatch(toggleStatusPresentialModal('edit_comment', {idPost: idPost, id: id, value: value}))
+    }
+
+    const deleteComment = async (id) => {
+      await axios.post("https://www.api.mohi.vn/api/auth/delete-comment", {id: id})
+      const deleteCmt = newComment.filter(cmt => cmt.pivot.id !== id);
+      setNewComment(deleteCmt)
+    }
+
     const toggleMoreContentPost = () => {
       if(moreContent){
         setMoreContent(false)
@@ -87,6 +114,25 @@ export const PostNewFeed = React.forwardRef((props, ref ) =>  {
       }else {
         setMoreContent(true)
         setContentPostStyle({
+          display: 'block'
+        })
+      }
+    }
+
+    const toggleMoreContentPostShare = () => {
+      if(moreContentShare){
+        setMoreContentShare(false)
+        setContentPostShareStyle({
+          maxWidth: '100%',
+          display: '-webkit-box',
+          WebkitBoxOrient: 'vertical',
+          WebkitLineClamp: 3,
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+        })
+      }else {
+        setMoreContentShare(true)
+        setContentPostShareStyle({
           display: 'block'
         })
       }
@@ -117,6 +163,10 @@ export const PostNewFeed = React.forwardRef((props, ref ) =>  {
         })
         const divHeight = refContentPost.current.offsetHeight
         setLineContent(divHeight / 25);
+        if(props.post.post_share.length > 0){
+          const divHeightShare = refContentPostShare.current.offsetHeight
+          setLineContentShare(divHeightShare / 25);
+        }
     }, []);
 
     function sharePostFunc(dataPost) {
@@ -130,7 +180,7 @@ export const PostNewFeed = React.forwardRef((props, ref ) =>  {
           opacity:0,
           visibility: 'hidden'
         })
-      }, 700))
+      }, 1000))
       clearTimeout(delayHandler)
     }
 
@@ -165,7 +215,6 @@ export const PostNewFeed = React.forwardRef((props, ref ) =>  {
     const settingPost = (
         <React.Fragment>
             <List className="setting-post" loading={props.loadingSetting}>
-                <List.Item onClick={() => loadingSendRequestSetting('hidePost', props.post.id, '')}><GoEyeClosed /> Ẩn bài viết</List.Item>
               <List.Item onClick={() => loadingSendRequestSetting('unFollow', '', props.post.user_admin_post.id)}><AiOutlineIssuesClose /> Bỏ theo dõi {props.post.user_admin_post.user_first_name + " " + props.post.user_admin_post.user_last_name}</List.Item>
                 <List.Item onClick={() => loadingSendRequestSetting('unNotification', props.post.id, '')}><MdNotificationsOff />Tắt thông báo từ bài viết</List.Item>
               <List.Item onClick={() => loadingSendRequestSetting('hideAllPost', '', props.post.user_admin_post.id)}><FaRegWindowClose /> Ẩn bài viết từ {props.post.user_admin_post.user_first_name + " " + props.post.user_admin_post.user_last_name}</List.Item>
@@ -219,7 +268,6 @@ export const PostNewFeed = React.forwardRef((props, ref ) =>  {
     const ListTagUserPost = () => {
         const twoItemTags = props.post.tag_users_post.slice(0, 2);
         const itemToLast =  props.post.tag_users_post.slice(2);
-        const lastItem = props.post.tag_users_post.length + 1;
 
         if(props.post.tag_users_post.length && props.post.tag_users_post.length <= 2){
           return(
@@ -228,8 +276,8 @@ export const PostNewFeed = React.forwardRef((props, ref ) =>  {
               {twoItemTags.map((tag, index) => {
                 return(
                   <Link to={'/profile/' + tag.user_username} key={index}>
-                    {lastItem !== index ? 'và' : null}
-                    {tag.user_first_name + ' ' + tag.user_last_name}
+                    { index !== 0 ? ' và ' : null}
+                    { ' ' + tag.user_first_name + ' ' + tag.user_last_name}
                   </Link>
                 )
               })}
@@ -238,6 +286,59 @@ export const PostNewFeed = React.forwardRef((props, ref ) =>  {
         }
 
         if(props.post.tag_users_post.length > 2){
+          return(
+            <React.Fragment>
+              cùng với
+              {twoItemTags.map((tag, index) => {
+                return(
+                  <span key={index}> <Link to={'/profile/' + tag.user_username} >{tag.user_first_name + ' ' + tag.user_last_name}</Link> và </span>
+                )
+              })}
+              <Tooltip
+                placement="bottom"
+                className="tag-more-user"
+                title={
+                  <ul className="tag-more-user-list">
+                    {itemToLast.map((tag, index) => {
+                      return(
+                        <li key={index}><Link to={'/profile/' + tag.user_username} >{tag.user_first_name + ' ' + tag.user_last_name}</Link></li>
+                      )
+                    })}
+                  </ul>
+                }
+              >
+                {itemToLast.length} người khác
+              </Tooltip>
+            </React.Fragment>
+          )
+        }
+
+        return null
+
+    }
+
+    const ListTagUserPostShare = () => {
+        const twoItemTags = props.post.post_share[0].tag_users_post.slice(0, 2);
+        const itemToLast =  props.post.post_share[0].tag_users_post.slice(2);
+        const lastItem = props.post.post_share[0].tag_users_post.length + 1;
+
+        if(props.post.post_share[0].tag_users_post.length && props.post.post_share[0].tag_users_post.length <= 2){
+          return(
+            <React.Fragment>
+              cùng với
+              {twoItemTags.map((tag, index) => {
+                return(
+                  <Link to={'/profile/' + tag.user_username} key={index}>
+                  { index !== 0 ? ' và ' : null}
+                    { ' ' + tag.user_first_name + ' ' + tag.user_last_name}
+                  </Link>
+                )
+              })}
+            </React.Fragment>
+          )
+        }
+
+        if(props.post.post_share[0].tag_users_post.length > 2){
           return(
             <React.Fragment>
               cùng với
@@ -329,6 +430,16 @@ export const PostNewFeed = React.forwardRef((props, ref ) =>  {
       return null
     }
 
+    const UserReceivedPostShare = () => {
+      if(props.post.post_share[0].post_userReceiveId && props.post.post_share[0].post_userReceiveId !== props.post.post_share[0].user_admin_post.id){
+        return(
+          <span><AiOutlineCaretRight/> <Link to={'/profile/' + props.post.post_share[0].profile_receive_post.user_username}>{props.post.post_share[0].profile_receive_post.user_first_name + ' ' + props.post.post_share[0].profile_receive_post.user_last_name}</Link></span>
+        )
+      }
+
+      return null
+    }
+
     const GroupPost = () => {
       if(props.post.post_GroupId){
         return(
@@ -340,34 +451,39 @@ export const PostNewFeed = React.forwardRef((props, ref ) =>  {
     }
 
     const sendReactionPost = (reaction, postId) => {
+      setStyleListSendReaction({
+         top: '-10px',
+         opacity:0,
+         visibility: 'hidden'
+       })
       props.sendReactionPost(reaction, postId)
       switch (reaction) {
         case 'unlike':
             setIconReaction(<AiOutlineLike/>)
-            setIsUnlike(true)
+            setIsLike(false)
           break;
         case 'like':
-            setIsUnlike(false)
+            setIsLike(true)
             setIconReaction(<img className='icon-reaction icon-like-22' src={PUBLIC_URL + 'icon/like.png'} alt='Thích'/>)
           break;
         case 'haha':
-            setIsUnlike(false)
+            setIsLike(true)
             setIconReaction(<img className='icon-reaction icon-like-22' src={PUBLIC_URL + 'icon/haha.png'} alt='Cười'/>)
           break;
         case 'wow':
-            setIsUnlike(false)
+            setIsLike(true)
             setIconReaction(<img className='icon-reaction icon-like-22' src={PUBLIC_URL + 'icon/wow.png'} alt='Ngạc nhiên'/>)
           break;
         case 'sad':
-            setIsUnlike(false)
+            setIsLike(true)
             setIconReaction(<img className='icon-reaction icon-like-22' src={PUBLIC_URL + 'icon/sad.png'} alt='Buồn'/>)
           break;
         case 'angry':
-            setIsUnlike(false)
+            setIsLike(true)
             setIconReaction(<img  className='icon-reaction icon-like-22' src={PUBLIC_URL + 'icon/angry.png'} alt='Giận dữ'/>)
           break;
         case 'love':
-            setIsUnlike(false)
+            setIsLike(true)
             setIconReaction(<img className='icon-reaction icon-like-22' src={PUBLIC_URL + 'icon/heart.png'} alt='Yêu thích'/>)
           break;
       }
@@ -400,6 +516,9 @@ export const PostNewFeed = React.forwardRef((props, ref ) =>  {
                                     <PagePost />
                                     <GroupPost />
                                     <UserReceivedPost />
+                                    {props.post.post_share.length ? 'đã chia sẻ bài viết' : null}
+                                    {props.post.post_Type === 'avatar' && <span>đã cập nhật ảnh đại diện</span>}
+                                    {props.post.post_Type === 'cover' && <span>đã cập nhật ảnh bìa</span>}
                                 </p>
                                 <p className="post-time-created">{moment(moment.utc(props.post.created_at).toDate()).fromNow()} <PrivacyPost /></p>
                             </div>
@@ -420,6 +539,44 @@ export const PostNewFeed = React.forwardRef((props, ref ) =>  {
                             : null}
                         </div>
                         <PostImage post={props.post} images={props.post.images_post} />
+                        {props.post.post_share.length ?
+                          <div className="post-share-container">
+                            <PostImage post={props.post.post_share[0]} images={props.post.post_share[0].images_post} />
+                            <div className="post-content" >
+                                <div style={contentPostShareStyle} ref={refContentPostShare}>{props.post.post_share[0].post_Content} </div>
+                                {lineContentShare >= 4 ?
+                                  <React.Fragment>
+                                    {!moreContentShare ? <span className="more-content-post" onClick={toggleMoreContentPostShare }> Xem thêm</span > : <span className="more-content-post" onClick={toggleMoreContentPostShare }>Thu gọn</span>}
+                                  </React.Fragment>
+                                : null}
+                            </div>
+                            <div className="post-share-footer">
+                              <div className="post-info">
+                                  <div className="post-avatar">
+                                      <Link to={'/profile/' + props.post.post_share[0].user_admin_post.user_username}>
+                                      {props.post.post_share[0].user_admin_post.user_avatar_cropX === null ?
+                                        <img src={props.post.post_share[0].user_admin_post.user_avatar} alt={props.post.post_share[0].user_admin_post.user_last_name} />
+                                        :
+                                        <Image cloudName="mohi-vn" publicId={props.post.post_share[0].user_admin_post.user_avatar+ ".jpg"} version="1607061343">
+                                          <Transformation height={props.post.post_share[0].user_admin_post.user_avatar_cropH}  width={props.post.post_share[0].user_admin_post.user_avatar_cropW} x={props.post.post_share[0].user_admin_post.user_avatar_cropX} y={props.post.post_share[0].user_admin_post.user_avatar_cropY} crop="crop" />
+                                        </Image>
+                                      }
+                                      </Link>
+                                  </div>
+                                  <div className="post-boss">
+                                      <p>
+                                          <Link to={'/profile/' + props.post.post_share[0].user_admin_post.user_username}>{props.post.post_share[0].user_admin_post.user_first_name + " " + props.post.post_share[0].user_admin_post.user_last_name} </Link>
+                                          <ListTagUserPostShare />
+                                          <UserReceivedPostShare />
+                                          {props.post.post_share[0].post_Type === 'avatar' && <span>đã cập nhật ảnh đại diện</span>}
+                                          {props.post.post_share[0].post_Type === 'cover' && <span>đã cập nhật ảnh bìa</span>}
+                                      </p>
+                                      <p className="post-time-created">{moment(moment.utc(props.post.post_share[0].created_at).toDate()).fromNow()} <PrivacyPost /></p>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
+                        : null}
                     </div>
                     <div className="post-footer">
                           <div className="post-total-action" style={{display:'flex', justifyContent: 'space-between'}}>
@@ -430,11 +587,20 @@ export const PostNewFeed = React.forwardRef((props, ref ) =>  {
                                   {' '+ totalReactionPost.length} người đã bày tỏ cảm xúc</span>
                               </Tooltip>
                             : null}
-                            <span onClick={showCommentFunc}>{props.post.comment_post.length + newComment.length ? props.post.comment_post.length + newComment.length + ' bình luận' : null} </span>
+                            <span onClick={showCommentFunc}>{props.post.comment_post.length + newComment.length ? props.post.comment_post.length + ' bình luận' : null} </span>
                           </div>
                         <div className="post-action" >
                             <div className="post-action-item send-reaction"  onMouseEnter={enterListSendReaction} onMouseLeave={leaveListSendReaction}>
-                              <div onClick={() => totalReactionPost.filter(reaction => reaction.pivot.actions_UserId === currentUser.id).length && !isUnlike ? sendReactionPost('unlike', props.post.id) : sendReactionPost('like', props.post.id)} >
+                              <div onClick={() => totalReactionPost.filter(reaction => reaction.pivot.actions_UserId === currentUser.id).length && isLike === 'default' ?
+                                sendReactionPost('unlike', props.post.id) :
+                                  <React.Fragment>
+                                    {!isLike || isLike === 'default' ?
+                                      sendReactionPost('like', props.post.id)
+                                      :
+                                      sendReactionPost('unlike', props.post.id)
+                                    }
+                                  </React.Fragment>
+                                } >
                               { iconReaction
                                 ?
                                 iconReaction
@@ -477,9 +643,8 @@ export const PostNewFeed = React.forwardRef((props, ref ) =>  {
                               <CommentEditor ref={inputCommentRef} onSubmitComment={onSubmitComment}/>
                           </div>
                     </div>
-                    {newComment.reverse().map((newcmt, index) => {
-                      return(
-                        <div className="post-comment-item post-new-comment" style={{marginBottom: '10px'}} key={index}>
+                    {props.loadingAddComment && isNewComment?
+                        <div className="post-comment-item post-new-comment" style={{marginBottom: '10px'}}>
                           <div className="post-comment-item-parent">
                             <div className="post-comment-item-parent-avatar">
                               <Link to={'/profile/'+ currentUser.user_username}>
@@ -497,19 +662,63 @@ export const PostNewFeed = React.forwardRef((props, ref ) =>  {
                                 <Link to={'/profile/'+ currentUser.user_username}>{currentUser.user_first_name + ' ' + currentUser.user_last_name}</Link>
                               </div>
                               <div className="post-comment-item-parent-content">
-                                {newcmt}
+                                <p>{newOneCmt}</p>
                               </div>
                               <div className="post-comment-item-parent-action">
                               <span>{moment(new Date, "YYYYMMDD\h:m:s").fromNow()}</span>
                               </div>
                             </div>
                           </div>
-                          {props.loadingAddComment && index === 0 ?
-                          <React.Fragment>
-                            <Spin />
-                            <div className="post-new-comment-waiting" />
-                        </React.Fragment>
-                          : null}
+                              <Spin />
+                              <div className="post-new-comment-waiting" />
+                        </div>
+                    : null}
+                    {newComment.map((newcmt, index) => {
+                      return(
+                        <div className="post-comment-item post-new-comment" style={{marginBottom: '10px'}} key={index}>
+                          <div className="post-comment-item-parent">
+                            <div className="post-comment-item-parent-avatar">
+                              <Link to={'/profile/'+ newcmt.user_username}>
+                                {newcmt.user_avatar_cropX === null ?
+                                  <img src={newcmt.user_avatar} alt={newcmt.user_first_name + ' ' + newcmt.user_last_name} />
+                                  :
+                                  <Image cloudName="mohi-vn" publicId={newcmt.user_avatar+ ".jpg"} version="1607061343">
+                                    <Transformation height={newcmt.user_avatar_cropH}  width={newcmt.user_avatar_cropW} x={newcmt.user_avatar_cropX} y={newcmt.user_avatar_cropY} crop="crop" />
+                                  </Image>
+                                }
+                              </Link>
+                            </div>
+                            <div className="post-comment-item-parent-info">
+                              <div className="post-comment-item-parent-info-user">
+                                <Link to={'/profile/'+ newcmt.user_username}>{newcmt.user_first_name + ' ' + newcmt.user_last_name}</Link>
+                              </div>
+                              <div className="post-comment-item-parent-content">
+                                <p>{newcmt.pivot.comment_Content}</p>
+                              </div>
+                              <div className="post-comment-item-parent-action">
+                              <span>{moment(moment.utc(newcmt.pivot.created_at).toDate()).fromNow()}</span>
+                              </div>
+                            </div>
+                            {newcmt.id === JSON.parse(localStorage.getItem('ustk')).info.id && <div className="setting-comment-post">
+                              <Tooltip
+                                trigger="click"
+                                placement="bottom"
+                                title={
+                                  <div className="setting-comment-post-tooltip">
+                                    <div onClick={() => updateComment(props.post.id, newcmt.pivot.id, newcmt.pivot.comment_Content)}>
+                                      Sửa bình luận
+                                    </div>
+                                    <div onClick={() => deleteComment(newcmt.pivot.id)}>
+                                      Xóa bình luận
+                                    </div>
+                                  </div>
+                                }
+                              >
+                                <BsThreeDots />
+                              </Tooltip>
+                            </div>
+                            }
+                          </div>
                         </div>
                       )
                     })}
@@ -518,7 +727,7 @@ export const PostNewFeed = React.forwardRef((props, ref ) =>  {
                             ? <div className="post-comment-container">
                                 {
                                     listParentComment.map((comment, index) => {
-                                        return (<CommentParent key={index} listChildComment={listChildComment} comment={comment} />)
+                                        return (<CommentParent key={index} listChildComment={listChildComment} comment={comment} idPost={props.post.id}/>)
                                     })
                                 }
                             </div>

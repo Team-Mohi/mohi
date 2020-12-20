@@ -72,13 +72,15 @@ function ModalEditEmail({ presentialModal}) {
                     <div className="modal-add-work-space-main">
                         <div className="modal-add-work-space-main-input">
                             <label htmlFor="">Email của bạn</label>
-                          <input type="text" name="user_email" id="" defaultValue={statusPresentialModal.data} ref={register({
-                              validate: value => validateInputEmail(value)
-                            })} />
-                          {errors.user_email && <Tooltip placement="bottom" trigger="click" title={<p className = "error_sex_tooltip" >
-                              {errorEmail}
-                              </p>}><RiErrorWarningLine className="error_sex"/></Tooltip>
-                          }
+                              <div className="modal-add-email-main-input">
+                                <input type="text" name="user_email" id="" defaultValue={statusPresentialModal.data} ref={register({
+                                    validate: value => validateInputEmail(value)
+                                  })} />
+                                {errors.user_email && <Tooltip placement="bottom" trigger="click" title={<p className = "error_sex_tooltip" >
+                                    {errorEmail}
+                                    </p>}><RiErrorWarningLine className="error_sex"/></Tooltip>
+                                }
+                              </div>
                         </div>
 
                     </div>

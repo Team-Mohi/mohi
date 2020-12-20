@@ -56,3 +56,29 @@
 .modal-add-work-space-footer:hover button:last-child{
     background-color: rgba(0,0,0,0.6);
 }
+.modal-add-email-main-input{
+    width: 100%;
+    display: flex;
+    position: relative;
+}
+.modal-add-email-main-input label{
+    width: 100%;
+    font-weight: 500;
+    padding: 5px;
+    font-size: 15px;
+}
+.modal-add-email-main-input input{
+    width: 100%;
+    padding: 5px 10px;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 5px;
+
+}
+.modal-add-email-main-input .error_sex{
+    position: absolute;
+    right: 10px;
+    top:4px;
+}
+.ant-tooltip-content, .ant-tooltip, .ant-tooltip-placement-bottom {
+    z-index: 9999999999 !important;
+}

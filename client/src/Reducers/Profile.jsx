@@ -4,6 +4,7 @@ const initialState = {
   loading: true,
   info: '',
   loadingUpdateProfile: false,
+  loadingUpdateCover: false,
   loadingUpdateAvatar: false,
   loadingAddInfoProfile: false,
   loadingDeleteInfoProfile: false,
@@ -16,6 +17,21 @@ const initialState = {
 
 export const profile = (state = initialState, action) => {
   switch (action.type) {
+    case Types.REQUEST_UPDATE_COVER:
+      return {
+              ...state,
+              loadingUpdateCover: true
+            }
+      break;
+    case Types.RESPONSE_UPDATE_COVER:
+      state.info.user_cover = action.payload.user_cover;
+      state.info.user_cover_cropX = action.payload.user_cover_cropX;
+      state.info.user_cover_cropY = action.payload.user_cover_cropY;
+      return {
+              ...state,
+              loadingUpdateCover: false
+            }
+      break;
     case Types.REQUEST_UPDATE_AVATAR:
       return {
               ...state,
@@ -120,6 +136,9 @@ export const profile = (state = initialState, action) => {
           break;
         case "user_cover":
           state.info.user_cover = action.payload.value;
+          break;
+        case "user_username":
+          state.info.user_username = action.payload.value;
           break;
       }
       return {...state}

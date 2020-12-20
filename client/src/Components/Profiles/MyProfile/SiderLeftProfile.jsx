@@ -57,7 +57,7 @@ function SiderLeftProfile({profile, friends, friendsRequest}){
               {!info.user_introduce && !loading && 'Không có thông tin hiển thị'}
               {info.user_introduce && !loading && info.user_introduce}
             </div>
-            <button onClick={() => history.push('/profile/' + idProfile + '/about/bio')}>Chỉnh sửa tiểu sử</button>
+            {info.id === JSON.parse(localStorage.getItem('ustk')).info.id && <button onClick={() => history.push('/profile/' + idProfile + '/about/bio')}>Chỉnh sửa tiểu sử</button>}
           {info.user_workPlace || info.user_currentPlace || info.user_studyPlace || info.user_college || info.user_website ?
             <React.Fragment>
               <ul>
@@ -91,7 +91,7 @@ function SiderLeftProfile({profile, friends, friendsRequest}){
                 </li>
                 }
               </ul>
-              <button onClick={() => history.push('/profile/' + idProfile + '/about/overview')}>Chỉnh sửa chi tiết</button>
+              {info.id === JSON.parse(localStorage.getItem('ustk')).info.id && <button onClick={() => history.push('/profile/' + idProfile + '/about/overview')}>Chỉnh sửa chi tiết</button>}
             </React.Fragment>
           : null}
           </div>

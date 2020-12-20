@@ -4,13 +4,14 @@ import {AiOutlinePlus} from 'react-icons/ai';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import {  useSelector} from 'react-redux';
+import {  useSelector, useDispatch } from 'react-redux';
 import {skeleTonStory} from './../Skeleton/index.jsx';
 import {Spin} from 'antd';
 import {Image,Transformation} from 'cloudinary-react';
+import { toggleStatusPresentialModal } from './../../Actions/index.jsx';
 
 function Story({stories}){
-
+  const dispatch = useDispatch();
   const stateStore = useSelector(state => state.stories);
   const listStory = stateStore.listStory;
   const loading = stateStore.loading;
@@ -53,9 +54,14 @@ function Story({stories}){
             {listStory.map((story, index) => {
               let story_image = story.list_story;
               return(
-                <div className="story-item" key={index}>
+                <div className="story-item" key={index} onClick={ () => dispatch(toggleStatusPresentialModal('view_story', {list: listStory, activeIndex: index}))}>
                   <div className="story-item-image">
-                    {story_image[0].story_ImageUrl && <img src={story_image[0].story_ImageUrl} alt={story.user_first_name + ' ' + story.user_last_name}/>}
+                    {story_image[0].story_ImageUrl && story_image[0].story_Type === 'image' &&
+                      <img src={story_image[0].story_ImageUrl} alt={story.user_first_name + ' ' + story.user_last_name}/>
+                    }
+                    {story_image[0].story_ImageUrl && story_image[0].story_Type === 'video' &&
+                      <video src={story_image[0].story_ImageUrl}></video>
+                    }
                     {!story_image[0].story_ImageUrl && <div className="story-content-no-image"> <p>{story_image[0].story_Content}</p></div>}
                     {loadingNewStory && story.id ===  JSON.parse(localStorage.getItem('ustk')).info.id && <div className="story-content-loading-image"> <Spin /></div>}
                   </div>

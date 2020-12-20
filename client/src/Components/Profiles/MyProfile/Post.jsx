@@ -4,7 +4,7 @@ import CommentEditor from './CommentEditor.jsx';
 import CommentParent from './CommentParent.jsx';
 import { Link } from 'react-router-dom';
 import { MdPublic, MdNotificationsOff, MdDelete } from "react-icons/md";
-import { AiOutlineLike, AiOutlineIssuesClose } from "react-icons/ai";
+import { AiOutlineLike, AiOutlineIssuesClose, AiFillEdit } from "react-icons/ai";
 import { BsThreeDots } from "react-icons/bs";
 import { FaRegCommentAlt, FaRegWindowClose, FaUserLock, FaUserAlt  } from "react-icons/fa";
 import { IoIosShareAlt } from "react-icons/io";
@@ -14,6 +14,11 @@ import moment from 'moment';
 import {PUBLIC_URL} from './../../../Constants/public.jsx';
 import { AiOutlineCaretRight } from "react-icons/ai";
 import {Image,Transformation} from 'cloudinary-react';
+import { useDispatch } from 'react-redux';
+import { toggleStatusPresentialModal } from './../../../Actions/index.jsx';
+import { responseAddCommentProfile } from './../../../Actions/index.jsx';
+import { requestAddCommentProfile } from './../../../Actions/index.jsx';
+import axios from 'axios';
 
 export const Post = React.forwardRef((props, ref ) =>  {
 
@@ -43,7 +48,7 @@ export const Post = React.forwardRef((props, ref ) =>  {
     const [listChildComment, setListChildComment] = useState([]);
     const [iconReaction, setIconReaction] = useState();
     const [styleListSendReaction, setStyleListSendReaction] = useState();
-    const [isUnlike, setIsUnlike] = useState(false);
+    const [isLike, setIsLike] = useState(false);
     const [contentPostStyle, setContentPostStyle] = useState();
     const [moreContent, setMoreContent] = useState(false);
     const [lineContent, setLineContent] = useState(false);
@@ -55,6 +60,9 @@ export const Post = React.forwardRef((props, ref ) =>  {
     const [noti, setNoti] = useState()
     const [typeNoti, setTypeNoti] = useState()
     const [isHide, setIsHide] = useState(false)
+    const [newOneCmt, setNewOneCmt] = useState()
+    const [isNewComment, setIsNewComment] = useState(false)
+    const dispatch = useDispatch();
 
     useEffect(() => {
       if(!props.loadingSetting && typeNoti){
@@ -66,10 +74,28 @@ export const Post = React.forwardRef((props, ref ) =>  {
       }
     }, [props.loadingSetting])
 
-    const onSubmitComment = (value) => {
-      setNewComment([...newComment, value])
-      props.onSubmitComment(value, props.post.id)
+    const onSubmitComment = async (value) => {
+      dispatch(requestAddCommentProfile())
+      setNewOneCmt(value)
+      setIsNewComment(true)
+      await axios.post('https://www.api.mohi.vn/api/auth/create-comment', {comment_PostId: props.post.id, comment_Content: value, comment_Type: 'parent'})
+      .then((res) => {
+        setNewComment([res.data[0], ...newComment])
+        setIsNewComment(false)
+        dispatch(responseAddCommentProfile({idPost: props.post.id, comment: res.data}))
+      })
     }
+
+    const updateComment = (idPost, id, value) => {
+      dispatch(toggleStatusPresentialModal('edit_comment_profile', {idPost: idPost, id: id, value: value}))
+    }
+
+    const deleteComment = async (id) => {
+      await axios.post("https://www.api.mohi.vn/api/auth/delete-comment", {id: id})
+      const deleteCmt = newComment.filter(cmt => cmt.pivot.id !== id);
+      setNewComment(deleteCmt)
+    }
+
     const toggleMoreContentPost = () => {
       if(moreContent){
         setMoreContent(false)
@@ -124,7 +150,7 @@ export const Post = React.forwardRef((props, ref ) =>  {
           opacity:0,
           visibility: 'hidden'
         })
-      }, 700))
+      }, 1000))
       clearTimeout(delayHandler)
     }
 
@@ -156,10 +182,15 @@ export const Post = React.forwardRef((props, ref ) =>  {
       )
     }
 
+    const updatePost = (post) => {
+      dispatch(toggleStatusPresentialModal('update_post_profile', post))
+    }
+
     const settingPost = (
         <React.Fragment>
             <List className="setting-post" loading={props.loadingSetting}>
                 {props.post.user_admin_post.user_username === currentUser.user_username && <List.Item onClick={() => loadingSendRequestSetting('deletePost', props.post.id, '')}><MdDelete /> Xóa bài viết</List.Item>}
+                <List.Item onClick={() => updatePost(props.post)}><AiFillEdit /> Sửa bài viết</List.Item>
                 <List.Item onClick={() => loadingSendRequestSetting('hidePost', props.post.id, '')}><GoEyeClosed /> Ẩn bài viết</List.Item>
                 <List.Item onClick={() => loadingSendRequestSetting('unNotification', props.post.id, '')}><MdNotificationsOff />Tắt thông báo từ bài viết</List.Item>
             </List>
@@ -212,7 +243,6 @@ export const Post = React.forwardRef((props, ref ) =>  {
     const ListTagUserPost = () => {
         const twoItemTags = props.post.tag_users_post.slice(0, 2);
         const itemToLast =  props.post.tag_users_post.slice(2);
-        const lastItem = props.post.tag_users_post.length + 1;
 
         if(props.post.tag_users_post.length && props.post.tag_users_post.length <= 2){
           return(
@@ -220,10 +250,12 @@ export const Post = React.forwardRef((props, ref ) =>  {
               cùng với
               {twoItemTags.map((tag, index) => {
                 return(
-                  <Link to={'/profile/' + tag.user_username} key={index}>
-                    {lastItem !== index ? 'và' : null}
-                    {tag.user_first_name + ' ' + tag.user_last_name}
+                  <React.Fragment  key={index}>
+                    { index !== 0 ? ' và ' : null}
+                  <Link to={'/profile/' + tag.user_username}>
+                    {' ' + tag.user_first_name + ' ' + tag.user_last_name}
                   </Link>
+                </React.Fragment>
                 )
               })}
             </React.Fragment>
@@ -333,37 +365,58 @@ export const Post = React.forwardRef((props, ref ) =>  {
     }
 
     const sendReactionPost = (reaction, postId) => {
+       setStyleListSendReaction({
+          top: '-10px',
+          opacity:0,
+          visibility: 'hidden'
+        })
       props.sendReactionPost(reaction, postId)
       switch (reaction) {
         case 'unlike':
             setIconReaction(<AiOutlineLike/>)
-            setIsUnlike(true)
+            setIsLike(false)
           break;
         case 'like':
-            setIsUnlike(false)
+            setIsLike(true)
             setIconReaction(<img className='icon-reaction icon-like-22' src={PUBLIC_URL + 'icon/like.png'} alt='Thích'/>)
           break;
         case 'haha':
-            setIsUnlike(false)
+            setIsLike(true)
             setIconReaction(<img className='icon-reaction icon-like-22' src={PUBLIC_URL + 'icon/haha.png'} alt='Cười'/>)
           break;
         case 'wow':
-            setIsUnlike(false)
+            setIsLike(true)
             setIconReaction(<img className='icon-reaction icon-like-22' src={PUBLIC_URL + 'icon/wow.png'} alt='Ngạc nhiên'/>)
           break;
         case 'sad':
-            setIsUnlike(false)
+            setIsLike(true)
             setIconReaction(<img className='icon-reaction icon-like-22' src={PUBLIC_URL + 'icon/sad.png'} alt='Buồn'/>)
           break;
         case 'angry':
-            setIsUnlike(false)
+            setIsLike(true)
             setIconReaction(<img  className='icon-reaction icon-like-22' src={PUBLIC_URL + 'icon/angry.png'} alt='Giận dữ'/>)
           break;
         case 'love':
-            setIsUnlike(false)
+            setIsLike(true)
             setIconReaction(<img className='icon-reaction icon-like-22' src={PUBLIC_URL + 'icon/heart.png'} alt='Yêu thích'/>)
           break;
       }
+    }
+
+    const UserUpdateCover = () => {
+      if(props.post.post_Type === 'cover'){
+        return <span> đã cập nhật ảnh bìa</span>
+      }
+
+      return null
+    }
+
+    const UserUpdateAvatar = () => {
+      if(props.post.post_Type === 'avatar'){
+        return <span> đã cập nhật ảnh đại diện</span>
+      }
+
+      return null
     }
 
     if(isHide) return null
@@ -393,6 +446,8 @@ export const Post = React.forwardRef((props, ref ) =>  {
                                     <PagePost />
                                     <GroupPost />
                                     <UserReceivedPost />
+                                    <UserUpdateCover />
+                                    <UserUpdateAvatar />
                                 </p>
                                 <p className="post-time-created">{moment(moment.utc(props.post.created_at).toDate()).fromNow()} <PrivacyPost /></p>
                             </div>
@@ -423,12 +478,21 @@ export const Post = React.forwardRef((props, ref ) =>  {
                                   {' '+ totalReactionPost.length} người đã bày tỏ cảm xúc</span>
                               </Tooltip>
                             : null}
-                            <span onClick={showCommentFunc}>{props.post.comment_post.length + newComment.length ? props.post.comment_post.length + newComment.length + ' bình luận' : null} </span>
+                            <span onClick={showCommentFunc}>{props.post.comment_post.length + newComment.length ? props.post.comment_post.length + ' bình luận' : null} </span>
                           </div>
                         <div className="post-action" >
                             <div className="post-action-item send-reaction"  onMouseEnter={enterListSendReaction} onMouseLeave={leaveListSendReaction}>
-                              <div onClick={() => totalReactionPost.filter(reaction => reaction.pivot.actions_UserId === currentUser.id).length && !isUnlike ? sendReactionPost('unlike', props.post.id) : sendReactionPost('like', props.post.id)} >
-                              { iconReaction
+                              <div onClick={() => totalReactionPost.filter(reaction => reaction.pivot.actions_UserId === currentUser.id).length && isLike === 'default' ?
+                                sendReactionPost('unlike', props.post.id) :
+                                  <React.Fragment>
+                                    {!isLike || isLike === 'default' ?
+                                      sendReactionPost('like', props.post.id)
+                                      :
+                                      sendReactionPost('unlike', props.post.id)
+                                    }
+                                  </React.Fragment>
+                                } >
+                                { iconReaction
                                 ?
                                 iconReaction
                                 :
@@ -467,19 +531,18 @@ export const Post = React.forwardRef((props, ref ) =>  {
                               <CommentEditor ref={inputCommentRef} onSubmitComment={onSubmitComment}/>
                           </div>
                     </div>
-                    {newComment.reverse().map((newcmt, index) => {
-                      return(
-                        <div className="post-comment-item post-new-comment" style={{marginBottom: '10px'}} key={index}>
+                    {props.loadingAddComment && isNewComment?
+                        <div className="post-comment-item post-new-comment" style={{marginBottom: '10px'}}>
                           <div className="post-comment-item-parent">
                             <div className="post-comment-item-parent-avatar">
                               <Link to={'/profile/'+ currentUser.user_username}>
-                              {currentUser.user_avatar_cropX === null ?
-                                <img src={currentUser.user_avatar} alt={currentUser.user_first_name + ' ' + currentUser.user_last_name} />
-                                :
-                                <Image cloudName="mohi-vn" publicId={currentUser.user_avatar+ ".jpg"} version="1607061343">
-                                  <Transformation height={currentUser.user_avatar_cropH}  width={currentUser.user_avatar_cropW} x={currentUser.user_avatar_cropX} y={currentUser.user_avatar_cropY} crop="crop" />
-                                </Image>
-                              }
+                                {currentUser.user_avatar_cropX === null ?
+                                  <img src={currentUser.user_avatar} alt={currentUser.user_first_name + ' ' + currentUser.user_last_name} />
+                                  :
+                                  <Image cloudName="mohi-vn" publicId={currentUser.user_avatar+ ".jpg"} version="1607061343">
+                                    <Transformation height={currentUser.user_avatar_cropH}  width={currentUser.user_avatar_cropW} x={currentUser.user_avatar_cropX} y={currentUser.user_avatar_cropY} crop="crop" />
+                                  </Image>
+                                }
                               </Link>
                             </div>
                             <div className="post-comment-item-parent-info">
@@ -487,19 +550,63 @@ export const Post = React.forwardRef((props, ref ) =>  {
                                 <Link to={'/profile/'+ currentUser.user_username}>{currentUser.user_first_name + ' ' + currentUser.user_last_name}</Link>
                               </div>
                               <div className="post-comment-item-parent-content">
-                                {newcmt}
+                                <p>{newOneCmt}</p>
                               </div>
                               <div className="post-comment-item-parent-action">
                               <span>{moment(new Date, "YYYYMMDD\h:m:s").fromNow()}</span>
                               </div>
                             </div>
                           </div>
-                          {props.loadingAddComment && index === 0 ?
-                          <React.Fragment>
-                            <Spin />
-                            <div className="post-new-comment-waiting" />
-                        </React.Fragment>
-                          : null}
+                              <Spin />
+                              <div className="post-new-comment-waiting" />
+                        </div>
+                    : null}
+                    {newComment.map((newcmt, index) => {
+                      return(
+                        <div className="post-comment-item post-new-comment" style={{marginBottom: '10px'}} key={index}>
+                          <div className="post-comment-item-parent">
+                            <div className="post-comment-item-parent-avatar">
+                              <Link to={'/profile/'+ newcmt.user_username}>
+                                {newcmt.user_avatar_cropX === null ?
+                                  <img src={newcmt.user_avatar} alt={newcmt.user_first_name + ' ' + newcmt.user_last_name} />
+                                  :
+                                  <Image cloudName="mohi-vn" publicId={newcmt.user_avatar+ ".jpg"} version="1607061343">
+                                    <Transformation height={newcmt.user_avatar_cropH}  width={newcmt.user_avatar_cropW} x={newcmt.user_avatar_cropX} y={newcmt.user_avatar_cropY} crop="crop" />
+                                  </Image>
+                                }
+                              </Link>
+                            </div>
+                            <div className="post-comment-item-parent-info">
+                              <div className="post-comment-item-parent-info-user">
+                                <Link to={'/profile/'+ newcmt.user_username}>{newcmt.user_first_name + ' ' + newcmt.user_last_name}</Link>
+                              </div>
+                              <div className="post-comment-item-parent-content">
+                                <p>{newcmt.pivot.comment_Content}</p>
+                              </div>
+                              <div className="post-comment-item-parent-action">
+                              <span>{moment(moment.utc(newcmt.pivot.created_at).toDate()).fromNow()}</span>
+                              </div>
+                            </div>
+                            {newcmt.id === JSON.parse(localStorage.getItem('ustk')).info.id && <div className="setting-comment-post">
+                              <Tooltip
+                                trigger="click"
+                                placement="bottom"
+                                title={
+                                  <div className="setting-comment-post-tooltip">
+                                    <div onClick={() => updateComment(props.post.id, newcmt.pivot.id, newcmt.pivot.comment_Content)}>
+                                      Sửa bình luận
+                                    </div>
+                                    <div onClick={() => deleteComment(newcmt.pivot.id)}>
+                                      Xóa bình luận
+                                    </div>
+                                  </div>
+                                }
+                              >
+                                <BsThreeDots />
+                              </Tooltip>
+                            </div>
+                            }
+                          </div>
                         </div>
                       )
                     })}
@@ -508,7 +615,7 @@ export const Post = React.forwardRef((props, ref ) =>  {
                             ? <div className="post-comment-container">
                                 {
                                     listParentComment.map((comment, index) => {
-                                        return (<CommentParent key={index} listChildComment={listChildComment} comment={comment} />)
+                                        return (<CommentParent key={index} listChildComment={listChildComment} comment={comment}  idPost={props.post.id}/>)
                                     })
                                 }
                             </div>

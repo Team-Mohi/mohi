@@ -1,23 +1,44 @@
 .activity-container{
     width: 100%;
-    margin-top:70px;
     padding: 10px;
     background-color: white;
+    position: relative;
+    min-height: 300px;
 }
 
 .activity-card-header{
     width: 100%;
-    padding: 10px 10px;
+    text-align: center;
 }
 .activity-card-header h5{
     font-weight: 500;
     font-size: 15px;
 }
+.activity-action svg{
+  font-size: 20px;
+  color: rgba(0,128,128);
+}
+.activity-card-main:hover{
+  background: #ddd;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 5px;
+}
+.activity-card-main:hover .activity-right{
+  opacity: 1;
+  visibility: visible;
+}
 .activity-card-main{
+    border: 1px solid transparent;
+    transition: all 0.1s ease;
     display: flex;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+    cursor: pointer;
+    align-items: center;
     padding: 15px 5px;
-    min-height: 100px;
+    min-height: 50px;
+    padding: 0 100px;
+}
+.border-bottom{
+  border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 .activity-action{
     width: 100%;
@@ -66,6 +87,9 @@
 .activity-right{
     display: flex;
     margin-left:auto;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease;
 }
 .activity-main{
     width: 40%;
@@ -73,7 +97,9 @@
 }
 .activity-title{
     padding: 5px;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.activity-card-header h5{
+  padding-bottom: 20px;
 }
 .activity-title h5{
     font-weight: 500;

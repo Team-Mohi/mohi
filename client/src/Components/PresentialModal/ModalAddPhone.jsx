@@ -38,6 +38,13 @@ function ModalAddPhone() {
                 });
             setErrorEmail('Số điện thoại đã được đăng kí')
           }
+          if(e.response.data.message === "[HTTP 400] Unable to create record: The 'To' number +84"+ data.user_phone +" is not a valid phone number."){
+            setError("user_phone", {
+                  type: "manual",
+                  message: "Số điện thoại không tồn tại"
+                });
+            setErrorEmail('Số điện thoại không tồn tại')
+          }
         })
     }
 
@@ -66,14 +73,16 @@ function ModalAddPhone() {
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="modal-add-work-space-main">
                         <div className="modal-add-work-space-main-input">
-                            <label htmlFor="">Nhập email của bạn</label>
-                              <input type="text" name="user_phone" id="" ref={register({
+                            <label htmlFor="">Nhập số điện thoại của bạn</label>
+                              <div className="modal-add-email-main-input">
+                                <input type="text" name="user_phone" id="" ref={register({
                                   validate: value => validateInputPhone(value)
                                 })} />
-                              {errors.user_phone && <Tooltip placement="bottom" trigger="click" title={<p className = "error_sex_tooltip" >
+                                {errors.user_phone && <Tooltip placement="bottom" trigger="click" title={<p className="error_sex_tooltip" >
                                   {errorEmail}
-                                  </p>}><RiErrorWarningLine className="error_sex"/></Tooltip>
-                              }
+                                </p>}><RiErrorWarningLine className="error_sex" /></Tooltip>
+                                }
+                              </div>
                         </div>
                     </div>
                     <div className="modal-add-work-space-footer">

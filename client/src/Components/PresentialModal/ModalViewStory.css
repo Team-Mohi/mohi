@@ -1,0 +1,116 @@
+
+.modal-story-container{
+  background: black;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: relative;
+  z-index: 9999999999;
+}
+.modal-story-item-container{
+  width: 20%;
+  min-width: 20%;
+  background: white;
+  max-height: 100vh;
+  overflow: auto;
+}
+.modal-story-item-container h5{
+  padding: 10px 5px;
+}
+.modal-story-item-image-container{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.preview-story{
+  left: 10px;
+}
+.next-story{
+  right: 10px;
+}
+.story-info p{
+  margin-left: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  width: 100%;
+  color: white;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  transition: all 0.2s ease;
+  -webkit-box-orient: vertical;
+  line-height: 25px;
+}
+.story-info{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  background: rgba(0,128,128);
+  width: 100%;
+}
+.content-story p{
+  margin: 0 auto;
+  background: rgba(0,128,128, 0.7);
+  padding: 20px;
+  border-radius: 20px;
+}
+.content-story{
+  color: white;
+  text-align: center;
+  font-size: 15px;
+  max-width: 80%;
+}
+.preview-story:hover svg, .next-story:hover svg{
+  color: rgba(255,255,255);
+}
+.preview-story svg, .next-story svg{
+  color: rgba(255,255,255,0.7);
+  transition: all 0.2s ease;
+  font-size: 50px;
+}
+.preview-story, .next-story{
+  position: absolute;
+  cursor: pointer;
+}
+.modal-story-item:hover{
+  background: #ddd;
+}
+ .active-story{
+  background: rgba(0,128,128,0.2);
+}
+.modal-story-item{
+  display: flex;
+  align-items: center;
+  padding: 10px 5px;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.story-avatar{
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  min-height: 50px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.1);
+  overflow: hidden;
+  margin-right: 10px;
+}
+.story-name{
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  min-width: 150px;
+}
+.close-story{
+  font-size: 50px;
+  fill: white;
+  cursor: pointer;
+  margin-left: auto;
+}

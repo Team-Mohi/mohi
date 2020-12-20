@@ -6,6 +6,7 @@ import {useHistory} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { toggleStatusSpin } from './../../Actions/index.jsx';
 import { useCookies } from "react-cookie";
+import {Image,Transformation} from 'cloudinary-react';
 
 function VeriChangePass(props){
   const history = useHistory();
@@ -73,7 +74,13 @@ function VeriChangePass(props){
           <h2 style={{marginBottom: '20px'}}>Xác nhận đổi mật khẩu</h2>
           <div className="preview-info-user">
             <div className="preview-info-user-avatar">
-              <img src={avatar} alt={name} />
+                {avatar.toLowerCase().indexOf('https://') !== -1 ?
+                  <img src={avatar} alt={name} />
+                  :
+                  <Image cloudName="mohi-vn" publicId={avatar+ ".jpg"} version="1607061343">
+                    <Transformation />
+                  </Image>
+                }
             </div>
             <div className="preview-info-user-name">{name}</div>
           </div>

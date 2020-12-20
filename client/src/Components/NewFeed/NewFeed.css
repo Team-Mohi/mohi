@@ -273,3 +273,26 @@
   margin-top: 10px;
   display: flex;
 }
+
+.post-share-container{
+  padding: 10px 20px;
+  margin: 10px 10px 0 10px;
+  border-top: 1px solid rgba(0,0,0,0.5);
+  border-left: 1px solid rgba(0,0,0,0.5);
+  border-right: 1px solid rgba(0,0,0,0.5);
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+.setting-comment-post{
+  margin-left: 20px;
+  cursor: pointer;
+}
+.setting-comment-post-tooltip div:hover{
+  text-decoration: underline;
+}
+.setting-comment-post-tooltip{
+  background: rgba(0,0,0,0.7);
+  border-radius: 2px;
+  cursor: pointer;
+  padding: 5px 10px;
+}

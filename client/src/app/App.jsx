@@ -8,25 +8,10 @@ import { useSelector } from 'react-redux';
 import {toggleStatusPresentialModal} from './../Actions/index.jsx';
 var socketIOClient = require('socket.io-client');
 
-function App({ spin, presentialModal }) {
+function App({ spin, presentialModal, profile }) {
   const statusSpin = useSelector(state => state.spin);
   const statusPresentialModal = useSelector(state => state.presentialModal);
-
-  // const io = socketIOClient('/', {
-  //       transports: ['websocket'],
-  //       path: '/socket', // added this line of code
-  //   });
-  //
-  //   useEffect(() => {
-  //     io.on('server mesage', (isOnline) => {
-  //       console.log(isOnline);
-  //     })
-  //
-  //     io.on('event', (data) => {
-  //       console.log(data);
-  //     });
-  //
-  //   }, []);
+  const {loadingUpdateProfile} = useSelector(state => state.profile);
 
   function IsJsonString(str) {
     try {
