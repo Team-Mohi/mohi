@@ -190,7 +190,7 @@ export const Post = React.forwardRef((props, ref ) =>  {
         <React.Fragment>
             <List className="setting-post" loading={props.loadingSetting}>
                 {props.post.user_admin_post.user_username === currentUser.user_username && <List.Item onClick={() => loadingSendRequestSetting('deletePost', props.post.id, '')}><MdDelete /> Xóa bài viết</List.Item>}
-                <List.Item onClick={() => updatePost(props.post)}><AiFillEdit /> Sửa bài viết</List.Item>
+                {props.post.user_admin_post.user_username === currentUser.user_username && <List.Item onClick={() => updatePost(props.post)}><AiFillEdit /> Sửa bài viết</List.Item>}
                 <List.Item onClick={() => loadingSendRequestSetting('hidePost', props.post.id, '')}><GoEyeClosed /> Ẩn bài viết</List.Item>
                 <List.Item onClick={() => loadingSendRequestSetting('unNotification', props.post.id, '')}><MdNotificationsOff />Tắt thông báo từ bài viết</List.Item>
             </List>

@@ -1,17 +1,21 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {Image,Transformation} from 'cloudinary-react';
 import {FaShare, FaSmileWink, FaCommentAlt} from 'react-icons/fa';
 import {BsThreeDotsVertical} from 'react-icons/bs';
 import './NotificationsMenu.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Spin } from 'antd';
 import moment from 'moment';
+import {readNoti} from './../../Actions/index.jsx';
+import axios from 'axios';
 
 function MenuNoti({notifycations}) {
   const list = useSelector(state => state.notifycations);
   const listNotifications = list.list;
   const loading = list.loading;
+  const dispatch = useDispatch();
+
   moment.updateLocale('en', {
     relativeTime : {
         future: "%s",
@@ -32,6 +36,17 @@ function MenuNoti({notifycations}) {
         yy: "%d năm"
     }
   });
+
+  useEffect(() => {
+    readNotiFunc()
+  }, [])
+
+  const readNotiFunc = async () => {
+    await axios.post("https://www.api.mohi.vn/api/auth/read-notification")
+    .then((res) => {
+      dispatch(readNoti())
+    })
+  }
 
   if(loading && !listNotifications.length){
     return(

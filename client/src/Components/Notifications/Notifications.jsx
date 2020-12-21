@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {AiFillPicture} from 'react-icons/ai';
 import {Link, Route, Switch} from 'react-router-dom';
 import {Image,Transformation} from 'cloudinary-react';
@@ -10,6 +10,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {Spin, Tooltip} from 'antd';
 import axios from 'axios';
 import {removeOneNoti} from './../../Actions/index.jsx';
+import {readNoti} from './../../Actions/index.jsx';
 
 function Notifications({notifycations}) {
   const {list, loading} = useSelector(state => state.notifycations);
@@ -22,6 +23,16 @@ function Notifications({notifycations}) {
       await axios.post('https://www.api.mohi.vn/api/auth/delete-notification', {id: id})
   }
 
+  useEffect(() => {
+    readNotiFunc()
+  }, [])
+
+  const readNotiFunc = async () => {
+    await axios.post("https://www.api.mohi.vn/api/auth/read-notification")
+    .then((res) => {
+      dispatch(readNoti())
+    })
+  }
   moment.updateLocale('en', {
     relativeTime : {
         future: "%s",

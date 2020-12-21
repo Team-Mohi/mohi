@@ -19,21 +19,21 @@ const StyleEditor = style.div`
   margin-left: 10px;
   font-size: 14px;
 
-  @media (max-width: 1600px) {
-    width: 700px;
-  }
-  
-  @media (max-width: 1440px) {
-    width: 615px;
-  }
+  @media screen and (min-width: 1677px) and (max-width: 1920px) {
+      width: 840px;
+      max-height: 55px;
+      overflow-y: auto;
+      margin-left: 10px;
+      font-size: 14px;
+    }
 
-  @media (max-width: 1366px) {
-    width: 580px;
-  }
+    @media screen and (min-width: 1366px) and ( max-width: 1677px) {
+      width: 700px;
+    }
 
-  @media (max-width: 1280px) {
-    width: 525px;
-  }
+    @media screen and (min-width: 1280px) and ( max-width: 1366px) {
+      width: 525px;
+    }
 `;
 export default class CustomEmojiEditor extends Component {
   constructor(props) {

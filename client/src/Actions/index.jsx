@@ -1,5 +1,11 @@
 import * as Types from './../Constants/ActionTypes.jsx';
 
+export const readNoti = () => {
+  return {
+    type: Types.READ_NOTI
+  }
+}
+
 export const requestOnePost = () => {
   return {
     type: Types.REQUEST_ONE_POST

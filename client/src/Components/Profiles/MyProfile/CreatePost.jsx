@@ -174,11 +174,6 @@ function CreatePost(props) {
                       <Switch onChange={(checked, event) => onChangePlaceStory(checked, event)} ></Switch>
                       <span className="place-post">Tin của bạn</span>
                   </div>
-                  <Select className="select-privacy" defaultValue={privacyNewFeed} style={{ width: 140 }} onSelect={(value) => onChangePrivacyStory(value)}>
-                      <Option value="public"><MdPublic /> Công khai</Option>
-                      <Option value="friend"><FaUserFriends /> Bạn bè</Option>
-                      <Option value="onlyme"><FaLock /> Chỉ mình tôi</Option>
-                  </Select>
                 </div>
                 <div className="create-post-story-place">
                   <div>
